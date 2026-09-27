@@ -1,0 +1,26 @@
+{
+  "method": "contiguous FP16 post-projection operator, output allocation included; 352 sequential decode-shape calls by default; paired alternating order; CPU submission timer and synchronized wall timer, no profiler",
+  "shape": [1, 5632],
+  "calls": 352,
+  "repeats": 5,
+  "gpu": "Tesla T4",
+  "torch": "2.6.0+cu124",
+  "measurements": {
+    "eager": [
+      {"submit_ms": 6.353594362735748, "total_ms": 6.422601640224457},
+      {"submit_ms": 5.898229777812958, "total_ms": 5.9387460350990295},
+      {"submit_ms": 5.975902080535889, "total_ms": 6.015293300151825},
+      {"submit_ms": 5.871973931789398, "total_ms": 5.911648273468018},
+      {"submit_ms": 6.1968788504600525, "total_ms": 6.239064037799835}
+    ],
+    "triton": [
+      {"submit_ms": 15.821561217308044, "total_ms": 15.86207002401352},
+      {"submit_ms": 15.55449515581131, "total_ms": 15.594720840454102},
+      {"submit_ms": 15.639975666999817, "total_ms": 15.677407383918762},
+      {"submit_ms": 15.849776566028595, "total_ms": 15.888325870037079},
+      {"submit_ms": 15.575997531414032, "total_ms": 15.622653067111969}
+    ]
+  },
+  "median_submit_ms": {"eager": 5.975902080535889, "triton": 15.639975666999817},
+  "median_total_ms": {"eager": 6.015293300151825, "triton": 15.677407383918762}
+}
