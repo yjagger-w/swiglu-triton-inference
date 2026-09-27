@@ -78,6 +78,10 @@ For an order check, add `--profile-sequence eager,triton,eager` and choose a
 new profile output directory. The first and last eager profiles can reveal
 whether the profiler session itself drifted; use synchronized wall timings
 for performance claims.
+`bench_decode_dispatch.py` measures host submission and synchronized wall
+time for repeated 1 × 5632 FP16 SwiGLU calls without a profiler. It uses the
+real model's intermediate width, but synthetic tensors and no projections.
+This isolates Python dispatch costs and cannot substitute for model latency.
 
 For a short smoke test:
 

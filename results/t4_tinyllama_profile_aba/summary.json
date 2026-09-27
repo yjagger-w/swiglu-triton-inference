@@ -1,0 +1,42 @@
+{
+  "method": "one profiled 128-prompt/16-new-token TinyLlama generation per entry; chronological order eager, triton, eager; diagnostic only",
+  "gpu": "Tesla T4",
+  "sequence": [
+    {
+      "provider": "eager_1",
+      "mm_calls": 2480,
+      "mm_self_cuda_ms": 122.445,
+      "attention_calls": 352,
+      "attention_self_cuda_ms": 5.554,
+      "silu_calls": 352,
+      "silu_self_cuda_ms": 0.689752,
+      "mul_calls": 3264,
+      "total_self_cpu_ms": 435.938,
+      "total_self_cuda_ms": 158.124
+    },
+    {
+      "provider": "triton",
+      "mm_calls": 2480,
+      "mm_self_cuda_ms": 172.554,
+      "attention_calls": 352,
+      "attention_self_cuda_ms": 13.022,
+      "swiglu_calls": 352,
+      "swiglu_self_cuda_ms": 1.375,
+      "mul_calls": 2912,
+      "total_self_cpu_ms": 443.752,
+      "total_self_cuda_ms": 248.451
+    },
+    {
+      "provider": "eager_2",
+      "mm_calls": 2480,
+      "mm_self_cuda_ms": 164.463,
+      "attention_calls": 352,
+      "attention_self_cuda_ms": 12.300,
+      "silu_calls": 352,
+      "silu_self_cuda_ms": 1.430,
+      "mul_calls": 3264,
+      "total_self_cpu_ms": 443.398,
+      "total_self_cuda_ms": 238.443
+    }
+  ]
+}
