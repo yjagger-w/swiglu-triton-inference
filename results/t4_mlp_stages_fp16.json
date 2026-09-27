@@ -1,0 +1,56 @@
+{
+  "method": "isolated stage do_bench medians; stage times are not additive and may differ from full-layer timings",
+  "timestamp_utc": "2026-09-27T04:30:04.780441+00:00",
+  "gpu": "Tesla T4",
+  "compute_capability": [
+    7,
+    5
+  ],
+  "python": "3.12.14",
+  "torch": "2.6.0+cu124",
+  "cuda": "12.4",
+  "triton": "3.2.0",
+  "seed": 42,
+  "repeats": 3,
+  "rows": [
+    {
+      "tokens": 1,
+      "hidden": 4096,
+      "intermediate": 11008,
+      "dtype": "fp16",
+      "gate_proj_ms": 0.31561601161956787,
+      "up_proj_ms": 0.31539198756217957,
+      "swiglu_eager_ms": 0.006783999968320131,
+      "swiglu_triton_ms": 0.0044479998759925365,
+      "down_proj_ms": 0.3317759931087494,
+      "full_eager_ms": 0.9584640264511108,
+      "full_triton_ms": 0.9552000164985657
+    },
+    {
+      "tokens": 128,
+      "hidden": 4096,
+      "intermediate": 11008,
+      "dtype": "fp16",
+      "gate_proj_ms": 0.4015679955482483,
+      "up_proj_ms": 0.40067198872566223,
+      "swiglu_eager_ms": 0.05462399870157242,
+      "swiglu_triton_ms": 0.03532800078392029,
+      "down_proj_ms": 0.46489599347114563,
+      "full_eager_ms": 1.5134719610214233,
+      "full_triton_ms": 1.490496039390564
+    },
+    {
+      "tokens": 1024,
+      "hidden": 4096,
+      "intermediate": 11008,
+      "dtype": "fp16",
+      "gate_proj_ms": 2.934688091278076,
+      "up_proj_ms": 2.9328958988189697,
+      "swiglu_eager_ms": 0.39689600467681885,
+      "swiglu_triton_ms": 0.23756800591945648,
+      "down_proj_ms": 4.700160026550293,
+      "full_eager_ms": 11.645792007446289,
+      "full_triton_ms": 11.556384086608887
+    }
+  ]
+}

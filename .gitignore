@@ -8,3 +8,4 @@ results/*.csv
 !results/t4_fp16.json
 !results/t4_fp32.json
 !results/t4_mlp_fp16.json
+!results/t4_mlp_stages_fp16.json

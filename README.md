@@ -35,6 +35,8 @@ python benchmarks/bench_swiglu.py --dtype fp16 --output results/t4_fp16.json
 python benchmarks/bench_swiglu.py --dtype fp32 --output results/t4_fp32.json
 python benchmarks/bench_llama_mlp.py --dtype fp16 --output results/t4_mlp_fp16.json
 python benchmarks/bench_mlp_stages.py --output results/t4_mlp_stages_fp16.json
+python benchmarks/bench_compiled_swiglu.py --output results/t4_compiled_swiglu_fp16.json
+python benchmarks/profile_swiglu.py --output-dir results/t4_profile_swiglu
 ```
 
 For a short smoke test:
@@ -67,6 +69,12 @@ The measured T4 baseline and its limitations are in
 For a follow-up timing breakdown, `bench_mlp_stages.py` measures each linear
 projection and activation independently, plus both full-layer paths. Its
 isolated stage times should not be summed to predict full-layer latency.
+`bench_compiled_swiglu.py` compares the same post-projection operation against
+the PyTorch Inductor compiled public reference (after compilation). Its
+numerical tolerance allows compiler fusion to change FP16 intermediate
+rounding and reports maximum absolute error for both alternatives.
+`profile_swiglu.py` saves kernel tables and Chrome traces separately for eager
+and Triton; profiler timings are diagnostic, not benchmark latencies.
 
 ## Scope and interpretation
 
