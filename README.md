@@ -74,6 +74,10 @@ generation per path **after** the regular timing result has been saved. The
 profiler tables and event JSON are diagnostics, not latency measurements.
 If the wall-timing result has already been saved, add `--profile-only` to
 collect just the two traces without repeating validation and timed runs.
+For an order check, add `--profile-sequence eager,triton,eager` and choose a
+new profile output directory. The first and last eager profiles can reveal
+whether the profiler session itself drifted; use synchronized wall timings
+for performance claims.
 
 For a short smoke test:
 
