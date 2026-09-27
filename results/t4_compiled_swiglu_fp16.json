@@ -1,0 +1,60 @@
+{
+  "method": "forward-only post-projection; output allocation included; compile and first call excluded; median of do_bench medians",
+  "timestamp_utc": "2026-09-27T04:38:43.830087+00:00",
+  "gpu": "Tesla T4",
+  "compute_capability": [
+    7,
+    5
+  ],
+  "python": "3.12.14",
+  "torch": "2.6.0+cu124",
+  "cuda": "12.4",
+  "triton": "3.2.0",
+  "compile_backend": "inductor",
+  "fullgraph": true,
+  "rtol": 0.01,
+  "atol": 0.01,
+  "seed": 42,
+  "repeats": 3,
+  "rows": [
+    {
+      "tokens": 1,
+      "features": 11008,
+      "dtype": "fp16",
+      "triton_max_abs_error": 0.0,
+      "compiled_max_abs_error": 0.00390625,
+      "eager_ms": 0.00684799998998642,
+      "triton_ms": 0.0044479998759925365,
+      "compiled_ms": 0.0044479998759925365,
+      "triton_over_eager": 1.539568385994692,
+      "compiled_over_eager": 1.539568385994692,
+      "triton_over_compiled": 1.0
+    },
+    {
+      "tokens": 128,
+      "features": 11008,
+      "dtype": "fp16",
+      "triton_max_abs_error": 0.00048828125,
+      "compiled_max_abs_error": 0.0078125,
+      "eager_ms": 0.054816000163555145,
+      "triton_ms": 0.035392001271247864,
+      "compiled_ms": 0.03392000123858452,
+      "triton_over_eager": 1.5488245421172937,
+      "compiled_over_eager": 1.6160376816614355,
+      "triton_over_compiled": 0.958408680498687
+    },
+    {
+      "tokens": 1024,
+      "features": 11008,
+      "dtype": "fp16",
+      "triton_max_abs_error": 0.00048828125,
+      "compiled_max_abs_error": 0.0078125,
+      "eager_ms": 0.3973119854927063,
+      "triton_ms": 0.2377600073814392,
+      "compiled_ms": 0.23667199909687042,
+      "triton_over_eager": 1.6710631441699835,
+      "compiled_over_eager": 1.6787452128212494,
+      "triton_over_compiled": 0.9954239222291775
+    }
+  ]
+}
