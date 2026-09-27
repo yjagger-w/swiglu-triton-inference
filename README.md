@@ -34,6 +34,7 @@ python -m pytest -q
 python benchmarks/bench_swiglu.py --dtype fp16 --output results/t4_fp16.json
 python benchmarks/bench_swiglu.py --dtype fp32 --output results/t4_fp32.json
 python benchmarks/bench_llama_mlp.py --dtype fp16 --output results/t4_mlp_fp16.json
+python benchmarks/bench_mlp_stages.py --output results/t4_mlp_stages_fp16.json
 ```
 
 For a short smoke test:
@@ -63,6 +64,9 @@ T4 JSON baselines are explicitly tracked.
 
 The measured T4 baseline and its limitations are in
 [docs/t4_baseline_20260927.md](docs/t4_baseline_20260927.md).
+For a follow-up timing breakdown, `bench_mlp_stages.py` measures each linear
+projection and activation independently, plus both full-layer paths. Its
+isolated stage times should not be summed to predict full-layer latency.
 
 ## Scope and interpretation
 
