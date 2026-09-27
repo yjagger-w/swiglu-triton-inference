@@ -11,6 +11,7 @@ dependencies = ["torch>=2.2", "triton>=2.2"]
 
 [project.optional-dependencies]
 test = ["pytest>=7"]
+model = ["transformers>=4.44,<5", "sentencepiece>=0.1.99"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

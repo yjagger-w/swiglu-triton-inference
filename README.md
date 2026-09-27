@@ -39,6 +39,28 @@ python benchmarks/bench_compiled_swiglu.py --output results/t4_compiled_swiglu_f
 python benchmarks/profile_swiglu.py --output-dir results/t4_profile_swiglu
 ```
 
+## Real checkpoint experiment (optional)
+
+`bench_hf_llama_generate.py` loads a Hugging Face LLaMA checkpoint (default:
+TinyLlama 1.1B Chat) in FP16 and temporarily replaces the SwiGLU part of
+each MLP's forward call. It compares greedy token IDs and logits before
+recording paired generation timings with identical prompt, weights, cache
+setting and token count. Checkpoint download and Transformers are separate
+from the operator-only environment; the `model` extra lists the optional
+dependencies. On T4 use FP16 because native BF16 is unavailable.
+
+```bash
+python benchmarks/bench_hf_llama_generate.py \
+  --model TinyLlama/TinyLlama-1.1B-Chat-v1.0 \
+  --prompt-tokens 128 --new-tokens 16 \
+  --output results/t4_tinyllama_generate_fp16.json
+```
+
+The experiment has not yet been run on the T4; a checkpoint-backed speed
+claim requires its saved correctness and timing result. The adapter works
+with the LLaMA `model.model.layers[*].mlp` layout and SiLU activation; it
+does not attempt to patch other model families or compiled full models.
+
 For a short smoke test:
 
 ```bash
@@ -81,9 +103,9 @@ and Triton; profiler timings are diagnostic, not benchmark latencies.
 - Supported: matching, nonempty, contiguous CUDA tensors; FP16/FP32, and BF16
   on GPUs with compute capability 8.0 or newer. The PyTorch reference can also
   run on CPU.
-- No autograd, strided tensors, in-place output, quantization, linear GEMM
-  fusion, `torch.compile` baseline, real model checkpoint or generation
-  integration in this version. The separate MLP harness tests one full layer.
+- No autograd, strided tensors, in-place output, quantization or linear GEMM
+  fusion. The separate MLP harness tests one synthetic full layer; optional
+  real-model generation is a follow-up experiment pending T4 verification.
 - A fast post-projection operator alone does **not** establish faster LLM
   inference. Later end-to-end work must measure the share of MLP time, account
   for projection GEMMs, and compare against compiled/framework baselines.

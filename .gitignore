@@ -3,6 +3,7 @@ __pycache__/
 *.pyc
 *.egg-info/
 .venv/
+.hf_deps/
 results/*.json
 results/*.csv
 !results/t4_fp16.json
