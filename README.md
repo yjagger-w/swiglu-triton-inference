@@ -32,6 +32,7 @@ CUDA/PyTorch/Triton combination. Record the installed versions with each run.
 python -m pytest -q
 python benchmarks/bench_swiglu.py --dtype fp16 --output results/t4_fp16.json
 python benchmarks/bench_swiglu.py --dtype fp32 --output results/t4_fp32.json
+python benchmarks/bench_llama_mlp.py --dtype fp16 --output results/t4_mlp_fp16.json
 ```
 
 For a short smoke test:
@@ -43,6 +44,13 @@ python benchmarks/bench_swiglu.py --tokens 1,128 --features 4096 --repeats 1 --o
 The default shape matrix measures 1, 128 and 1024 token rows, with 4096 and
 11008 intermediate channels. These are synthetic operator inputs, not a
 claim that a particular model layer uses those exact dimensions.
+
+The MLP harness separately measures one LLaMA-style layer with synthetic,
+locally initialized weights at 1, 8, 128 and 1024 token positions. It includes
+the gate, up and down projections for **both** providers. The dimensions
+`4096/11008` are an explicit experiment setting, not a verified Llama 3.1/3.2
+checkpoint shape. See [the LLaMA serving bridge](docs/llama_serving_bridge.md)
+for the link to the earlier course topics and for interpreting decode/prefill.
 
 The tool compares PyTorch eager `F.silu(gate) * up` against the Triton wrapper;
 both allocate their output. Timing uses repeated `triton.testing.do_bench`
@@ -56,7 +64,8 @@ saved. Results are ignored by Git until reviewed.
 - Supported: matching, nonempty, contiguous CUDA tensors; FP16/FP32, and BF16
   only where supported. The PyTorch reference can also run on CPU.
 - No autograd, strided tensors, in-place output, quantization, linear GEMM
-  fusion, `torch.compile` baseline, full MLP, or model integration in v0.1.
+  fusion, `torch.compile` baseline, real model checkpoint or generation
+  integration in this version. The separate MLP harness tests one full layer.
 - A fast post-projection operator alone does **not** establish faster LLM
   inference. Later end-to-end work must measure the share of MLP time, account
   for projection GEMMs, and compare against compiled/framework baselines.
@@ -69,8 +78,8 @@ saved. Results are ignored by Git until reviewed.
    describe shapes where fusion helps or hurts.
 2. Add an appropriate compiled PyTorch baseline and profile kernel launches,
    memory traffic and occupancy before tuning block size.
-3. Integrate at one real model MLP call site and compare whole-layer and
-   generation latency with identical inputs and numerical criteria.
+3. Integrate at one real model MLP call site and compare generation latency
+   with identical inputs and numerical criteria.
 4. Decide whether a TVM lowering experiment or a quantized gate is justified
    by measured bottlenecks. ST-Mamba remains a separate thesis project; its
    SiLU gating path would require its own profiling and integration work.
