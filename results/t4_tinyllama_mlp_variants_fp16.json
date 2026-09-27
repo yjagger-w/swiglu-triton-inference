@@ -1,0 +1,27 @@
+{
+  "method": "same checkpoint and prompt; three MLP paths; two warmups each; rotating execution order; synchronized generation wall timing; no profiler, no compilation",
+  "timestamp_utc": "2026-09-27T09:07:18.033805+00:00",
+  "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+  "revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+  "resolved_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+  "prompt_tokens": 128,
+  "new_tokens": 16,
+  "prompt_ids_sha256": "c4d1d52c38ececd24ce5b9e41c90b6d57172932e0b34ed519c281d51e96cc39b",
+  "greedy_ids_identical": {"native": true, "reordered_eager": true, "triton": true},
+  "path_descriptions": {
+    "native": "original Hugging Face LLaMA MLP forward",
+    "reordered_eager": "patched forward computes gate and up, then F.silu(gate) * up",
+    "triton": "patched forward computes gate and up, then Triton SwiGLU"
+  },
+  "times_ms": {
+    "native": [336.26871556043625, 333.60832184553146, 333.78683030605316, 334.22599732875824, 331.9366052746773],
+    "reordered_eager": [329.7226279973984, 330.17296344041824, 342.3507660627365, 327.3754045367241, 331.54604583978653],
+    "triton": [380.5212676525116, 375.6323754787445, 381.1989948153496, 378.6673992872238, 387.24251091480255]
+  },
+  "medians_ms": {"native": 333.78683030605316, "reordered_eager": 330.17296344041824, "triton": 380.5212676525116},
+  "gpu": "Tesla T4",
+  "torch": "2.6.0+cu124",
+  "seed": 42,
+  "repeats": 5,
+  "accuracy_note": "identical greedy IDs on this prompt only; prior Triton full-logit strict check failed"
+}

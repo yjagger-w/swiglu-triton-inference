@@ -13,3 +13,4 @@ results/*.csv
 !results/t4_compiled_swiglu_fp16.json
 !results/t4_tinyllama_generate_fp16.json
 !results/t4_decode_dispatch_fp16.json
+!results/t4_tinyllama_mlp_variants_fp16.json

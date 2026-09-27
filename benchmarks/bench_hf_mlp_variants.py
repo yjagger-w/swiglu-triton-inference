@@ -6,7 +6,7 @@ import json
 import math
 import statistics
 import time
-from contextlib import contextmanager
+from contextlib import contextmanager, nullcontext
 from datetime import datetime, timezone
 from pathlib import Path
 from types import MethodType
@@ -44,6 +44,31 @@ def provider(model: torch.nn.Module, name: str):
         raise ValueError(f"unknown provider: {name}")
 
 
+@contextmanager
+def measure_mlp_host_calls(model: torch.nn.Module):
+    """Count unsynchronized host time spent invoking each MLP forward."""
+    mlps = [layer.mlp for layer in model.model.layers]
+    originals = [mlp.forward for mlp in mlps]
+    stats = {"calls": 0, "host_ms": 0.0}
+
+    def instrument(original):
+        def timed(_mlp, x):
+            start = time.perf_counter()
+            out = original(x)
+            stats["host_ms"] += (time.perf_counter() - start) * 1000
+            stats["calls"] += 1
+            return out
+        return timed
+
+    try:
+        for mlp, original in zip(mlps, originals):
+            mlp.forward = MethodType(instrument(original), mlp)
+        yield stats
+    finally:
+        for mlp, original in zip(mlps, originals):
+            mlp.forward = original
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Full-model MLP schedule control")
     parser.add_argument("--model", default="TinyLlama/TinyLlama-1.1B-Chat-v1.0")
@@ -51,6 +76,8 @@ def main() -> None:
     parser.add_argument("--prompt-tokens", type=int, default=128)
     parser.add_argument("--new-tokens", type=int, default=16)
     parser.add_argument("--repeats", type=int, default=5)
+    parser.add_argument("--mlp-host-timing", action="store_true",
+                        help="time and count MLP forwards without synchronizing inside them")
     parser.add_argument("--output", type=Path, default=Path("results/t4_tinyllama_mlp_variants_fp16.json"))
     args = parser.parse_args()
     if min(args.prompt_tokens, args.new_tokens, args.repeats) <= 0:
@@ -95,13 +122,16 @@ def main() -> None:
         if outputs["native"].shape[-1] != args.prompt_tokens + args.new_tokens:
             raise AssertionError("generation did not produce requested number of tokens")
 
-        def measure(name: str) -> float:
+        def measure(name: str) -> tuple[float, dict | None]:
             with provider(model, name):
-                torch.cuda.synchronize()
-                start = time.perf_counter()
-                generate()
-                torch.cuda.synchronize()
-                return (time.perf_counter() - start) * 1000
+                instrument = (measure_mlp_host_calls(model) if args.mlp_host_timing
+                              else nullcontext(None))
+                with instrument as stats:
+                    torch.cuda.synchronize()
+                    start = time.perf_counter()
+                    generate()
+                    torch.cuda.synchronize()
+                    return (time.perf_counter() - start) * 1000, stats
 
         for _ in range(2):
             for name in names:
@@ -109,9 +139,15 @@ def main() -> None:
         rotations = (names, ("triton", "native", "reordered_eager"),
                      ("reordered_eager", "triton", "native"))
         times = {name: [] for name in names}
+        host_times = {name: [] for name in names}
         for i in range(args.repeats):
             for name in rotations[i % len(rotations)]:
-                times[name].append(measure(name))
+                elapsed, stats = measure(name)
+                times[name].append(elapsed)
+                if stats is not None:
+                    if stats["calls"] != len(model.model.layers) * args.new_tokens:
+                        raise AssertionError(f"unexpected MLP call count: {stats['calls']}")
+                    host_times[name].append(stats["host_ms"])
 
     result = {
         "method": "same checkpoint and prompt; three MLP paths; two warmups each;"
@@ -134,6 +170,15 @@ def main() -> None:
         "seed": 42, "repeats": args.repeats,
         "accuracy_note": "identical greedy IDs on this prompt only; prior Triton full-logit strict check failed",
     }
+    if args.mlp_host_timing:
+        result["mlp_calls_per_generation"] = len(model.model.layers) * args.new_tokens
+        result["mlp_host_ms_each"] = host_times
+        result["mlp_host_medians_ms"] = {
+            name: statistics.median(values) for name, values in host_times.items()
+        }
+        result["mlp_host_note"] = ("Unsynchronized elapsed host time inside MLP calls;"
+                                   " includes any internal blocking and timing overhead."
+                                   " It is not an additive fraction of generation wall latency.")
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(result, indent=2))
