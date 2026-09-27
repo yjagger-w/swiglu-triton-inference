@@ -51,6 +51,8 @@ storage. The default allocates an output just like the PyTorch reference.
     _validate(gate, up)
     if gate.device.type != "cuda":
         raise ValueError("Triton implementation requires CUDA tensors")
+    if gate.dtype == torch.bfloat16 and torch.cuda.get_device_capability(gate.device)[0] < 8:
+        raise ValueError("BF16 Triton kernel requires CUDA compute capability 8.0 or newer")
     if not gate.is_contiguous() or not up.is_contiguous():
         raise ValueError("Triton implementation requires contiguous inputs")
     if out is None:

@@ -16,8 +16,9 @@ itself is an existing activation, not a proposed new algorithm.
 
 ## Environment
 
-- Linux with an NVIDIA CUDA GPU. A T4 supports the FP16 and FP32 runs; BF16
-  requires a GPU that reports BF16 support.
+- Linux with an NVIDIA CUDA GPU. A T4 supports the FP16 and FP32 runs; the
+  Triton BF16 kernel requires compute capability 8.0 or newer. PyTorch can
+  report emulated BF16 on a T4, which is insufficient for Triton PTX assembly.
 - Python 3.10 or newer, a CUDA-enabled PyTorch build and a compatible Triton
   installation. Install the CUDA PyTorch build appropriate for the machine
   first using the [official PyTorch selector](https://pytorch.org/get-started/locally/).
@@ -62,7 +63,8 @@ saved. Results are ignored by Git until reviewed.
 ## Scope and interpretation
 
 - Supported: matching, nonempty, contiguous CUDA tensors; FP16/FP32, and BF16
-  only where supported. The PyTorch reference can also run on CPU.
+  on GPUs with compute capability 8.0 or newer. The PyTorch reference can also
+  run on CPU.
 - No autograd, strided tensors, in-place output, quantization, linear GEMM
   fusion, `torch.compile` baseline, real model checkpoint or generation
   integration in this version. The separate MLP harness tests one full layer.

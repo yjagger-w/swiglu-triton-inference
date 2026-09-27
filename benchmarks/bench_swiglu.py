@@ -42,8 +42,8 @@ def main() -> None:
     if not torch.cuda.is_available():
         parser.error("CUDA GPU required; no benchmark result was produced")
     dtype = {"fp16": torch.float16, "bf16": torch.bfloat16, "fp32": torch.float32}[args.dtype]
-    if dtype == torch.bfloat16 and not torch.cuda.is_bf16_supported():
-        parser.error("this GPU does not support bfloat16")
+    if dtype == torch.bfloat16 and torch.cuda.get_device_capability(0)[0] < 8:
+        parser.error("BF16 Triton kernel requires compute capability 8.0 or newer")
 
     torch.manual_seed(42)
     rows = []

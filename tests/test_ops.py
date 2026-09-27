@@ -19,8 +19,8 @@ def test_reference_known_values():
 @pytest.mark.parametrize("shape", [(1,), (127,), (1025,), (128, 4096), (17, 11008)])
 @pytest.mark.parametrize("dtype", [torch.float32, torch.float16, torch.bfloat16])
 def test_triton_matches_eager(shape, dtype):
-    if dtype == torch.bfloat16 and not torch.cuda.is_bf16_supported():
-        pytest.skip("GPU does not support bfloat16")
+    if dtype == torch.bfloat16 and torch.cuda.get_device_capability()[0] < 8:
+        pytest.skip("Triton BF16 kernel requires compute capability 8.0 or newer")
     generator = torch.Generator(device="cuda").manual_seed(42)
     gate = torch.randn(shape, device="cuda", dtype=dtype, generator=generator) * 5
     up = torch.randn(shape, device="cuda", dtype=dtype, generator=generator)
@@ -39,3 +39,12 @@ def test_validation():
         swiglu_torch(torch.ones(2), torch.ones(3))
     with pytest.raises(ValueError, match="requires CUDA"):
         swiglu_triton(torch.ones(2), torch.ones(2))
+
+
+@pytest.mark.skipif(not torch.cuda.is_available(), reason="CUDA required")
+def test_bf16_rejected_before_compilation_on_t4():
+    if torch.cuda.get_device_capability()[0] >= 8:
+        pytest.skip("native BF16 GPU")
+    gate = torch.ones(2, device="cuda", dtype=torch.bfloat16)
+    with pytest.raises(ValueError, match="compute capability 8.0"):
+        swiglu_triton(gate, gate)
