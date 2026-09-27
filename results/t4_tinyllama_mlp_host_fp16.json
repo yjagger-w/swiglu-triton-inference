@@ -1,0 +1,35 @@
+{
+  "method": "same checkpoint and prompt; three MLP paths; two warmups each; rotating execution order; synchronized generation wall timing; no profiler, no compilation",
+  "timestamp_utc": "2026-09-27T09:11:18.853119+00:00",
+  "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+  "revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+  "resolved_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+  "prompt_tokens": 128,
+  "new_tokens": 16,
+  "prompt_ids_sha256": "c4d1d52c38ececd24ce5b9e41c90b6d57172932e0b34ed519c281d51e96cc39b",
+  "greedy_ids_identical": {"native": true, "reordered_eager": true, "triton": true},
+  "path_descriptions": {
+    "native": "original Hugging Face LLaMA MLP forward",
+    "reordered_eager": "patched forward computes gate and up, then F.silu(gate) * up",
+    "triton": "patched forward computes gate and up, then Triton SwiGLU"
+  },
+  "times_ms": {
+    "native": [366.2834241986275, 386.73126697540283, 380.4179057478905, 370.54457515478134, 362.0937839150429],
+    "reordered_eager": [367.91715025901794, 388.77230882644653, 371.14717066287994, 379.67172265052795, 362.60753124952316],
+    "triton": [415.5776798725128, 422.8042960166931, 428.6835342645645, 427.8988018631935, 408.32535922527313]
+  },
+  "medians_ms": {"native": 370.54457515478134, "reordered_eager": 371.14717066287994, "triton": 422.8042960166931},
+  "gpu": "Tesla T4",
+  "torch": "2.6.0+cu124",
+  "seed": 42,
+  "repeats": 5,
+  "accuracy_note": "identical greedy IDs on this prompt only; prior Triton full-logit strict check failed",
+  "mlp_calls_per_generation": 352,
+  "mlp_host_ms_each": {
+    "native": [51.546938717365265, 53.51544916629791, 52.972085773944855, 51.56818777322769, 50.84053426980972],
+    "reordered_eager": [49.43903535604477, 51.43658071756363, 49.44540560245514, 51.55898630619049, 49.171581864356995],
+    "triton": [86.51537448167801, 86.26339584589005, 87.92461454868317, 89.49248492717743, 84.71555262804031]
+  },
+  "mlp_host_medians_ms": {"native": 51.56818777322769, "reordered_eager": 49.44540560245514, "triton": 86.51537448167801},
+  "mlp_host_note": "Unsynchronized elapsed host time inside MLP calls; includes any internal blocking and timing overhead. It is not an additive fraction of generation wall latency."
+}
