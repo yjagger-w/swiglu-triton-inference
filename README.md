@@ -43,9 +43,10 @@ python benchmarks/profile_swiglu.py --output-dir results/t4_profile_swiglu
 
 `bench_hf_llama_generate.py` loads a Hugging Face LLaMA checkpoint (default:
 TinyLlama 1.1B Chat) in FP16 and temporarily replaces the SwiGLU part of
-each MLP's forward call. It compares greedy token IDs and logits before
-recording paired generation timings with identical prompt, weights, cache
-setting and token count. Checkpoint download and Transformers are separate
+each MLP's forward call. It records strict logit mismatches and requires
+identical greedy token IDs before paired generation timings with identical
+prompt, weights, cache setting and token count. Timings with a failed strict
+logit check are explicitly marked exploratory. Checkpoint download and Transformers are separate
 from the operator-only environment; the `model` extra lists the optional
 dependencies. On T4 use FP16 because native BF16 is unavailable.
 
@@ -56,8 +57,10 @@ python benchmarks/bench_hf_llama_generate.py \
   --output results/t4_tinyllama_generate_fp16.json
 ```
 
-The experiment has not yet been run on the T4; a checkpoint-backed speed
-claim requires its saved correctness and timing result. The adapter works
+The first T4 attempt loaded the checkpoint but failed the strict full-model
+logit check (315 of 4,096,000 elements outside `rtol=atol=0.01`); no timing
+was recorded. A checkpoint-backed speed claim requires a saved, interpreted
+correctness and timing result. The adapter works
 with the LLaMA `model.model.layers[*].mlp` layout and SiLU activation; it
 does not attempt to patch other model families or compiled full models.
 

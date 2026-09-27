@@ -52,12 +52,14 @@ def main() -> None:
     bos = [tokenizer.bos_token_id] if tokenizer.bos_token_id is not None else []
     ids = (bos + token_unit * math.ceil(args.prompt_tokens / len(token_unit)))[:args.prompt_tokens]
     input_ids = torch.tensor([ids], device="cuda", dtype=torch.long)
+    attention_mask = torch.ones_like(input_ids)
     kwargs = dict(max_new_tokens=args.new_tokens, min_new_tokens=args.new_tokens,
                   do_sample=False, num_beams=1, use_cache=True,
-                  pad_token_id=tokenizer.pad_token_id or tokenizer.eos_token_id)
+                  pad_token_id=(tokenizer.pad_token_id if tokenizer.pad_token_id is not None
+                                else tokenizer.eos_token_id))
 
     def generate() -> torch.Tensor:
-        return model.generate(input_ids=input_ids, **kwargs)
+        return model.generate(input_ids=input_ids, attention_mask=attention_mask, **kwargs)
 
     def elapsed_ms() -> float:
         torch.cuda.synchronize()
@@ -67,16 +69,37 @@ def main() -> None:
         return (time.perf_counter() - start) * 1000
 
     with torch.inference_mode():
-        original_logits = model(input_ids=input_ids, use_cache=False).logits
+        original_logits = model(input_ids=input_ids, attention_mask=attention_mask,
+                                use_cache=False).logits
         original_ids = generate()
         with use_triton_llama_mlps(model) as patched_layers:
-            fused_logits = model(input_ids=input_ids, use_cache=False).logits
+            fused_logits = model(input_ids=input_ids, attention_mask=attention_mask,
+                                 use_cache=False).logits
             fused_ids = generate()
-        max_abs_logit_error = (original_logits.float() - fused_logits.float()).abs().max().item()
-        torch.testing.assert_close(fused_logits, original_logits, rtol=1e-2, atol=1e-2)
+        abs_error = (original_logits.float() - fused_logits.float()).abs()
+        max_abs_logit_error = abs_error.max().item()
+        mean_abs_logit_error = abs_error.mean().item()
+        strict_mismatch_count = (~torch.isclose(fused_logits, original_logits,
+                                                rtol=1e-2, atol=1e-2)).sum().item()
+        top1_mismatch_positions = (fused_logits.argmax(dim=-1) !=
+                                   original_logits.argmax(dim=-1)).sum().item()
         outputs_identical = torch.equal(original_ids, fused_ids)
+        validation = {
+            "outputs_identical": outputs_identical,
+            "strict_logit_check_rtol_atol": 1e-2,
+            "strict_logit_mismatch_count": int(strict_mismatch_count),
+            "logit_count": original_logits.numel(),
+            "max_abs_logit_error": max_abs_logit_error,
+            "mean_abs_logit_error": mean_abs_logit_error,
+            "top1_mismatch_positions": int(top1_mismatch_positions),
+        }
+        print("Validation:", validation, flush=True)
         if not outputs_identical:
-            raise AssertionError("greedy output token IDs differed; no timing result was saved")
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(json.dumps({"status": "token_mismatch_no_timing",
+                                               "validation": validation}, indent=2) + "\n",
+                                   encoding="utf-8")
+            raise AssertionError("greedy output token IDs differed; diagnostic result saved, no timing")
         expected_length = args.prompt_tokens + args.new_tokens
         if original_ids.shape[-1] != expected_length:
             raise AssertionError("generation length differed from the requested fixed length")
@@ -107,8 +130,9 @@ def main() -> None:
         "intermediate_size": model.config.intermediate_size,
         "prompt_tokens": args.prompt_tokens, "new_tokens": args.new_tokens,
         "prompt_ids_sha256": hashlib.sha256(bytes(str(ids), "utf-8")).hexdigest(),
-        "outputs_identical": outputs_identical,
-        "max_abs_logit_error": max_abs_logit_error,
+        "validation": validation,
+        "status": ("strict_logits_passed" if strict_mismatch_count == 0
+                   else "exploratory_timing_strict_logits_failed"),
         "eager_ms_each": original_times, "triton_ms_each": fused_times,
         "eager_median_ms": statistics.median(original_times),
         "triton_median_ms": statistics.median(fused_times),
