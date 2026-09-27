@@ -16,6 +16,40 @@ import triton
 from swiglu_triton.hf_llama import use_triton_llama_mlps
 
 
+def save_profiles(model, generate, output_dir: Path) -> None:
+    from torch.profiler import ProfilerActivity, profile
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+    for provider in ("eager", "triton"):
+        with torch.inference_mode():
+            if provider == "eager":
+                with profile(activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA]) as prof:
+                    generate()
+                    torch.cuda.synchronize()
+            else:
+                with use_triton_llama_mlps(model):
+                    with profile(activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA]) as prof:
+                        generate()
+                        torch.cuda.synchronize()
+        # Profiler costs are diagnostic, not comparable to the wall timings.
+        events = prof.key_averages()
+        table = events.table(sort_by="self_cuda_time_total", row_limit=40)
+        (output_dir / f"{provider}_cuda_table.txt").write_text(
+            table + "\n", encoding="utf-8"
+        )
+        rows = [
+            {"name": event.key, "count": event.count,
+             "self_cpu_us": event.self_cpu_time_total,
+             "self_cuda_us": getattr(event, "self_device_time_total",
+                                     getattr(event, "self_cuda_time_total", 0.0))}
+            for event in events
+        ]
+        (output_dir / f"{provider}_events.json").write_text(
+            json.dumps(rows, indent=2) + "\n", encoding="utf-8"
+        )
+    print(f"Saved profiler tables and events in {output_dir}")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Real LLaMA checkpoint generation benchmark")
     parser.add_argument("--model", default="TinyLlama/TinyLlama-1.1B-Chat-v1.0")
@@ -26,7 +60,11 @@ def main() -> None:
     parser.add_argument("--output", type=Path, default=Path("results/t4_tinyllama_generate_fp16.json"))
     parser.add_argument("--profile-output-dir", type=Path,
                         help="optional CPU/CUDA profiler tables from one extra generation per path")
+    parser.add_argument("--profile-only", action="store_true",
+                        help="collect profiler data without redoing correctness and wall timings")
     args = parser.parse_args()
+    if args.profile_only and args.profile_output_dir is None:
+        parser.error("--profile-only requires --profile-output-dir")
     if min(args.prompt_tokens, args.new_tokens, args.repeats) <= 0:
         parser.error("token lengths and repeats must be positive")
     if not torch.cuda.is_available():
@@ -62,6 +100,14 @@ def main() -> None:
 
     def generate() -> torch.Tensor:
         return model.generate(input_ids=input_ids, attention_mask=attention_mask, **kwargs)
+
+    if args.profile_only:
+        with torch.inference_mode():
+            generate()  # Warm each path before tracing.
+            with use_triton_llama_mlps(model):
+                generate()
+        save_profiles(model, generate, args.profile_output_dir)
+        return
 
     def elapsed_ms() -> float:
         torch.cuda.synchronize()
@@ -152,36 +198,7 @@ def main() -> None:
     print(f"Saved {args.output}")
 
     if args.profile_output_dir is not None:
-        from torch.profiler import ProfilerActivity, profile
-
-        args.profile_output_dir.mkdir(parents=True, exist_ok=True)
-        for provider in ("eager", "triton"):
-            with torch.inference_mode():
-                if provider == "eager":
-                    with profile(activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA]) as prof:
-                        generate()
-                        torch.cuda.synchronize()
-                else:
-                    with use_triton_llama_mlps(model):
-                        with profile(activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA]) as prof:
-                            generate()
-                            torch.cuda.synchronize()
-            # Profiling changes execution costs; these tables are diagnostic,
-            # never substituted for the synchronized wall timings above.
-            table = prof.key_averages().table(sort_by="self_cuda_time_total", row_limit=40)
-            (args.profile_output_dir / f"{provider}_cuda_table.txt").write_text(
-                table + "\n", encoding="utf-8"
-            )
-            rows = [
-                {"name": event.key, "count": event.count,
-                 "self_cpu_us": event.self_cpu_time_total,
-                 "self_cuda_us": event.self_cuda_time_total}
-                for event in prof.key_averages()
-            ]
-            (args.profile_output_dir / f"{provider}_events.json").write_text(
-                json.dumps(rows, indent=2) + "\n", encoding="utf-8"
-            )
-        print(f"Saved profiler tables and events in {args.profile_output_dir}")
+        save_profiles(model, generate, args.profile_output_dir)
 
 
 if __name__ == "__main__":

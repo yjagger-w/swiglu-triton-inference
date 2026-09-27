@@ -72,6 +72,8 @@ To collect operator-level evidence for the full-model slowdown, rerun with
 `--profile-output-dir results/t4_tinyllama_profile`. Profiling adds one extra
 generation per path **after** the regular timing result has been saved. The
 profiler tables and event JSON are diagnostics, not latency measurements.
+If the wall-timing result has already been saved, add `--profile-only` to
+collect just the two traces without repeating validation and timed runs.
 
 For a short smoke test:
 
