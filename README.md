@@ -57,12 +57,21 @@ python benchmarks/bench_hf_llama_generate.py \
   --output results/t4_tinyllama_generate_fp16.json
 ```
 
-The first T4 attempt loaded the checkpoint but failed the strict full-model
-logit check (315 of 4,096,000 elements outside `rtol=atol=0.01`); no timing
-was recorded. A checkpoint-backed speed claim requires a saved, interpreted
-correctness and timing result. The adapter works
+The reviewed T4 TinyLlama result is saved in
+[`results/t4_tinyllama_generate_fp16.json`](results/t4_tinyllama_generate_fp16.json).
+All greedy output token IDs matched, but 315 of 4,096,000 logits failed the
+strict `rtol=atol=0.01` check. The 128-prompt/16-new-token generation took
+351.085 ms for the original model and 398.582 ms with the Triton replacement
+(medians of five); this is exploratory and **slower** with Triton. A
+checkpoint-backed speed claim requires wider numerical validation and
+profiling. The adapter works
 with the LLaMA `model.model.layers[*].mlp` layout and SiLU activation; it
 does not attempt to patch other model families or compiled full models.
+
+To collect operator-level evidence for the full-model slowdown, rerun with
+`--profile-output-dir results/t4_tinyllama_profile`. Profiling adds one extra
+generation per path **after** the regular timing result has been saved. The
+profiler tables and event JSON are diagnostics, not latency measurements.
 
 For a short smoke test:
 
@@ -108,7 +117,7 @@ and Triton; profiler timings are diagnostic, not benchmark latencies.
   run on CPU.
 - No autograd, strided tensors, in-place output, quantization or linear GEMM
   fusion. The separate MLP harness tests one synthetic full layer; optional
-  real-model generation is a follow-up experiment pending T4 verification.
+  the initial real-model generation experiment is described in the T4 report.
 - A fast post-projection operator alone does **not** establish faster LLM
   inference. Later end-to-end work must measure the share of MLP time, account
   for projection GEMMs, and compare against compiled/framework baselines.
@@ -117,12 +126,11 @@ and Triton; profiler timings are diagnostic, not benchmark latencies.
 
 ## Next milestones
 
-1. Run the test and benchmark matrix on the actual T4; preserve outputs and
-   describe shapes where fusion helps or hurts.
-2. Add an appropriate compiled PyTorch baseline and profile kernel launches,
-   memory traffic and occupancy before tuning block size.
-3. Integrate at one real model MLP call site and compare generation latency
-   with identical inputs and numerical criteria.
+1. Profile the real-model generation path to explain the observed slowdown;
+   separate prefill and decode effects.
+2. Validate numerical and greedy output agreement on more than one prompt.
+3. Compare the real checkpoint with an appropriate compiled PyTorch baseline
+   before attempting block tuning or broader performance claims.
 4. Decide whether a TVM lowering experiment or a quantized gate is justified
    by measured bottlenecks. ST-Mamba remains a separate thesis project; its
    SiLU gating path would require its own profiling and integration work.

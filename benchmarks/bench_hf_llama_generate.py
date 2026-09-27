@@ -24,6 +24,8 @@ def main() -> None:
     parser.add_argument("--new-tokens", type=int, default=16)
     parser.add_argument("--repeats", type=int, default=5)
     parser.add_argument("--output", type=Path, default=Path("results/t4_tinyllama_generate_fp16.json"))
+    parser.add_argument("--profile-output-dir", type=Path,
+                        help="optional CPU/CUDA profiler tables from one extra generation per path")
     args = parser.parse_args()
     if min(args.prompt_tokens, args.new_tokens, args.repeats) <= 0:
         parser.error("token lengths and repeats must be positive")
@@ -148,6 +150,38 @@ def main() -> None:
     args.output.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(result, indent=2))
     print(f"Saved {args.output}")
+
+    if args.profile_output_dir is not None:
+        from torch.profiler import ProfilerActivity, profile
+
+        args.profile_output_dir.mkdir(parents=True, exist_ok=True)
+        for provider in ("eager", "triton"):
+            with torch.inference_mode():
+                if provider == "eager":
+                    with profile(activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA]) as prof:
+                        generate()
+                        torch.cuda.synchronize()
+                else:
+                    with use_triton_llama_mlps(model):
+                        with profile(activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA]) as prof:
+                            generate()
+                            torch.cuda.synchronize()
+            # Profiling changes execution costs; these tables are diagnostic,
+            # never substituted for the synchronized wall timings above.
+            table = prof.key_averages().table(sort_by="self_cuda_time_total", row_limit=40)
+            (args.profile_output_dir / f"{provider}_cuda_table.txt").write_text(
+                table + "\n", encoding="utf-8"
+            )
+            rows = [
+                {"name": event.key, "count": event.count,
+                 "self_cpu_us": event.self_cpu_time_total,
+                 "self_cuda_us": event.self_cuda_time_total}
+                for event in prof.key_averages()
+            ]
+            (args.profile_output_dir / f"{provider}_events.json").write_text(
+                json.dumps(rows, indent=2) + "\n", encoding="utf-8"
+            )
+        print(f"Saved profiler tables and events in {args.profile_output_dir}")
 
 
 if __name__ == "__main__":
