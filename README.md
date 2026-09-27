@@ -58,7 +58,11 @@ both allocate their output. Timing uses repeated `triton.testing.do_bench`
 measurements and records milliseconds, speedup, maximum absolute error, GPU,
 software versions and seed in JSON and CSV. The two implementations may have
 small floating-point differences. Correctness must pass before timing is
-saved. Results are ignored by Git until reviewed.
+saved. Benchmark outputs are ignored by Git until reviewed; the three reviewed
+T4 JSON baselines are explicitly tracked.
+
+The measured T4 baseline and its limitations are in
+[docs/t4_baseline_20260927.md](docs/t4_baseline_20260927.md).
 
 ## Scope and interpretation
 

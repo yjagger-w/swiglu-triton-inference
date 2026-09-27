@@ -1,0 +1,57 @@
+{
+  "method": "one random-weight MLP layer; gate/up/down projections included; no attention or generation",
+  "timestamp_utc": "2026-09-27T04:19:19.432469+00:00",
+  "gpu": "Tesla T4",
+  "compute_capability": [
+    7,
+    5
+  ],
+  "python": "3.12.14",
+  "torch": "2.6.0+cu124",
+  "cuda": "12.4",
+  "triton": "3.2.0",
+  "seed": 42,
+  "repeats": 3,
+  "rows": [
+    {
+      "tokens": 1,
+      "hidden": 4096,
+      "intermediate": 11008,
+      "dtype": "fp16",
+      "eager_ms": 0.9607679843902588,
+      "triton_ms": 0.9564160108566284,
+      "speedup": 1.0045502934750459,
+      "max_abs_error": 0.0
+    },
+    {
+      "tokens": 8,
+      "hidden": 4096,
+      "intermediate": 11008,
+      "dtype": "fp16",
+      "eager_ms": 0.926144003868103,
+      "triton_ms": 0.922976016998291,
+      "speedup": 1.0034323609838909,
+      "max_abs_error": 0.0
+    },
+    {
+      "tokens": 128,
+      "hidden": 4096,
+      "intermediate": 11008,
+      "dtype": "fp16",
+      "eager_ms": 1.5112320184707642,
+      "triton_ms": 1.4889600276947021,
+      "speedup": 1.014958085080729,
+      "max_abs_error": 0.0
+    },
+    {
+      "tokens": 1024,
+      "hidden": 4096,
+      "intermediate": 11008,
+      "dtype": "fp16",
+      "eager_ms": 11.644576072692871,
+      "triton_ms": 11.48953628540039,
+      "speedup": 1.013493998664636,
+      "max_abs_error": 0.0001220703125
+    }
+  ]
+}

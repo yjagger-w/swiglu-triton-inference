@@ -1,0 +1,71 @@
+{
+  "method": "forward-only post-projection; output allocation included; median of do_bench medians",
+  "timestamp_utc": "2026-09-27T04:21:30.547263+00:00",
+  "gpu": "Tesla T4",
+  "compute_capability": [
+    7,
+    5
+  ],
+  "python": "3.12.14",
+  "torch": "2.6.0+cu124",
+  "cuda": "12.4",
+  "triton": "3.2.0",
+  "seed": 42,
+  "repeats": 3,
+  "rows": [
+    {
+      "tokens": 1,
+      "features": 4096,
+      "dtype": "fp32",
+      "eager_ms": 0.01017600018531084,
+      "triton_ms": 0.004255999810993671,
+      "speedup": 2.39097759333194,
+      "max_abs_error": 9.5367431640625e-07
+    },
+    {
+      "tokens": 1,
+      "features": 11008,
+      "dtype": "fp32",
+      "eager_ms": 0.007040000054985285,
+      "triton_ms": 0.005280000157654285,
+      "speedup": 1.3333333039355257,
+      "max_abs_error": 7.152557373046875e-07
+    },
+    {
+      "tokens": 128,
+      "features": 4096,
+      "dtype": "fp32",
+      "eager_ms": 0.03481600061058998,
+      "triton_ms": 0.02611199952661991,
+      "speedup": 1.3333333808886128,
+      "max_abs_error": 1.9073486328125e-06
+    },
+    {
+      "tokens": 128,
+      "features": 11008,
+      "dtype": "fp32",
+      "eager_ms": 0.10649599879980087,
+      "triton_ms": 0.06300800293684006,
+      "speedup": 1.6901979722568525,
+      "max_abs_error": 1.9073486328125e-06
+    },
+    {
+      "tokens": 1024,
+      "features": 4096,
+      "dtype": "fp32",
+      "eager_ms": 0.2995840013027191,
+      "triton_ms": 0.1777919977903366,
+      "speedup": 1.6850252262534742,
+      "max_abs_error": 1.430511474609375e-06
+    },
+    {
+      "tokens": 1024,
+      "features": 11008,
+      "dtype": "fp32",
+      "eager_ms": 0.7884799838066101,
+      "triton_ms": 0.4684480130672455,
+      "speedup": 1.68317499874511,
+      "max_abs_error": 1.9073486328125e-06
+    }
+  ]
+}
