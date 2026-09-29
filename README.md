@@ -98,6 +98,24 @@ found that both hand-written Triton and Inductor-compiled post-projection
 SwiGLU were slower than the native model on this T4 prompt. The strict
 full-logit check failed for the compiled path; see the
 [T4 report](docs/t4_baseline_20260927.md) before citing this result.
+The later [full-MLP compiler control](results/t4_tinyllama_full_mlp_compile_fp16.json)
+also showed a slowdown on this T4 prompt: native 354.356 ms versus compiled
+full MLP 402.761 ms. Its strict full-logit check failed, despite identical
+greedy token IDs. Use `bench_hf_prefill_decode.py` to separate a full-prompt
+forward from one cached decode forward; its prefill is excluded from the
+decode timer. These phase measurements need a T4 run and are not a substitute
+for 16-token generation timing.
+
+```bash
+OMP_NUM_THREADS=1 HF_HUB_OFFLINE=1 \
+HF_HOME=/root/autodl-tmp/hf-cache PYTHONPATH=src \
+/root/autodl-tmp/st-mamba/environment/st-mamba-py312/bin/python \
+  benchmarks/bench_hf_prefill_decode.py \
+  --model TinyLlama/TinyLlama-1.1B-Chat-v1.0 \
+  --revision fe8a4ea1ffedaf415f4da2f062534de366a451e6 \
+  --prompt-tokens 128 --repeats 5 \
+  --output results/t4_tinyllama_prefill_decode_fp16.json
+```
 
 For a short smoke test:
 

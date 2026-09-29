@@ -1,0 +1,49 @@
+{
+  "method": "same checkpoint and prompt; two warmups each; rotating execution order; synchronized generation wall timing; no profiler; compilation and first use excluded for compiled paths",
+  "timestamp_utc": "2026-09-29T10:32:51.313275+00:00",
+  "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+  "revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+  "resolved_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+  "prompt_tokens": 128,
+  "new_tokens": 16,
+  "prompt_ids_sha256": "c4d1d52c38ececd24ce5b9e41c90b6d57172932e0b34ed519c281d51e96cc39b",
+  "greedy_ids_identical": {
+    "native": true,
+    "reordered_eager": true,
+    "triton": true,
+    "compiled_mlp": true
+  },
+  "path_descriptions": {
+    "native": "original Hugging Face LLaMA MLP forward",
+    "reordered_eager": "patched forward computes gate and up, then F.silu(gate) * up",
+    "triton": "patched forward computes gate and up, then Triton SwiGLU",
+    "compiled_mlp": "patched forward calls a weight-parameterized torch.compile/Inductor full MLP"
+  },
+  "times_ms": {
+    "native": [354.35593128204346, 360.2211996912956, 354.2168065905571, 354.7906279563904, 353.81507873535156],
+    "reordered_eager": [347.724087536335, 353.70416939258575, 345.9037318825722, 347.7598503232002, 346.97985649108887],
+    "triton": [399.1750329732895, 400.9068161249161, 400.0324085354805, 395.6810086965561, 395.7483470439911],
+    "compiled_mlp": [402.63525396585464, 410.2527052164078, 402.76069194078445, 395.87657153606415, 403.64375710487366]
+  },
+  "medians_ms": {
+    "native": 354.35593128204346,
+    "reordered_eager": 347.724087536335,
+    "triton": 399.1750329732895,
+    "compiled_mlp": 402.76069194078445
+  },
+  "gpu": "Tesla T4",
+  "torch": "2.6.0+cu124",
+  "seed": 42,
+  "repeats": 5,
+  "accuracy_note": "identical greedy IDs on this prompt only; prior Triton full-logit strict check failed",
+  "compiled_mlp_backend": "inductor",
+  "compiled_mlp_scope": "gate/up projections, SwiGLU and down projection",
+  "compiled_mlp_logit_diagnostics": {
+    "strict_check_rtol_atol": 0.01,
+    "strict_mismatch_count": 2597,
+    "logit_count": 4096000,
+    "max_abs_error": 0.04296875,
+    "top1_mismatch_positions": 0
+  },
+  "compiled_mlp_status": "exploratory_timing_strict_logits_failed"
+}
