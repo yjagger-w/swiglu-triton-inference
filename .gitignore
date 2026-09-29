@@ -15,3 +15,4 @@ results/*.csv
 !results/t4_decode_dispatch_fp16.json
 !results/t4_tinyllama_mlp_variants_fp16.json
 !results/t4_tinyllama_mlp_host_fp16.json
+!results/t4_tinyllama_compiled_control_fp16.json

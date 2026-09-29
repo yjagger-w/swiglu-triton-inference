@@ -1,0 +1,39 @@
+{
+  "method": "same checkpoint and prompt; two warmups each; rotating execution order; synchronized generation wall timing; no profiler; compilation and first use excluded when compiled path enabled",
+  "timestamp_utc": "2026-09-29T10:24:04.548708+00:00",
+  "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+  "revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+  "resolved_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+  "prompt_tokens": 128,
+  "new_tokens": 16,
+  "prompt_ids_sha256": "c4d1d52c38ececd24ce5b9e41c90b6d57172932e0b34ed519c281d51e96cc39b",
+  "greedy_ids_identical": {"native": true, "reordered_eager": true, "triton": true, "compiled": true},
+  "path_descriptions": {
+    "native": "original Hugging Face LLaMA MLP forward",
+    "reordered_eager": "patched forward computes gate and up, then F.silu(gate) * up",
+    "triton": "patched forward computes gate and up, then Triton SwiGLU",
+    "compiled": "patched forward computes gate and up, then torch.compile/Inductor post-projection SwiGLU"
+  },
+  "times_ms": {
+    "native": [347.3779559135437, 347.51874953508377, 360.1558208465576, 352.0682081580162, 354.2366400361061],
+    "reordered_eager": [359.59653556346893, 350.2017706632614, 350.3422960639, 350.3967747092247, 354.6537309885025],
+    "triton": [408.06080400943756, 397.6494148373604, 402.3251533508301, 396.55962586402893, 393.7947452068329],
+    "compiled": [415.57879000902176, 402.82437950372696, 409.1793820261955, 404.93833273649216, 408.1434980034828]
+  },
+  "medians_ms": {"native": 352.0682081580162, "reordered_eager": 350.3967747092247, "triton": 397.6494148373604, "compiled": 408.1434980034828},
+  "gpu": "Tesla T4",
+  "torch": "2.6.0+cu124",
+  "seed": 42,
+  "repeats": 5,
+  "accuracy_note": "identical greedy IDs on this prompt only; prior Triton full-logit strict check failed",
+  "compiled_backend": "inductor",
+  "compiled_scope": "SwiGLU activation after both projections, not the full MLP",
+  "compiled_logit_diagnostics": {
+    "strict_check_rtol_atol": 0.01,
+    "strict_mismatch_count": 2597,
+    "logit_count": 4096000,
+    "max_abs_error": 0.04296875,
+    "top1_mismatch_positions": 0
+  },
+  "compiled_status": "exploratory_timing_strict_logits_failed"
+}

@@ -88,6 +88,11 @@ operation is compiled. The script warms all four paths, checks greedy IDs,
 records full-prompt compiled logit differences, and excludes compilation from
 the rotating generation timings. A failed strict logit check marks compiled
 timing exploratory.
+The [four-way checkpoint control](results/t4_tinyllama_compiled_control_fp16.json)
+found that both hand-written Triton and Inductor-compiled post-projection
+SwiGLU were slower than the native model on this T4 prompt. The strict
+full-logit check failed for the compiled path; see the
+[T4 report](docs/t4_baseline_20260927.md) before citing this result.
 
 For a short smoke test:
 
@@ -132,8 +137,8 @@ and Triton; profiler timings are diagnostic, not benchmark latencies.
   on GPUs with compute capability 8.0 or newer. The PyTorch reference can also
   run on CPU.
 - No autograd, strided tensors, in-place output, quantization or linear GEMM
-  fusion. The separate MLP harness tests one synthetic full layer; optional
-  the initial real-model generation experiment is described in the T4 report.
+  fusion. The separate MLP harness tests one synthetic full layer; the
+  checkpoint generation experiments are described in the T4 report.
 - A fast post-projection operator alone does **not** establish faster LLM
   inference. Later end-to-end work must measure the share of MLP time, account
   for projection GEMMs, and compare against compiled/framework baselines.
@@ -142,14 +147,12 @@ and Triton; profiler timings are diagnostic, not benchmark latencies.
 
 ## Next milestones
 
-1. Profile the real-model generation path to explain the observed slowdown;
-   separate prefill and decode effects.
-2. Validate numerical and greedy output agreement on more than one prompt.
-3. Compare the real checkpoint with an appropriate compiled PyTorch baseline
-   before attempting block tuning or broader performance claims.
-4. Decide whether a TVM lowering experiment or a quantized gate is justified
-   by measured bottlenecks. ST-Mamba remains a separate thesis project; its
-   SiLU gating path would require its own profiling and integration work.
+1. Treat v0.1 as a bounded negative result for post-projection-only T4 decode
+   acceleration; keep standalone kernel and model-level findings distinct.
+2. If continuing to v0.2, first compare a broader MLP optimization boundary
+   with a compiled full-MLP baseline and separate prefill/decode timings.
+3. Validate logits and greedy tokens on multiple prompts before any deployment
+   or speed claim. ST-Mamba remains an independent thesis project.
 
 ## Background
 
