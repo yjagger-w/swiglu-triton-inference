@@ -24,27 +24,47 @@ def reordered_eager_forward(mlp: torch.nn.Module, x: torch.Tensor) -> torch.Tens
     return mlp.down_proj(F.silu(gate) * up)
 
 
+def full_mlp_reference(x, gate_weight, gate_bias, up_weight, up_bias,
+                       down_weight, down_bias):
+    """One weight-parameterized graph shared by same-shape MLP layers."""
+    gate = F.silu(F.linear(x, gate_weight, gate_bias))
+    up = F.linear(x, up_weight, up_bias)
+    return F.linear(gate * up, down_weight, down_bias)
+
+
 @contextmanager
-def provider(model: torch.nn.Module, name: str, compiled_activation=None):
+def provider(model: torch.nn.Module, name: str, compiled_activation=None,
+             compiled_mlp=None):
     if name == "native":
         yield
     elif name == "triton":
         with use_triton_llama_mlps(model):
             yield
-    elif name in ("reordered_eager", "compiled"):
+    elif name in ("reordered_eager", "compiled", "compiled_mlp"):
         if name == "compiled" and compiled_activation is None:
             raise ValueError("compiled activation is required")
+        if name == "compiled_mlp" and compiled_mlp is None:
+            raise ValueError("compiled MLP is required")
 
         def compiled_forward(mlp: torch.nn.Module, x: torch.Tensor) -> torch.Tensor:
             gate = mlp.gate_proj(x)
             up = mlp.up_proj(x)
             return mlp.down_proj(compiled_activation(gate, up))
 
+        def full_compiled_forward(mlp: torch.nn.Module, x: torch.Tensor) -> torch.Tensor:
+            return compiled_mlp(
+                x, mlp.gate_proj.weight, mlp.gate_proj.bias,
+                mlp.up_proj.weight, mlp.up_proj.bias,
+                mlp.down_proj.weight, mlp.down_proj.bias,
+            )
+
         mlps = [layer.mlp for layer in model.model.layers]
         originals = [mlp.forward for mlp in mlps]
         try:
             for mlp in mlps:
-                forward = reordered_eager_forward if name == "reordered_eager" else compiled_forward
+                forward = {"reordered_eager": reordered_eager_forward,
+                           "compiled": compiled_forward,
+                           "compiled_mlp": full_compiled_forward}[name]
                 mlp.forward = MethodType(forward, mlp)
             yield
         finally:
@@ -90,6 +110,8 @@ def main() -> None:
                         help="time and count MLP forwards without synchronizing inside them")
     parser.add_argument("--include-compiled", action="store_true",
                         help="add torch.compile/Inductor on post-projection SwiGLU only")
+    parser.add_argument("--include-compiled-mlp", action="store_true",
+                        help="add torch.compile/Inductor on the full weight-parameterized MLP")
     parser.add_argument("--output", type=Path, default=Path("results/t4_tinyllama_mlp_variants_fp16.json"))
     args = parser.parse_args()
     if min(args.prompt_tokens, args.new_tokens, args.repeats) <= 0:
@@ -124,12 +146,17 @@ def main() -> None:
 
     compiled_activation = (torch.compile(swiglu_torch, backend="inductor", fullgraph=True)
                            if args.include_compiled else None)
-    names = (("native", "reordered_eager", "triton", "compiled") if args.include_compiled
-             else ("native", "reordered_eager", "triton"))
+    compiled_mlp = (torch.compile(full_mlp_reference, backend="inductor", fullgraph=True)
+                    if args.include_compiled_mlp else None)
+    names = ("native", "reordered_eager", "triton")
+    if args.include_compiled:
+        names += ("compiled",)
+    if args.include_compiled_mlp:
+        names += ("compiled_mlp",)
     with torch.inference_mode():
         outputs = {}
         for name in names:
-            with provider(model, name, compiled_activation):
+            with provider(model, name, compiled_activation, compiled_mlp):
                 outputs[name] = generate()
         agree = {name: torch.equal(outputs["native"], outputs[name]) for name in names}
         if not all(agree.values()):
@@ -141,26 +168,29 @@ def main() -> None:
         if outputs["native"].shape[-1] != args.prompt_tokens + args.new_tokens:
             raise AssertionError("generation did not produce requested number of tokens")
 
-        compiled_logit_diagnostics = None
-        if args.include_compiled:
+        compiled_logit_diagnostics = {}
+        if args.include_compiled or args.include_compiled_mlp:
             original_logits = model(input_ids=input_ids, attention_mask=attention_mask,
                                     use_cache=False).logits
-            with provider(model, "compiled", compiled_activation):
-                compiled_logits = model(input_ids=input_ids, attention_mask=attention_mask,
-                                        use_cache=False).logits
-            difference = (original_logits.float() - compiled_logits.float()).abs()
-            compiled_logit_diagnostics = {
-                "strict_check_rtol_atol": 1e-2,
-                "strict_mismatch_count": int((~torch.isclose(
-                    compiled_logits, original_logits, rtol=1e-2, atol=1e-2)).sum().item()),
-                "logit_count": original_logits.numel(),
-                "max_abs_error": difference.max().item(),
-                "top1_mismatch_positions": int((compiled_logits.argmax(dim=-1) !=
-                                                original_logits.argmax(dim=-1)).sum().item()),
-            }
+            for compiled_name in ("compiled", "compiled_mlp"):
+                if compiled_name not in names:
+                    continue
+                with provider(model, compiled_name, compiled_activation, compiled_mlp):
+                    actual_logits = model(input_ids=input_ids, attention_mask=attention_mask,
+                                          use_cache=False).logits
+                difference = (original_logits.float() - actual_logits.float()).abs()
+                compiled_logit_diagnostics[compiled_name] = {
+                    "strict_check_rtol_atol": 1e-2,
+                    "strict_mismatch_count": int((~torch.isclose(
+                        actual_logits, original_logits, rtol=1e-2, atol=1e-2)).sum().item()),
+                    "logit_count": original_logits.numel(),
+                    "max_abs_error": difference.max().item(),
+                    "top1_mismatch_positions": int((actual_logits.argmax(dim=-1) !=
+                                                    original_logits.argmax(dim=-1)).sum().item()),
+                }
 
         def measure(name: str) -> tuple[float, dict | None]:
-            with provider(model, name, compiled_activation):
+            with provider(model, name, compiled_activation, compiled_mlp):
                 instrument = (measure_mlp_host_calls(model) if args.mlp_host_timing
                               else nullcontext(None))
                 with instrument as stats:
@@ -188,7 +218,7 @@ def main() -> None:
     result = {
         "method": "same checkpoint and prompt; two warmups each;"
                   " rotating execution order; synchronized generation wall timing;"
-                  " no profiler; compilation and first use excluded when compiled path enabled",
+                  " no profiler; compilation and first use excluded for compiled paths",
         "timestamp_utc": datetime.now(timezone.utc).isoformat(),
         "model": args.model, "revision": args.revision,
         "resolved_revision": getattr(model.config, "_commit_hash", None),
@@ -202,6 +232,9 @@ def main() -> None:
             **({"compiled": "patched forward computes gate and up, then"
                           " torch.compile/Inductor post-projection SwiGLU"}
                if args.include_compiled else {}),
+            **({"compiled_mlp": "patched forward calls a weight-parameterized"
+                              " torch.compile/Inductor full MLP"}
+               if args.include_compiled_mlp else {}),
         },
         "times_ms": times,
         "medians_ms": {name: statistics.median(values) for name, values in times.items()},
@@ -212,9 +245,16 @@ def main() -> None:
     if args.include_compiled:
         result["compiled_backend"] = "inductor"
         result["compiled_scope"] = "SwiGLU activation after both projections, not the full MLP"
-        result["compiled_logit_diagnostics"] = compiled_logit_diagnostics
-        result["compiled_status"] = ("strict_logits_passed" if compiled_logit_diagnostics[
+        result["compiled_logit_diagnostics"] = compiled_logit_diagnostics["compiled"]
+        result["compiled_status"] = ("strict_logits_passed" if compiled_logit_diagnostics["compiled"][
             "strict_mismatch_count"] == 0 else "exploratory_timing_strict_logits_failed")
+    if args.include_compiled_mlp:
+        result["compiled_mlp_backend"] = "inductor"
+        result["compiled_mlp_scope"] = "gate/up projections, SwiGLU and down projection"
+        result["compiled_mlp_logit_diagnostics"] = compiled_logit_diagnostics["compiled_mlp"]
+        result["compiled_mlp_status"] = ("strict_logits_passed" if compiled_logit_diagnostics[
+            "compiled_mlp"]["strict_mismatch_count"] == 0
+            else "exploratory_timing_strict_logits_failed")
     if args.mlp_host_timing:
         result["mlp_calls_per_generation"] = len(model.model.layers) * args.new_tokens
         result["mlp_host_ms_each"] = host_times

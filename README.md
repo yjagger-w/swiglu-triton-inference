@@ -88,6 +88,11 @@ operation is compiled. The script warms all four paths, checks greedy IDs,
 records full-prompt compiled logit differences, and excludes compilation from
 the rotating generation timings. A failed strict logit check marks compiled
 timing exploratory.
+For the first v0.2 baseline, use `--include-compiled-mlp` with a separate
+output file. The compiled function accepts the original gate/up/down weights
+as tensor arguments, so layers with the same shapes can share its graph. It
+includes all three projections and records greedy-token and strict-logit
+comparisons before timing generation. This does not compile the full model.
 The [four-way checkpoint control](results/t4_tinyllama_compiled_control_fp16.json)
 found that both hand-written Triton and Inductor-compiled post-projection
 SwiGLU were slower than the native model on this T4 prompt. The strict
