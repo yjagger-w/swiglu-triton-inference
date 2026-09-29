@@ -8,6 +8,7 @@ import torch
 import torch.nn.functional as F
 import triton
 import triton.language as tl
+from triton.language.extra.cuda import libdevice
 
 
 @triton.jit
@@ -21,6 +22,20 @@ def _swiglu_kernel(gate_ptr, up_ptr, out_ptr, n: tl.constexpr, block: tl.constex
     activated = (gate_f32 * tl.sigmoid(gate_f32)).to(gate.dtype).to(tl.float32)
     result = activated * up.to(tl.float32)
     tl.store(out_ptr + offsets, result, mask=mask)
+
+
+@triton.jit
+def _swiglu_fp16_kernel(gate_ptr, up_ptr, out_ptr, n: tl.constexpr, block: tl.constexpr):
+    offsets = tl.program_id(0) * block + tl.arange(0, block)
+    mask = offsets < n
+    gate = tl.load(gate_ptr + offsets, mask=mask, other=0)
+    up = tl.load(up_ptr + offsets, mask=mask, other=0).to(tl.float32)
+    x = gate.to(tl.float32)
+    # PyTorch 2.6 CUDA SiLU uses x / (1 + exp(-x)). Match the expression,
+    # then round the SiLU intermediate to FP16 before the separate multiply.
+    activation = tl.div_rn(x, 1.0 + libdevice.exp(-x))
+    rounded = activation.to(gate.dtype).to(tl.float32)
+    tl.store(out_ptr + offsets, rounded * up, mask=mask)
 
 
 def _validate(gate: torch.Tensor, up: torch.Tensor) -> None:
@@ -67,7 +82,12 @@ storage. The default allocates an output just like the PyTorch reference.
     if out.data_ptr() in (gate.data_ptr(), up.data_ptr()):
         raise ValueError("in-place output is not supported")
     block = 1024
-    _swiglu_kernel[(triton.cdiv(gate.numel(), block),)](
-        gate, up, out, gate.numel(), block
-    )
+    if gate.dtype == torch.float16:
+        _swiglu_fp16_kernel[(triton.cdiv(gate.numel(), block),)](
+            gate, up, out, gate.numel(), block, enable_fp_fusion=False
+        )
+    else:
+        _swiglu_kernel[(triton.cdiv(gate.numel(), block),)](
+            gate, up, out, gate.numel(), block
+        )
     return out
