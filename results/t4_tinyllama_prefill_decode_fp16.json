@@ -1,0 +1,155 @@
+{
+  "method": "same FP16 checkpoint and fixed prompt; four MLP paths; two warmups per path/phase; rotating provider order; synchronized single-forward wall time; no profiler; compilation excluded",
+  "timestamp_utc": "2026-09-29T10:41:47.445553+00:00",
+  "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+  "revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+  "resolved_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+  "prompt_tokens": 128,
+  "prompt_ids_sha256": "c4d1d52c38ececd24ce5b9e41c90b6d57172932e0b34ed519c281d51e96cc39b",
+  "decode_input": "native prefill argmax token shared by all providers",
+  "phase_scope": {
+    "prefill": "one full-prompt forward with full logits and KV cache creation",
+    "decode": "one forward with exactly one new token and a fresh prior KV cache; cache-building prefill excluded from timed interval"
+  },
+  "accuracy": {
+    "native": {
+      "prefill": {
+        "strict_mismatch_count": 0,
+        "logit_count": 4096000,
+        "max_abs_error": 0.0,
+        "top1_mismatch_positions": 0
+      },
+      "decode": {
+        "strict_mismatch_count": 0,
+        "logit_count": 32000,
+        "max_abs_error": 0.0,
+        "top1_mismatch_positions": 0
+      }
+    },
+    "reordered_eager": {
+      "prefill": {
+        "strict_mismatch_count": 0,
+        "logit_count": 4096000,
+        "max_abs_error": 0.0,
+        "top1_mismatch_positions": 0
+      },
+      "decode": {
+        "strict_mismatch_count": 0,
+        "logit_count": 32000,
+        "max_abs_error": 0.0,
+        "top1_mismatch_positions": 0
+      }
+    },
+    "triton": {
+      "prefill": {
+        "strict_mismatch_count": 315,
+        "logit_count": 4096000,
+        "max_abs_error": 0.0234375,
+        "top1_mismatch_positions": 0
+      },
+      "decode": {
+        "strict_mismatch_count": 0,
+        "logit_count": 32000,
+        "max_abs_error": 0.015625,
+        "top1_mismatch_positions": 0
+      }
+    },
+    "compiled_mlp": {
+      "prefill": {
+        "strict_mismatch_count": 2597,
+        "logit_count": 4096000,
+        "max_abs_error": 0.04296875,
+        "top1_mismatch_positions": 0
+      },
+      "decode": {
+        "strict_mismatch_count": 1,
+        "logit_count": 32000,
+        "max_abs_error": 0.015625,
+        "top1_mismatch_positions": 0
+      }
+    }
+  },
+  "strict_check_rtol_atol": 0.01,
+  "accuracy_note": "top-1 agreement on this prompt and one step only; strict mismatches remain exploratory",
+  "times_ms": {
+    "prefill": {
+      "native": [
+        22.554263472557068,
+        22.21064269542694,
+        22.31372892856598,
+        22.218741476535797,
+        22.245563566684723
+      ],
+      "reordered_eager": [
+        24.167321622371674,
+        23.1453999876976,
+        22.206462919712067,
+        21.810315549373627,
+        21.931558847427368
+      ],
+      "triton": [
+        25.19984543323517,
+        25.668345391750336,
+        25.325283408164978,
+        24.971604347229004,
+        24.73638951778412
+      ],
+      "compiled_mlp": [
+        24.947859346866608,
+        25.090329349040985,
+        24.89534765481949,
+        25.04844218492508,
+        25.093406438827515
+      ]
+    },
+    "decode": {
+      "native": [
+        21.74997329711914,
+        21.274209022521973,
+        21.52954787015915,
+        21.67929708957672,
+        21.275609731674194
+      ],
+      "reordered_eager": [
+        21.8108668923378,
+        21.143466234207153,
+        20.93701809644699,
+        21.355509757995605,
+        20.871929824352264
+      ],
+      "triton": [
+        25.467760860919952,
+        24.25532042980194,
+        24.183519184589386,
+        24.696439504623413,
+        24.05416965484619
+      ],
+      "compiled_mlp": [
+        24.465397000312805,
+        24.414561688899994,
+        23.912258446216583,
+        24.67212826013565,
+        23.930981755256653
+      ]
+    }
+  },
+  "medians_ms": {
+    "prefill": {
+      "native": 22.245563566684723,
+      "reordered_eager": 22.206462919712067,
+      "triton": 25.19984543323517,
+      "compiled_mlp": 25.04844218492508
+    },
+    "decode": {
+      "native": 21.52954787015915,
+      "reordered_eager": 21.143466234207153,
+      "triton": 24.25532042980194,
+      "compiled_mlp": 24.414561688899994
+    }
+  },
+  "gpu": "Tesla T4",
+  "torch": "2.6.0+cu124",
+  "seed": 42,
+  "repeats": 5,
+  "timing_note": "standalone forwards; do not sum prefill and one decode to estimate 16-token model.generate latency"
+}

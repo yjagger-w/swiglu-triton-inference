@@ -1,0 +1,47 @@
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                   Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg    # of Calls  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                               aten::mm        14.41%      62.814ms        19.42%      84.644ms      34.131us     122.445ms        77.44%     122.445ms      49.373us          2480  
+std::enable_if<!(false), void>::type internal::gemvx...         0.00%       0.000us         0.00%       0.000us       0.000us      80.398ms        50.84%      80.398ms      60.178us          1336  
+std::enable_if<!(false), void>::type internal::gemvx...         0.00%       0.000us         0.00%       0.000us       0.000us      31.465ms        19.90%      31.465ms      31.783us           990  
+         turing_fp16_s1688gemm_fp16_128x128_ldg8_f2f_tn         0.00%       0.000us         0.00%       0.000us       0.000us       9.854ms         6.23%       9.854ms      89.585us           110  
+                                            aten::copy_         4.42%      19.282ms         8.60%      37.494ms      15.854us       7.139ms         4.51%       7.139ms       3.018us          2365  
+                                              aten::mul         7.54%      32.880ms        12.48%      54.393ms      16.664us       6.987ms         4.42%       6.987ms       2.141us          3264  
+                     aten::_efficient_attention_forward         1.17%       5.096ms         2.86%      12.488ms      35.478us       5.554ms         3.51%       5.554ms      15.777us           352  
+fmha_cutlassF_f16_aligned_64x64_rf_sm75(PyTorchMemEf...         0.00%       0.000us         0.00%       0.000us       0.000us       5.554ms         3.51%       5.554ms      15.777us           352  
+                                              aten::cat         4.03%      17.583ms         6.29%      27.400ms      19.405us       4.120ms         2.61%       4.120ms       2.918us          1412  
+void at::native::elementwise_kernel<128, 4, at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us       3.680ms         2.33%       3.680ms       2.533us          1453  
+void at::native::elementwise_kernel<128, 4, at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us       3.414ms         2.16%       3.414ms       4.703us           726  
+                                              aten::add         5.66%      24.670ms         9.02%      39.310ms      18.199us       3.189ms         2.02%       3.192ms       1.478us          2160  
+                                             aten::mean         2.30%      10.005ms         3.39%      14.786ms      20.537us       2.946ms         1.86%       2.946ms       4.092us           720  
+void at::native::reduce_kernel<512, 1, at::native::R...         0.00%       0.000us         0.00%       0.000us       0.000us       2.946ms         1.86%       2.946ms       4.092us           720  
+void at::native::unrolled_elementwise_kernel<at::nat...         0.00%       0.000us         0.00%       0.000us       0.000us       2.485ms         1.57%       2.485ms       3.304us           752  
+void at::native::(anonymous namespace)::CatArrayBatc...         0.00%       0.000us         0.00%       0.000us       0.000us       2.305ms         1.46%       2.305ms       3.081us           748  
+void at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us       1.991ms         1.26%       1.991ms       1.460us          1364  
+void at::native::(anonymous namespace)::CatArrayBatc...         0.00%       0.000us         0.00%       0.000us       0.000us       1.711ms         1.08%       1.711ms       2.778us           616  
+void at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us       1.702ms         1.08%       1.702ms       1.657us          1027  
+                                              aten::neg         1.60%       6.997ms         2.73%      11.921ms      16.933us       1.525ms         0.96%       1.525ms       2.166us           704  
+void at::native::elementwise_kernel<128, 4, at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us       1.525ms         0.96%       1.525ms       2.166us           704  
+void at::native::elementwise_kernel<128, 2, at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us       1.517ms         0.96%       1.517ms       2.107us           720  
+void at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us       1.065ms         0.67%       1.065ms       1.416us           752  
+                                              aten::pow         2.15%       9.379ms         3.37%      14.676ms      20.384us       1.036ms         0.65%       1.036ms       1.438us           720  
+void at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us       1.036ms         0.65%       1.036ms       1.438us           720  
+                                            aten::rsqrt         1.96%       8.561ms         3.03%      13.197ms      18.328us     972.383us         0.61%     973.759us       1.352us           720  
+void at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us     972.383us         0.61%     972.383us       1.351us           720  
+void at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us     970.709us         0.61%     970.709us       1.348us           720  
+                                             aten::silu         0.91%       3.978ms         1.54%       6.728ms      19.115us     689.752us         0.44%     689.752us       1.960us           352  
+void at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us     689.752us         0.44%     689.752us       1.960us           352  
+turing_fp16_s1688gemm_fp16_256x64_ldg8_f2f_stages_32...         0.00%       0.000us         0.00%       0.000us       0.000us     555.968us         0.35%     555.968us      12.636us            44  
+                                           aten::argmax         0.06%     267.110us         0.10%     418.446us      26.153us     207.134us         0.13%     207.134us      12.946us            16  
+void at::native::reduce_kernel<512, 1, at::native::R...         0.00%       0.000us         0.00%       0.000us       0.000us     207.134us         0.13%     207.134us      12.946us            16  
+                                               aten::eq         0.30%       1.315ms         0.46%       1.990ms      20.515us     182.207us         0.12%     182.207us       1.878us            97  
+void at::native::elementwise_kernel<128, 4, at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us     177.792us         0.11%     177.792us       4.041us            44  
+                                              aten::any         0.18%     775.531us         0.37%       1.598ms      31.339us     175.394us         0.11%     199.522us       3.912us            51  
+void at::native::reduce_kernel<128, 4, at::native::R...         0.00%       0.000us         0.00%       0.000us       0.000us     175.394us         0.11%     175.394us       5.481us            32  
+                         Memcpy DtoD (Device -> Device)         0.00%       0.000us         0.00%       0.000us       0.000us     173.788us         0.11%     173.788us       1.317us           132  
+                                            aten::fill_         0.19%     808.552us         0.41%       1.783ms      13.612us     155.140us         0.10%     155.140us       1.184us           131  
+void cublasLt::splitKreduce_kernel<32, 16, int, __ha...         0.00%       0.000us         0.00%       0.000us       0.000us     126.916us         0.08%     126.916us       2.884us            44  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+Self CPU time total: 435.938ms
+Self CUDA time total: 158.124ms
+

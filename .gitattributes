@@ -3,3 +3,8 @@
 *.md text eol=lf
 *.json text eol=lf
 *.csv text eol=lf
+# Preserve the uploaded CSV bytes, including their original CRLF endings.
+results/*.csv -text
+
+# Preserve profiler output formatting and original bytes.
+results/**/*.txt -text -whitespace

@@ -1,6 +1,6 @@
 {
   "method": "checkpoint-backed greedy generation; fixed prompt and token count; paired alternating wall timings with CUDA synchronization; no compilation",
-  "timestamp_utc": "2026-09-27T05:14:54.133540+00:00",
+  "timestamp_utc": "2026-09-27T08:47:13.109683+00:00",
   "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
   "requested_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
   "resolved_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
@@ -22,22 +22,14 @@
   },
   "status": "exploratory_timing_strict_logits_failed",
   "eager_ms_each": [
-    349.6486246585846,
-    351.0845676064491,
-    354.8903614282608,
-    351.0831668972969,
-    352.6928722858429
+    338.9081582427025
   ],
   "triton_ms_each": [
-    401.94159001111984,
-    398.58194440603256,
-    398.9453986287117,
-    397.17114716768265,
-    392.9966017603874
+    388.66839557886124
   ],
-  "eager_median_ms": 351.0845676064491,
-  "triton_median_ms": 398.58194440603256,
-  "speedup": 0.8808340983173132,
+  "eager_median_ms": 338.9081582427025,
+  "triton_median_ms": 388.66839557886124,
+  "speedup": 0.8719725146109485,
   "gpu": "Tesla T4",
   "compute_capability": [
     7,
@@ -49,5 +41,5 @@
   "triton": "3.2.0",
   "transformers": "4.51.3",
   "seed": 42,
-  "repeats": 5
+  "repeats": 1
 }

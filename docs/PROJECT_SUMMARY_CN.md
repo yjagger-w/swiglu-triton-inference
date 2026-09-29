@@ -60,8 +60,9 @@ v0.1 暂停新增性能实验。未来如推进 v0.2，应先确定新问题和�
 
 ## 证据与复现
 
-详见根目录 README 和 `results/PROVENANCE.md`。最后几轮 JSON 根据用户完整终端输出转录，
-未提供的完整诊断文件只保留摘要，不伪造为原始文件。服务器原始文件仍应另行下载备份。
+详见根目录 README 和 `results/PROVENANCE.md`。首次发布的最后几轮结果来自终端转录；
+随后用户上传服务器备份，核对一致后已换成原始文件，并补齐逐层诊断和 profiler 记录。
+`results/server_archive_manifest.json` 列出所有导入原始结果的 SHA256，可用于复核。
 
 历史 sigmoid 路径可在提交 `4d3fcaf` 查看；FP16 修正于提交 `b3e8e36` 接入。
 现有结果文件保留历史与修正版的不同文件名，重新运行请使用 `recheck_*` 文件名。

@@ -1,0 +1,267 @@
+{
+  "method": "all 63,488 finite FP16 bit patterns as gates; six constant up cases and one finite-value permutation; bitwise comparison including signed zero",
+  "gpu": "Tesla T4",
+  "torch": "2.6.0+cu124",
+  "triton": "3.2.0",
+  "cuda": "12.4",
+  "seed": 42,
+  "gate_count": 63488,
+  "checks": {
+    "current": {
+      "unit_up": {
+        "bitwise_mismatch_count": 2,
+        "max_abs_error_finite_pairs": 0.0001220703125,
+        "examples": [
+          {
+            "gate": -2.724609375,
+            "up": 1.0,
+            "expected_bits": -20131,
+            "actual_bits": -20130
+          },
+          {
+            "gate": -4.921875,
+            "up": 1.0,
+            "expected_bits": -22385,
+            "actual_bits": -22386
+          }
+        ]
+      },
+      "up_-1.3330078125": {
+        "bitwise_mismatch_count": 2,
+        "max_abs_error_finite_pairs": 0.000244140625,
+        "examples": [
+          {
+            "gate": -2.724609375,
+            "up": -1.3330078125,
+            "expected_bits": 13094,
+            "actual_bits": 13096
+          },
+          {
+            "gate": -4.921875,
+            "up": -1.3330078125,
+            "expected_bits": 10772,
+            "actual_bits": 10770
+          }
+        ]
+      },
+      "up_-1.603515625": {
+        "bitwise_mismatch_count": 2,
+        "max_abs_error_finite_pairs": 0.000244140625,
+        "examples": [
+          {
+            "gate": -2.724609375,
+            "up": -1.603515625,
+            "expected_bits": 13389,
+            "actual_bits": 13390
+          },
+          {
+            "gate": -4.921875,
+            "up": -1.603515625,
+            "expected_bits": 11087,
+            "actual_bits": 11086
+          }
+        ]
+      },
+      "up_-0.67333984375": {
+        "bitwise_mismatch_count": 2,
+        "max_abs_error_finite_pairs": 6.103515625e-05,
+        "examples": [
+          {
+            "gate": -2.724609375,
+            "up": -0.67333984375,
+            "expected_bits": 12089,
+            "actual_bits": 12090
+          },
+          {
+            "gate": -4.921875,
+            "up": -0.67333984375,
+            "expected_bits": 9764,
+            "actual_bits": 9762
+          }
+        ]
+      },
+      "up_-0.8798828125": {
+        "bitwise_mismatch_count": 2,
+        "max_abs_error_finite_pairs": 0.0001220703125,
+        "examples": [
+          {
+            "gate": -2.724609375,
+            "up": -0.8798828125,
+            "expected_bits": 12472,
+            "actual_bits": 12473
+          },
+          {
+            "gate": -4.921875,
+            "up": -0.8798828125,
+            "expected_bits": 10243,
+            "actual_bits": 10242
+          }
+        ]
+      },
+      "up_-1.5517578125": {
+        "bitwise_mismatch_count": 2,
+        "max_abs_error_finite_pairs": 0.000244140625,
+        "examples": [
+          {
+            "gate": -2.724609375,
+            "up": -1.5517578125,
+            "expected_bits": 13353,
+            "actual_bits": 13354
+          },
+          {
+            "gate": -4.921875,
+            "up": -1.5517578125,
+            "expected_bits": 11027,
+            "actual_bits": 11025
+          }
+        ]
+      },
+      "permuted_finite_up": {
+        "bitwise_mismatch_count": 2,
+        "max_abs_error_finite_pairs": 0.25,
+        "examples": [
+          {
+            "gate": -2.724609375,
+            "up": -1962.0,
+            "expected_bits": 23843,
+            "actual_bits": 23844
+          },
+          {
+            "gate": -4.921875,
+            "up": 60.46875,
+            "expected_bits": -16305,
+            "actual_bits": -16306
+          }
+        ]
+      }
+    },
+    "libdevice_div": {
+      "unit_up": {
+        "bitwise_mismatch_count": 0,
+        "max_abs_error_finite_pairs": 0.0,
+        "examples": []
+      },
+      "up_-1.3330078125": {
+        "bitwise_mismatch_count": 0,
+        "max_abs_error_finite_pairs": 0.0,
+        "examples": []
+      },
+      "up_-1.603515625": {
+        "bitwise_mismatch_count": 0,
+        "max_abs_error_finite_pairs": 0.0,
+        "examples": []
+      },
+      "up_-0.67333984375": {
+        "bitwise_mismatch_count": 0,
+        "max_abs_error_finite_pairs": 0.0,
+        "examples": []
+      },
+      "up_-0.8798828125": {
+        "bitwise_mismatch_count": 0,
+        "max_abs_error_finite_pairs": 0.0,
+        "examples": []
+      },
+      "up_-1.5517578125": {
+        "bitwise_mismatch_count": 0,
+        "max_abs_error_finite_pairs": 0.0,
+        "examples": []
+      },
+      "permuted_finite_up": {
+        "bitwise_mismatch_count": 0,
+        "max_abs_error_finite_pairs": 0.0,
+        "examples": []
+      }
+    },
+    "libdevice_recip_mul": {
+      "unit_up": {
+        "bitwise_mismatch_count": 1,
+        "max_abs_error_finite_pairs": 0.0001220703125,
+        "examples": [
+          {
+            "gate": -2.724609375,
+            "up": 1.0,
+            "expected_bits": -20131,
+            "actual_bits": -20130
+          }
+        ]
+      },
+      "up_-1.3330078125": {
+        "bitwise_mismatch_count": 1,
+        "max_abs_error_finite_pairs": 0.000244140625,
+        "examples": [
+          {
+            "gate": -2.724609375,
+            "up": -1.3330078125,
+            "expected_bits": 13094,
+            "actual_bits": 13096
+          }
+        ]
+      },
+      "up_-1.603515625": {
+        "bitwise_mismatch_count": 1,
+        "max_abs_error_finite_pairs": 0.000244140625,
+        "examples": [
+          {
+            "gate": -2.724609375,
+            "up": -1.603515625,
+            "expected_bits": 13389,
+            "actual_bits": 13390
+          }
+        ]
+      },
+      "up_-0.67333984375": {
+        "bitwise_mismatch_count": 1,
+        "max_abs_error_finite_pairs": 6.103515625e-05,
+        "examples": [
+          {
+            "gate": -2.724609375,
+            "up": -0.67333984375,
+            "expected_bits": 12089,
+            "actual_bits": 12090
+          }
+        ]
+      },
+      "up_-0.8798828125": {
+        "bitwise_mismatch_count": 1,
+        "max_abs_error_finite_pairs": 0.0001220703125,
+        "examples": [
+          {
+            "gate": -2.724609375,
+            "up": -0.8798828125,
+            "expected_bits": 12472,
+            "actual_bits": 12473
+          }
+        ]
+      },
+      "up_-1.5517578125": {
+        "bitwise_mismatch_count": 1,
+        "max_abs_error_finite_pairs": 0.000244140625,
+        "examples": [
+          {
+            "gate": -2.724609375,
+            "up": -1.5517578125,
+            "expected_bits": 13353,
+            "actual_bits": 13354
+          }
+        ]
+      },
+      "permuted_finite_up": {
+        "bitwise_mismatch_count": 1,
+        "max_abs_error_finite_pairs": 0.25,
+        "examples": [
+          {
+            "gate": -2.724609375,
+            "up": -1962.0,
+            "expected_bits": 23843,
+            "actual_bits": 23844
+          }
+        ]
+      }
+    }
+  },
+  "qualified_candidates": [
+    "libdevice_div"
+  ],
+  "selected_candidate": "libdevice_div",
+  "limitations": "does not enumerate all gate/up pairs; excludes NaN/Inf inputs; does not establish other dtype, device or version behavior; no timing"
+}

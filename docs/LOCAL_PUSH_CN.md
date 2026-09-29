@@ -42,5 +42,5 @@ tar --exclude='__pycache__' --exclude='.pytest_cache' \
 ```
 
 下载该文件到电脑后再关机；不要把“关机”与“释放/删除实例”混为一项操作。
-本 ZIP 保存了最新源码和可核实实验记录；服务器包还包含尚未上传的原始诊断 JSON 和 trace。
-如补充原始文件，请先读 `results/PROVENANCE.md`，核对数值后更新来源说明。
+服务器备份随后已上传并核对，原始诊断 JSON 和 profiler 文件通过单独的证据补丁补入仓库。
+详见 `results/PROVENANCE.md` 和原始文件哈希清单。保留本地服务器压缩包作为额外备份。

@@ -22,6 +22,13 @@ results/*.csv
 !results/t4_tinyllama_generate_fp16_div.json
 !results/t4_tinyllama_cudagraph_control_fp16.json
 !results/t4_diagnostics_summary_20260929.json
+!results/t4_fp16.csv
+!results/t4_fp32.csv
+!results/t4_mlp_fp16.csv
+!results/t4_tinyllama_profile_run.json
+!results/t4_tinyllama_prefill_decode_fp16.json
+!results/t4_tinyllama_accuracy_layers_fp16.json
+!results/server_archive_manifest.json
 hf-cache/
 models/
 .env

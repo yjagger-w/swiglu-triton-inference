@@ -1,5 +1,17 @@
 {
-  "provenance": "Rows transcribed from user terminal output on 2026-09-29; original JSON metadata was not uploaded.",
+  "method": "forward-only post-projection; output allocation included; median of do_bench medians",
+  "timestamp_utc": "2026-09-29T11:00:52.577501+00:00",
+  "gpu": "Tesla T4",
+  "compute_capability": [
+    7,
+    5
+  ],
+  "python": "3.12.14",
+  "torch": "2.6.0+cu124",
+  "cuda": "12.4",
+  "triton": "3.2.0",
+  "seed": 42,
+  "repeats": 3,
   "rows": [
     {
       "tokens": 1,

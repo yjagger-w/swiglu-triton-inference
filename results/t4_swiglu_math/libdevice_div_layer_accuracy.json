@@ -1,0 +1,2054 @@
+{
+  "method": "native-input shadow activation/MLP comparisons, followed by all-layer Triton replacement; full-prompt forwards, no KV cache, no timing",
+  "timestamp_utc": "2026-09-29T10:56:22.954088+00:00",
+  "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+  "revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+  "resolved_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+  "prompt_tokens": 128,
+  "prompt_ids_sha256": "c4d1d52c38ececd24ce5b9e41c90b6d57172932e0b34ed519c281d51e96cc39b",
+  "dtype": "fp16",
+  "gpu": "Tesla T4",
+  "torch": "2.6.0+cu124",
+  "seed": 42,
+  "strict_check_rtol_atol": 0.01,
+  "native_repeat_logits": {
+    "shape": [
+      1,
+      128,
+      32000
+    ],
+    "count": 4096000,
+    "nonfinite_pairs": 0,
+    "unequal_count": 0,
+    "strict_mismatch_count": 0,
+    "max_abs_error": 0.0,
+    "mean_abs_error": 0.0
+  },
+  "fused_logits_vs_native": {
+    "shape": [
+      1,
+      128,
+      32000
+    ],
+    "count": 4096000,
+    "nonfinite_pairs": 0,
+    "unequal_count": 0,
+    "strict_mismatch_count": 0,
+    "max_abs_error": 0.0,
+    "mean_abs_error": 0.0,
+    "top1_mismatch_positions": 0
+  },
+  "isolated_native_inputs": [
+    {
+      "layer": 0,
+      "silu_via_unit_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "swiglu_same_gate_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "down_proj_same_input": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "eager_reconstruction_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "largest_swiglu_difference_example": {
+        "flat_index": 0,
+        "gate": 0.01334381103515625,
+        "up": -0.11273193359375,
+        "eager": -0.0007572174072265625,
+        "triton": -0.0007572174072265625
+      }
+    },
+    {
+      "layer": 1,
+      "silu_via_unit_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "swiglu_same_gate_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "down_proj_same_input": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "eager_reconstruction_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "largest_swiglu_difference_example": {
+        "flat_index": 0,
+        "gate": -0.11895751953125,
+        "up": -0.015777587890625,
+        "eager": 0.0008826255798339844,
+        "triton": 0.0008826255798339844
+      }
+    },
+    {
+      "layer": 2,
+      "silu_via_unit_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "swiglu_same_gate_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "down_proj_same_input": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "eager_reconstruction_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "largest_swiglu_difference_example": {
+        "flat_index": 0,
+        "gate": 0.0253753662109375,
+        "up": 0.025146484375,
+        "eager": 0.0003230571746826172,
+        "triton": 0.0003230571746826172
+      }
+    },
+    {
+      "layer": 3,
+      "silu_via_unit_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "swiglu_same_gate_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "down_proj_same_input": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "eager_reconstruction_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "largest_swiglu_difference_example": {
+        "flat_index": 0,
+        "gate": -0.0183868408203125,
+        "up": 0.037567138671875,
+        "eager": -0.0003421306610107422,
+        "triton": -0.0003421306610107422
+      }
+    },
+    {
+      "layer": 4,
+      "silu_via_unit_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "swiglu_same_gate_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "down_proj_same_input": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "eager_reconstruction_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "largest_swiglu_difference_example": {
+        "flat_index": 0,
+        "gate": 0.0924072265625,
+        "up": 0.061065673828125,
+        "eager": 0.00295257568359375,
+        "triton": 0.00295257568359375
+      }
+    },
+    {
+      "layer": 5,
+      "silu_via_unit_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "swiglu_same_gate_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "down_proj_same_input": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "eager_reconstruction_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "largest_swiglu_difference_example": {
+        "flat_index": 0,
+        "gate": -0.0177154541015625,
+        "up": 0.1209716796875,
+        "eager": -0.0010623931884765625,
+        "triton": -0.0010623931884765625
+      }
+    },
+    {
+      "layer": 6,
+      "silu_via_unit_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "swiglu_same_gate_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "down_proj_same_input": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "eager_reconstruction_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "largest_swiglu_difference_example": {
+        "flat_index": 0,
+        "gate": 0.06683349609375,
+        "up": -0.06329345703125,
+        "eager": -0.002185821533203125,
+        "triton": -0.002185821533203125
+      }
+    },
+    {
+      "layer": 7,
+      "silu_via_unit_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "swiglu_same_gate_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "down_proj_same_input": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "eager_reconstruction_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "largest_swiglu_difference_example": {
+        "flat_index": 0,
+        "gate": 0.005504608154296875,
+        "up": 0.05712890625,
+        "eager": 0.0001577138900756836,
+        "triton": 0.0001577138900756836
+      }
+    },
+    {
+      "layer": 8,
+      "silu_via_unit_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "swiglu_same_gate_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "down_proj_same_input": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "eager_reconstruction_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "largest_swiglu_difference_example": {
+        "flat_index": 0,
+        "gate": -0.03814697265625,
+        "up": -0.06640625,
+        "eager": 0.0012426376342773438,
+        "triton": 0.0012426376342773438
+      }
+    },
+    {
+      "layer": 9,
+      "silu_via_unit_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "swiglu_same_gate_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "down_proj_same_input": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "eager_reconstruction_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "largest_swiglu_difference_example": {
+        "flat_index": 0,
+        "gate": 0.01739501953125,
+        "up": -0.0693359375,
+        "eager": -0.0006084442138671875,
+        "triton": -0.0006084442138671875
+      }
+    },
+    {
+      "layer": 10,
+      "silu_via_unit_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "swiglu_same_gate_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "down_proj_same_input": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "eager_reconstruction_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "largest_swiglu_difference_example": {
+        "flat_index": 0,
+        "gate": 0.11083984375,
+        "up": -0.1280517578125,
+        "eager": -0.0074920654296875,
+        "triton": -0.0074920654296875
+      }
+    },
+    {
+      "layer": 11,
+      "silu_via_unit_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "swiglu_same_gate_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "down_proj_same_input": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "eager_reconstruction_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "largest_swiglu_difference_example": {
+        "flat_index": 0,
+        "gate": -0.045684814453125,
+        "up": 0.042144775390625,
+        "eager": -0.0009407997131347656,
+        "triton": -0.0009407997131347656
+      }
+    },
+    {
+      "layer": 12,
+      "silu_via_unit_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "swiglu_same_gate_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "down_proj_same_input": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "eager_reconstruction_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "largest_swiglu_difference_example": {
+        "flat_index": 0,
+        "gate": -0.2359619140625,
+        "up": -0.1097412109375,
+        "eager": 0.0114288330078125,
+        "triton": 0.0114288330078125
+      }
+    },
+    {
+      "layer": 13,
+      "silu_via_unit_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "swiglu_same_gate_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "down_proj_same_input": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "eager_reconstruction_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "largest_swiglu_difference_example": {
+        "flat_index": 0,
+        "gate": 0.095947265625,
+        "up": 0.005767822265625,
+        "eager": 0.0002899169921875,
+        "triton": 0.0002899169921875
+      }
+    },
+    {
+      "layer": 14,
+      "silu_via_unit_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "swiglu_same_gate_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "down_proj_same_input": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "eager_reconstruction_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "largest_swiglu_difference_example": {
+        "flat_index": 0,
+        "gate": 0.0026111602783203125,
+        "up": -0.01367950439453125,
+        "eager": -1.7881393432617188e-05,
+        "triton": -1.7881393432617188e-05
+      }
+    },
+    {
+      "layer": 15,
+      "silu_via_unit_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "swiglu_same_gate_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "down_proj_same_input": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "eager_reconstruction_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "largest_swiglu_difference_example": {
+        "flat_index": 0,
+        "gate": -0.1710205078125,
+        "up": 0.2017822265625,
+        "eager": -0.015777587890625,
+        "triton": -0.015777587890625
+      }
+    },
+    {
+      "layer": 16,
+      "silu_via_unit_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "swiglu_same_gate_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "down_proj_same_input": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "eager_reconstruction_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "largest_swiglu_difference_example": {
+        "flat_index": 0,
+        "gate": 0.09893798828125,
+        "up": 0.192626953125,
+        "eager": 0.01000213623046875,
+        "triton": 0.01000213623046875
+      }
+    },
+    {
+      "layer": 17,
+      "silu_via_unit_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "swiglu_same_gate_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "down_proj_same_input": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "eager_reconstruction_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "largest_swiglu_difference_example": {
+        "flat_index": 0,
+        "gate": 0.147705078125,
+        "up": 0.030731201171875,
+        "eager": 0.0024356842041015625,
+        "triton": 0.0024356842041015625
+      }
+    },
+    {
+      "layer": 18,
+      "silu_via_unit_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "swiglu_same_gate_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "down_proj_same_input": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "eager_reconstruction_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "largest_swiglu_difference_example": {
+        "flat_index": 0,
+        "gate": -0.315185546875,
+        "up": 0.1585693359375,
+        "eager": -0.0210723876953125,
+        "triton": -0.0210723876953125
+      }
+    },
+    {
+      "layer": 19,
+      "silu_via_unit_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "swiglu_same_gate_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "down_proj_same_input": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "eager_reconstruction_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "largest_swiglu_difference_example": {
+        "flat_index": 0,
+        "gate": -0.1512451171875,
+        "up": 0.0247955322265625,
+        "eager": -0.0017328262329101562,
+        "triton": -0.0017328262329101562
+      }
+    },
+    {
+      "layer": 20,
+      "silu_via_unit_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "swiglu_same_gate_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "down_proj_same_input": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "eager_reconstruction_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "largest_swiglu_difference_example": {
+        "flat_index": 0,
+        "gate": 0.0186614990234375,
+        "up": -0.0270538330078125,
+        "eager": -0.00025463104248046875,
+        "triton": -0.00025463104248046875
+      }
+    },
+    {
+      "layer": 21,
+      "silu_via_unit_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "swiglu_same_gate_up": {
+        "shape": [
+          1,
+          128,
+          5632
+        ],
+        "count": 720896,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "down_proj_same_input": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "eager_reconstruction_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "largest_swiglu_difference_example": {
+        "flat_index": 0,
+        "gate": -0.0950927734375,
+        "up": 0.27294921875,
+        "eager": -0.012359619140625,
+        "triton": -0.012359619140625
+      }
+    }
+  ],
+  "cumulative_fused_path": [
+    {
+      "layer": 0,
+      "mlp_input_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "mlp_output_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      }
+    },
+    {
+      "layer": 1,
+      "mlp_input_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "mlp_output_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      }
+    },
+    {
+      "layer": 2,
+      "mlp_input_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "mlp_output_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      }
+    },
+    {
+      "layer": 3,
+      "mlp_input_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "mlp_output_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      }
+    },
+    {
+      "layer": 4,
+      "mlp_input_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "mlp_output_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      }
+    },
+    {
+      "layer": 5,
+      "mlp_input_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "mlp_output_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      }
+    },
+    {
+      "layer": 6,
+      "mlp_input_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "mlp_output_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      }
+    },
+    {
+      "layer": 7,
+      "mlp_input_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "mlp_output_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      }
+    },
+    {
+      "layer": 8,
+      "mlp_input_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "mlp_output_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      }
+    },
+    {
+      "layer": 9,
+      "mlp_input_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "mlp_output_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      }
+    },
+    {
+      "layer": 10,
+      "mlp_input_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "mlp_output_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      }
+    },
+    {
+      "layer": 11,
+      "mlp_input_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "mlp_output_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      }
+    },
+    {
+      "layer": 12,
+      "mlp_input_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "mlp_output_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      }
+    },
+    {
+      "layer": 13,
+      "mlp_input_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "mlp_output_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      }
+    },
+    {
+      "layer": 14,
+      "mlp_input_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "mlp_output_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      }
+    },
+    {
+      "layer": 15,
+      "mlp_input_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "mlp_output_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      }
+    },
+    {
+      "layer": 16,
+      "mlp_input_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "mlp_output_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      }
+    },
+    {
+      "layer": 17,
+      "mlp_input_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "mlp_output_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      }
+    },
+    {
+      "layer": 18,
+      "mlp_input_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "mlp_output_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      }
+    },
+    {
+      "layer": 19,
+      "mlp_input_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "mlp_output_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      }
+    },
+    {
+      "layer": 20,
+      "mlp_input_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "mlp_output_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      }
+    },
+    {
+      "layer": 21,
+      "mlp_input_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "mlp_output_vs_native": {
+        "shape": [
+          1,
+          128,
+          2048
+        ],
+        "count": 262144,
+        "nonfinite_pairs": 0,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      }
+    }
+  ],
+  "notes": [
+    "Layer indices start at zero; hook shadow outputs do not replace native outputs.",
+    "Unit up isolates the rounded SiLU value through the existing fused kernel.",
+    "Cumulative input differences include effects propagated through attention and residuals.",
+    "If native repeat or eager reconstruction differs, attribution needs further controls.",
+    "One prompt diagnoses differences; it does not establish model quality."
+  ]
+}
