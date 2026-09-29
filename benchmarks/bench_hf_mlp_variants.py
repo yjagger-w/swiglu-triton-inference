@@ -1,4 +1,4 @@
-"""Three-way control for the native, reordered eager and Triton LLaMA MLP."""
+"""Native, reordered eager, Triton and optional compiled SwiGLU MLP control."""
 
 import argparse
 import hashlib
@@ -15,6 +15,7 @@ import torch
 import torch.nn.functional as F
 
 from swiglu_triton.hf_llama import use_triton_llama_mlps
+from swiglu_triton.ops import swiglu_torch
 
 
 def reordered_eager_forward(mlp: torch.nn.Module, x: torch.Tensor) -> torch.Tensor:
@@ -24,18 +25,27 @@ def reordered_eager_forward(mlp: torch.nn.Module, x: torch.Tensor) -> torch.Tens
 
 
 @contextmanager
-def provider(model: torch.nn.Module, name: str):
+def provider(model: torch.nn.Module, name: str, compiled_activation=None):
     if name == "native":
         yield
     elif name == "triton":
         with use_triton_llama_mlps(model):
             yield
-    elif name == "reordered_eager":
+    elif name in ("reordered_eager", "compiled"):
+        if name == "compiled" and compiled_activation is None:
+            raise ValueError("compiled activation is required")
+
+        def compiled_forward(mlp: torch.nn.Module, x: torch.Tensor) -> torch.Tensor:
+            gate = mlp.gate_proj(x)
+            up = mlp.up_proj(x)
+            return mlp.down_proj(compiled_activation(gate, up))
+
         mlps = [layer.mlp for layer in model.model.layers]
         originals = [mlp.forward for mlp in mlps]
         try:
             for mlp in mlps:
-                mlp.forward = MethodType(reordered_eager_forward, mlp)
+                forward = reordered_eager_forward if name == "reordered_eager" else compiled_forward
+                mlp.forward = MethodType(forward, mlp)
             yield
         finally:
             for mlp, original in zip(mlps, originals):
@@ -78,6 +88,8 @@ def main() -> None:
     parser.add_argument("--repeats", type=int, default=5)
     parser.add_argument("--mlp-host-timing", action="store_true",
                         help="time and count MLP forwards without synchronizing inside them")
+    parser.add_argument("--include-compiled", action="store_true",
+                        help="add torch.compile/Inductor on post-projection SwiGLU only")
     parser.add_argument("--output", type=Path, default=Path("results/t4_tinyllama_mlp_variants_fp16.json"))
     args = parser.parse_args()
     if min(args.prompt_tokens, args.new_tokens, args.repeats) <= 0:
@@ -110,20 +122,45 @@ def main() -> None:
     def generate() -> torch.Tensor:
         return model.generate(input_ids=input_ids, attention_mask=attention_mask, **kwargs)
 
-    names = ("native", "reordered_eager", "triton")
+    compiled_activation = (torch.compile(swiglu_torch, backend="inductor", fullgraph=True)
+                           if args.include_compiled else None)
+    names = (("native", "reordered_eager", "triton", "compiled") if args.include_compiled
+             else ("native", "reordered_eager", "triton"))
     with torch.inference_mode():
         outputs = {}
         for name in names:
-            with provider(model, name):
+            with provider(model, name, compiled_activation):
                 outputs[name] = generate()
         agree = {name: torch.equal(outputs["native"], outputs[name]) for name in names}
         if not all(agree.values()):
-            raise AssertionError(f"greedy token mismatch; no timing: {agree}")
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(json.dumps({"status": "token_mismatch_no_timing",
+                                               "greedy_ids_identical": agree}, indent=2) + "\n",
+                                   encoding="utf-8")
+            raise AssertionError(f"greedy token mismatch; diagnostic saved, no timing: {agree}")
         if outputs["native"].shape[-1] != args.prompt_tokens + args.new_tokens:
             raise AssertionError("generation did not produce requested number of tokens")
 
+        compiled_logit_diagnostics = None
+        if args.include_compiled:
+            original_logits = model(input_ids=input_ids, attention_mask=attention_mask,
+                                    use_cache=False).logits
+            with provider(model, "compiled", compiled_activation):
+                compiled_logits = model(input_ids=input_ids, attention_mask=attention_mask,
+                                        use_cache=False).logits
+            difference = (original_logits.float() - compiled_logits.float()).abs()
+            compiled_logit_diagnostics = {
+                "strict_check_rtol_atol": 1e-2,
+                "strict_mismatch_count": int((~torch.isclose(
+                    compiled_logits, original_logits, rtol=1e-2, atol=1e-2)).sum().item()),
+                "logit_count": original_logits.numel(),
+                "max_abs_error": difference.max().item(),
+                "top1_mismatch_positions": int((compiled_logits.argmax(dim=-1) !=
+                                                original_logits.argmax(dim=-1)).sum().item()),
+            }
+
         def measure(name: str) -> tuple[float, dict | None]:
-            with provider(model, name):
+            with provider(model, name, compiled_activation):
                 instrument = (measure_mlp_host_calls(model) if args.mlp_host_timing
                               else nullcontext(None))
                 with instrument as stats:
@@ -136,8 +173,7 @@ def main() -> None:
         for _ in range(2):
             for name in names:
                 measure(name)
-        rotations = (names, ("triton", "native", "reordered_eager"),
-                     ("reordered_eager", "triton", "native"))
+        rotations = [names[-i:] + names[:-i] for i in range(len(names))]
         times = {name: [] for name in names}
         host_times = {name: [] for name in names}
         for i in range(args.repeats):
@@ -150,9 +186,9 @@ def main() -> None:
                     host_times[name].append(stats["host_ms"])
 
     result = {
-        "method": "same checkpoint and prompt; three MLP paths; two warmups each;"
+        "method": "same checkpoint and prompt; two warmups each;"
                   " rotating execution order; synchronized generation wall timing;"
-                  " no profiler, no compilation",
+                  " no profiler; compilation and first use excluded when compiled path enabled",
         "timestamp_utc": datetime.now(timezone.utc).isoformat(),
         "model": args.model, "revision": args.revision,
         "resolved_revision": getattr(model.config, "_commit_hash", None),
@@ -163,6 +199,9 @@ def main() -> None:
             "native": "original Hugging Face LLaMA MLP forward",
             "reordered_eager": "patched forward computes gate and up, then F.silu(gate) * up",
             "triton": "patched forward computes gate and up, then Triton SwiGLU",
+            **({"compiled": "patched forward computes gate and up, then"
+                          " torch.compile/Inductor post-projection SwiGLU"}
+               if args.include_compiled else {}),
         },
         "times_ms": times,
         "medians_ms": {name: statistics.median(values) for name, values in times.items()},
@@ -170,6 +209,12 @@ def main() -> None:
         "seed": 42, "repeats": args.repeats,
         "accuracy_note": "identical greedy IDs on this prompt only; prior Triton full-logit strict check failed",
     }
+    if args.include_compiled:
+        result["compiled_backend"] = "inductor"
+        result["compiled_scope"] = "SwiGLU activation after both projections, not the full MLP"
+        result["compiled_logit_diagnostics"] = compiled_logit_diagnostics
+        result["compiled_status"] = ("strict_logits_passed" if compiled_logit_diagnostics[
+            "strict_mismatch_count"] == 0 else "exploratory_timing_strict_logits_failed")
     if args.mlp_host_timing:
         result["mlp_calls_per_generation"] = len(model.model.layers) * args.new_tokens
         result["mlp_host_ms_each"] = host_times

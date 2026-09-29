@@ -82,6 +82,12 @@ for performance claims.
 time for repeated 1 × 5632 FP16 SwiGLU calls without a profiler. It uses the
 real model's intermediate width, but synthetic tensors and no projections.
 This isolates Python dispatch costs and cannot substitute for model latency.
+For a checkpoint-backed compiler control, run `bench_hf_mlp_variants.py` with
+`--include-compiled` and a new output path. Only the post-projection SwiGLU
+operation is compiled. The script warms all four paths, checks greedy IDs,
+records full-prompt compiled logit differences, and excludes compilation from
+the rotating generation timings. A failed strict logit check marks compiled
+timing exploratory.
 
 For a short smoke test:
 
