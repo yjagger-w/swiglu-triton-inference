@@ -1,184 +1,158 @@
-# SwiGLU Triton inference operator
+# SwiGLU Triton inference: correctness and performance study
 
-An independent, forward-only GPU operator project. Version 0.1 fuses the
-**post-projection** SwiGLU calculation:
+A reproducible, forward-only GPU engineering project. It implements
+post-projection SwiGLU fusion, integrates it into Hugging Face LLaMA MLPs,
+and measures operator, layer and model performance on a Tesla T4.
 
-```text
-gate = gate_proj(x)       # existing linear projection, outside this kernel
-up   = up_proj(x)         # existing linear projection, outside this kernel
-y    = SiLU(gate) * up    # this project
-out  = down_proj(y)       # outside this kernel
+**v0.1 conclusion:** the corrected FP16 operator accelerates the tested
+standalone workloads versus PyTorch eager. It does not establish an
+end-to-end generation speedup. A fixed-shape CUDA Graph control found no
+stable incremental model-forward benefit from this fusion.
+
+[中文项目总结](docs/PROJECT_SUMMARY_CN.md) ·
+[本地解压与推送](docs/LOCAL_PUSH_CN.md) ·
+[Result provenance](results/PROVENANCE.md)
+
+## What is fused?
+
+```python
+gate = gate_proj(x)
+up = up_proj(x)
+y = silu(gate) * up       # fused into one Triton kernel
+out = down_proj(y)
 ```
 
-The goal is to establish an honest, reproducible performance and correctness
-baseline before attempting compiler integration or full-model claims. SwiGLU
-itself is an existing activation, not a proposed new algorithm.
+The projections remain PyTorch operations. SwiGLU is an existing activation;
+this project studies its implementation, numerical behavior and integration.
+The final FP16 kernel uses CUDA libdevice exp and precise division, then
+rounds the SiLU intermediate to FP16 before multiplication. FP32/BF16 use
+the earlier sigmoid path; native BF16 requires compute capability >= 8.0.
 
-## Environment
+## Final measured results — 2026-09-29
 
-- Linux with an NVIDIA CUDA GPU. A T4 supports the FP16 and FP32 runs; the
-  Triton BF16 kernel requires compute capability 8.0 or newer. PyTorch can
-  report emulated BF16 on a T4, which is insufficient for Triton PTX assembly.
-- Python 3.10 or newer, a CUDA-enabled PyTorch build and a compatible Triton
-  installation. Install the CUDA PyTorch build appropriate for the machine
-  first using the [official PyTorch selector](https://pytorch.org/get-started/locally/).
-- From this directory: `python -m pip install -e '.[test]'`
+Environment: Tesla T4 (CC 7.5), Python 3.12.14, PyTorch 2.6.0+cu124,
+Triton 3.2.0, Transformers 4.51.3. The user ran **21 tests passed, 5 BF16
+cases skipped** on T4 after integrating the FP16 arithmetic fix.
 
-Dependencies intentionally specify minimum versions rather than an unverified
-CUDA/PyTorch/Triton combination. Record the installed versions with each run.
+### Corrected FP16 standalone operator
 
-## Run
+Both paths allocate output; the reference is eager `F.silu(gate) * up`.
+Times are milliseconds. All six reported maximum absolute errors were zero.
+
+| Tokens × features | Eager | Triton | Speedup |
+| --- | ---: | ---: | ---: |
+| 1 × 4096 | 0.008640 | 0.004576 | 1.888× |
+| 1 × 11008 | 0.006688 | 0.005312 | 1.259× |
+| 128 × 4096 | 0.020480 | 0.016160 | 1.267× |
+| 128 × 11008 | 0.055520 | 0.035680 | 1.556× |
+| 1024 × 4096 | 0.153760 | 0.092256 | 1.667× |
+| 1024 × 11008 | 0.397696 | 0.238272 | 1.669× |
+
+These are one run's results, not a universal speed range. Small microsecond
+cases need particular care when interpreting variance. The historical
+compiled-activation comparison did not demonstrate a clear hand-written
+kernel advantage; it preceded the FP16 arithmetic fix.
+
+### TinyLlama checkpoint generation
+
+Checkpoint: `TinyLlama/TinyLlama-1.1B-Chat-v1.0`, revision
+`fe8a4ea1ffedaf415f4da2f062534de366a451e6`; batch 1, 128 input tokens,
+16 generated tokens, FP16, five paired alternating timings.
+
+| Path | Median generation latency |
+| --- | ---: |
+| Original model | 349.475 ms |
+| Corrected Triton SwiGLU | 402.405 ms |
+
+The Triton path was **15.1% slower** (0.868× speedup). Generated token IDs
+and all 4,096,000 logits in the separate full-prompt validation matched.
+This validation covers the stated prompt and environment, not general model
+quality or every decoding workload.
+
+### Four-way CUDA Graph control
+
+Scope: repeated fixed-shape 128-token forwards with full logits, SDPA and the
+same precomputed 4D causal mask. **No KV cache and no generation.** Eight
+balanced rotations, ten calls per block, reporting per-forward averages.
+
+| MLP path | Ordinary execution | CUDA Graph |
+| --- | ---: | ---: |
+| Native | 22.116 ms | 17.736 ms |
+| Triton | 24.950 ms | 17.768 ms |
+
+All checked outputs matched on the original and rolled input. Native Graph
+improved over native ordinary execution by 1.247×. Triton Graph versus native
+Graph was 0.998×, with paired ratios above and below one: no stable extra
+fusion benefit was observed. Graph replay changes launch and allocation
+behavior; this does not attribute all earlier loss to Python alone.
+
+## Reproduce on a CUDA Linux environment
+
+Windows can store, inspect and push this repository. GPU experiments were
+run on Linux. Activate an environment with the tested CUDA stack, then:
 
 ```bash
+python -m pip install -e '.[test,model]'
+export OMP_NUM_THREADS=1
 python -m pytest -q
-python benchmarks/bench_swiglu.py --dtype fp16 --output results/t4_fp16.json
-python benchmarks/bench_swiglu.py --dtype fp32 --output results/t4_fp32.json
-python benchmarks/bench_llama_mlp.py --dtype fp16 --output results/t4_mlp_fp16.json
-python benchmarks/bench_mlp_stages.py --output results/t4_mlp_stages_fp16.json
-python benchmarks/bench_compiled_swiglu.py --output results/t4_compiled_swiglu_fp16.json
-python benchmarks/profile_swiglu.py --output-dir results/t4_profile_swiglu
-```
-
-## Real checkpoint experiment (optional)
-
-`bench_hf_llama_generate.py` loads a Hugging Face LLaMA checkpoint (default:
-TinyLlama 1.1B Chat) in FP16 and temporarily replaces the SwiGLU part of
-each MLP's forward call. It records strict logit mismatches and requires
-identical greedy token IDs before paired generation timings with identical
-prompt, weights, cache setting and token count. Timings with a failed strict
-logit check are explicitly marked exploratory. Checkpoint download and Transformers are separate
-from the operator-only environment; the `model` extra lists the optional
-dependencies. On T4 use FP16 because native BF16 is unavailable.
-
-```bash
+python benchmarks/bench_swiglu.py --dtype fp16 --output results/recheck_fp16.json
 python benchmarks/bench_hf_llama_generate.py \
   --model TinyLlama/TinyLlama-1.1B-Chat-v1.0 \
-  --prompt-tokens 128 --new-tokens 16 \
-  --output results/t4_tinyllama_generate_fp16.json
-```
-
-The reviewed T4 TinyLlama result is saved in
-[`results/t4_tinyllama_generate_fp16.json`](results/t4_tinyllama_generate_fp16.json).
-All greedy output token IDs matched, but 315 of 4,096,000 logits failed the
-strict `rtol=atol=0.01` check. The 128-prompt/16-new-token generation took
-351.085 ms for the original model and 398.582 ms with the Triton replacement
-(medians of five); this is exploratory and **slower** with Triton. A
-checkpoint-backed speed claim requires wider numerical validation and
-profiling. The adapter works
-with the LLaMA `model.model.layers[*].mlp` layout and SiLU activation; it
-does not attempt to patch other model families or compiled full models.
-
-To collect operator-level evidence for the full-model slowdown, rerun with
-`--profile-output-dir results/t4_tinyllama_profile`. Profiling adds one extra
-generation per path **after** the regular timing result has been saved. The
-profiler tables and event JSON are diagnostics, not latency measurements.
-If the wall-timing result has already been saved, add `--profile-only` to
-collect just the two traces without repeating validation and timed runs.
-For an order check, add `--profile-sequence eager,triton,eager` and choose a
-new profile output directory. The first and last eager profiles can reveal
-whether the profiler session itself drifted; use synchronized wall timings
-for performance claims.
-`bench_decode_dispatch.py` measures host submission and synchronized wall
-time for repeated 1 × 5632 FP16 SwiGLU calls without a profiler. It uses the
-real model's intermediate width, but synthetic tensors and no projections.
-This isolates Python dispatch costs and cannot substitute for model latency.
-For a checkpoint-backed compiler control, run `bench_hf_mlp_variants.py` with
-`--include-compiled` and a new output path. Only the post-projection SwiGLU
-operation is compiled. The script warms all four paths, checks greedy IDs,
-records full-prompt compiled logit differences, and excludes compilation from
-the rotating generation timings. A failed strict logit check marks compiled
-timing exploratory.
-For the first v0.2 baseline, use `--include-compiled-mlp` with a separate
-output file. The compiled function accepts the original gate/up/down weights
-as tensor arguments, so layers with the same shapes can share its graph. It
-includes all three projections and records greedy-token and strict-logit
-comparisons before timing generation. This does not compile the full model.
-The [four-way checkpoint control](results/t4_tinyllama_compiled_control_fp16.json)
-found that both hand-written Triton and Inductor-compiled post-projection
-SwiGLU were slower than the native model on this T4 prompt. The strict
-full-logit check failed for the compiled path; see the
-[T4 report](docs/t4_baseline_20260927.md) before citing this result.
-The later [full-MLP compiler control](results/t4_tinyllama_full_mlp_compile_fp16.json)
-also showed a slowdown on this T4 prompt: native 354.356 ms versus compiled
-full MLP 402.761 ms. Its strict full-logit check failed, despite identical
-greedy token IDs. Use `bench_hf_prefill_decode.py` to separate a full-prompt
-forward from one cached decode forward; its prefill is excluded from the
-decode timer. These phase measurements need a T4 run and are not a substitute
-for 16-token generation timing.
-
-```bash
-OMP_NUM_THREADS=1 HF_HUB_OFFLINE=1 \
-HF_HOME=/root/autodl-tmp/hf-cache PYTHONPATH=src \
-/root/autodl-tmp/st-mamba/environment/st-mamba-py312/bin/python \
-  benchmarks/bench_hf_prefill_decode.py \
+  --revision fe8a4ea1ffedaf415f4da2f062534de366a451e6 \
+  --prompt-tokens 128 --new-tokens 16 --repeats 5 \
+  --output results/recheck_generate.json
+python benchmarks/bench_hf_cudagraph_control.py \
   --model TinyLlama/TinyLlama-1.1B-Chat-v1.0 \
   --revision fe8a4ea1ffedaf415f4da2f062534de366a451e6 \
-  --prompt-tokens 128 --repeats 5 \
-  --output results/t4_tinyllama_prefill_decode_fp16.json
+  --prompt-tokens 128 --repeats 8 --calls 10 \
+  --output results/recheck_graph.json
 ```
 
-For a short smoke test:
+For the existing AutoDL environment, the Python executable is
+`/root/autodl-tmp/st-mamba/environment/st-mamba-py312/bin/python`. Set
+`HF_HOME=/root/autodl-tmp/hf-cache` and `HF_HUB_OFFLINE=1` when using the
+already downloaded checkpoint. The package does not contain model weights
+or a Python environment. Dependency minimums are not a compatibility guarantee
+for every version combination; reproduce with the measured environment first.
 
-```bash
-python benchmarks/bench_swiglu.py --tokens 1,128 --features 4096 --repeats 1 --output results/smoke.json
-```
+## Diagnostic tools
 
-The default shape matrix measures 1, 128 and 1024 token rows, with 4096 and
-11008 intermediate channels. These are synthetic operator inputs, not a
-claim that a particular model layer uses those exact dimensions.
+| Script | Purpose |
+| --- | --- |
+| `bench_swiglu.py` | Standalone operator timing |
+| `bench_llama_mlp.py`, `bench_mlp_stages.py` | Synthetic full layer and isolated stages |
+| `bench_compiled_swiglu.py` | Compiled activation reference |
+| `bench_hf_llama_generate.py` | Checkpoint generation and optional profiler |
+| `bench_decode_dispatch.py` | Repeated decode-shaped activation calls |
+| `bench_hf_mlp_variants.py` | Native, reordered, Triton and optional compiled controls |
+| `bench_hf_prefill_decode.py` | Separate full-prompt and one-token cached forward |
+| `diagnose_hf_swiglu_accuracy.py` | Native-input and cumulative layer errors |
+| `verify_hf_swiglu_math.py` | All finite FP16 gates and arithmetic candidates |
+| `bench_hf_cudagraph_control.py` | Fair four-way fixed-forward Graph control |
+| `profile_swiglu.py` | Operator traces, not benchmark latency |
 
-The MLP harness separately measures one LLaMA-style layer with synthetic,
-locally initialized weights at 1, 8, 128 and 1024 token positions. It includes
-the gate, up and down projections for **both** providers. The dimensions
-`4096/11008` are an explicit experiment setting, not a verified Llama 3.1/3.2
-checkpoint shape. See [the LLaMA serving bridge](docs/llama_serving_bridge.md)
-for the link to the earlier course topics and for interpreting decode/prefill.
+The arithmetic-candidate script's `current` path now uses the corrected
+production operator; its old two-mismatch result belongs to the pre-fix
+code. Historical results are retained, not overwritten by corrected runs.
 
-The tool compares PyTorch eager `F.silu(gate) * up` against the Triton wrapper;
-both allocate their output. Timing uses repeated `triton.testing.do_bench`
-measurements and records milliseconds, speedup, maximum absolute error, GPU,
-software versions and seed in JSON and CSV. The two implementations may have
-small floating-point differences. Correctness must pass before timing is
-saved. Benchmark outputs are ignored by Git until reviewed; the reviewed T4
-JSON baselines and profiling traces are explicitly tracked.
+## Evidence and scope
 
-The measured T4 baseline and its limitations are in
-[docs/t4_baseline_20260927.md](docs/t4_baseline_20260927.md).
-For a follow-up timing breakdown, `bench_mlp_stages.py` measures each linear
-projection and activation independently, plus both full-layer paths. Its
-isolated stage times should not be summed to predict full-layer latency.
-`bench_compiled_swiglu.py` compares the same post-projection operation against
-the PyTorch Inductor compiled public reference (after compilation). Its
-numerical tolerance allows compiler fusion to change FP16 intermediate
-rounding and reports maximum absolute error for both alternatives.
-`profile_swiglu.py` saves kernel tables and Chrome traces separately for eager
-and Triton; profiler timings are diagnostic, not benchmark latencies.
+- [Final operator rows](results/t4_fp16_div.json)
+- [Corrected generation](results/t4_tinyllama_generate_fp16_div.json)
+- [CUDA Graph control](results/t4_tinyllama_cudagraph_control_fp16.json)
+- [Diagnostic summary](results/t4_diagnostics_summary_20260929.json)
+- [FP16 fix analysis](docs/fp16_accuracy_fix_20260929.md)
+- [Historical experiment log](docs/t4_baseline_20260927.md)
+- [LLaMA learning bridge](docs/llama_serving_bridge.md)
 
-## Scope and interpretation
-
-- Supported: matching, nonempty, contiguous CUDA tensors; FP16/FP32, and BF16
-  on GPUs with compute capability 8.0 or newer. The PyTorch reference can also
-  run on CPU.
-- No autograd, strided tensors, in-place output, quantization or linear GEMM
-  fusion. The separate MLP harness tests one synthetic full layer; the
-  checkpoint generation experiments are described in the T4 report.
-- A fast post-projection operator alone does **not** establish faster LLM
-  inference. Later end-to-end work must measure the share of MLP time, account
-  for projection GEMMs, and compare against compiled/framework baselines.
-- Never report numbers from a CPU-only machine as T4 performance. Keep GPU
-  benchmark files and profiler evidence alongside any performance claim.
-
-## Next milestones
-
-1. Treat v0.1 as a bounded negative result for post-projection-only T4 decode
-   acceleration; keep standalone kernel and model-level findings distinct.
-2. If continuing to v0.2, first compare a broader MLP optimization boundary
-   with a compiled full-MLP baseline and separate prefill/decode timings.
-3. Validate logits and greedy tokens on multiple prompts before any deployment
-   or speed claim. ST-Mamba remains an independent thesis project.
+Forward inference only; matching nonempty contiguous CUDA tensors; no
+backward implementation, GEMM fusion or production serving integration.
+The FP16 sweep covers all finite gate bit patterns for selected up inputs,
+not every pair or non-finite input. v0.1 is closed at the measured boundary.
+ST-Mamba remains a separate research project.
 
 ## Background
 
 - [GLU Variants Improve Transformer](https://arxiv.org/abs/2002.05202)
-- [Triton vector addition tutorial](https://triton-lang.org/main/getting-started/tutorials/01-vector-add.html)
-- [Triton benchmarking API](https://triton-lang.org/main/python-api/generated/triton.testing.do_bench.html)
+- [Triton tutorials](https://triton-lang.org/main/getting-started/tutorials/)
+- [PyTorch 2.6 CUDA Graphs](https://docs.pytorch.org/docs/2.6/notes/cuda.html#cuda-graphs)

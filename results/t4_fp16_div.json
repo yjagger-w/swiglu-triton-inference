@@ -1,0 +1,59 @@
+{
+  "provenance": "Rows transcribed from user terminal output on 2026-09-29; original JSON metadata was not uploaded.",
+  "rows": [
+    {
+      "tokens": 1,
+      "features": 4096,
+      "dtype": "fp16",
+      "eager_ms": 0.00863999966531992,
+      "triton_ms": 0.004575999919325113,
+      "speedup": 1.8881118482611734,
+      "max_abs_error": 0.0
+    },
+    {
+      "tokens": 1,
+      "features": 11008,
+      "dtype": "fp16",
+      "eager_ms": 0.006688000168651342,
+      "triton_ms": 0.005311999935656786,
+      "speedup": 1.259036191577895,
+      "max_abs_error": 0.0
+    },
+    {
+      "tokens": 128,
+      "features": 4096,
+      "dtype": "fp16",
+      "eager_ms": 0.020479999482631683,
+      "triton_ms": 0.01616000011563301,
+      "speedup": 1.2673266915895347,
+      "max_abs_error": 0.0
+    },
+    {
+      "tokens": 128,
+      "features": 11008,
+      "dtype": "fp16",
+      "eager_ms": 0.05552000179886818,
+      "triton_ms": 0.035679999738931656,
+      "speedup": 1.5560538734614515,
+      "max_abs_error": 0.0
+    },
+    {
+      "tokens": 1024,
+      "features": 4096,
+      "dtype": "fp16",
+      "eager_ms": 0.15376000106334686,
+      "triton_ms": 0.09225600212812424,
+      "speedup": 1.6666666397467178,
+      "max_abs_error": 0.0
+    },
+    {
+      "tokens": 1024,
+      "features": 11008,
+      "dtype": "fp16",
+      "eager_ms": 0.39769598841667175,
+      "triton_ms": 0.23827199637889862,
+      "speedup": 1.669084048736714,
+      "max_abs_error": 0.0
+    }
+  ]
+}

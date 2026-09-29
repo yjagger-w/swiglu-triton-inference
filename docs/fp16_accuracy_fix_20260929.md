@@ -37,11 +37,13 @@ candidate. The existing FP32/BF16 path retains its previous arithmetic.
 Regression tests cover the observed boundary, caller-provided output storage,
 and all finite FP16 gate values with unit and permuted up inputs.
 
-Integration validation is pending on T4. Run the full pytest suite, then the
-existing checkpoint generation benchmark with output
-`results/t4_tinyllama_generate_fp16_div.json`. Record new correctness and
-latency results together: the earlier sigmoid-path timing is not a measured
-speed result for the new division kernel.
+Integration was subsequently validated on T4: 21 tests passed and five BF16
+tests skipped. Six standalone FP16 shapes reported zero maximum absolute
+error. The corrected checkpoint generation result is in
+`results/t4_tinyllama_generate_fp16_div.json`: all compared logits and generated
+IDs matched; native median 349.475 ms versus Triton 402.405 ms. Numerical
+agreement did not establish an end-to-end speedup. The final Graph control
+and experiment boundaries are summarized in the root README.
 
 Source checked:
 https://github.com/pytorch/pytorch/blob/v2.6.0/aten/src/ATen/native/cuda/ActivationSiluKernel.cu

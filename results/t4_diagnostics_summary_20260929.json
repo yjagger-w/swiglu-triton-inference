@@ -1,0 +1,76 @@
+{
+  "provenance": "Summary transcribed from user terminal excerpts; not a reconstruction of unprovided raw diagnostic JSON.",
+  "tests": {
+    "passed": 21,
+    "skipped": 5,
+    "seconds": 5.85
+  },
+  "prefill_ms": {
+    "native": 22.245563566684723,
+    "reordered_eager": 22.206462919712067,
+    "triton": 25.19984543323517,
+    "compiled_mlp": 25.04844218492508
+  },
+  "single_cached_decode_ms": {
+    "native": 21.52954787015915,
+    "reordered_eager": 21.143466234207153,
+    "triton": 24.25532042980194,
+    "compiled_mlp": 24.414561688899994
+  },
+  "original_kernel": {
+    "native_repeat_unequal_logits": 0,
+    "first_divergent_layer_zero_based": 7,
+    "native_input_swiglu_unequal_total": 14,
+    "native_input_swiglu_element_total": 15859712,
+    "unequal_by_layer": {
+      "7": 1,
+      "10": 2,
+      "12": 1,
+      "20": 2,
+      "21": 8
+    },
+    "full_prompt_strict_logit_mismatches": 315,
+    "max_abs_logit_error": 0.0234375
+  },
+  "finite_fp16_sweep": {
+    "gate_bit_patterns": 63488,
+    "up_cases": 7,
+    "current_mismatches_per_case": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    "libdevice_div_mismatches_per_case": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "libdevice_recip_mul_mismatches_per_case": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  },
+  "division_candidate_model": {
+    "all_22_layers_exact": true,
+    "logit_count": 4096000,
+    "unequal_logits": 0,
+    "max_abs_error": 0.0
+  },
+  "limitations": [
+    "Only pasted summary fields retained here; raw per-layer diagnostics remain on the T4.",
+    "Finite gate sweep does not exhaust every gate/up pair or other dtypes."
+  ]
+}

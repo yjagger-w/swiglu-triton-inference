@@ -16,3 +16,12 @@ results/*.csv
 !results/t4_tinyllama_mlp_variants_fp16.json
 !results/t4_tinyllama_mlp_host_fp16.json
 !results/t4_tinyllama_compiled_control_fp16.json
+!results/t4_tinyllama_full_mlp_compile_fp16.json
+!results/t4_fp16_div.json
+!results/t4_fp16_div.csv
+!results/t4_tinyllama_generate_fp16_div.json
+!results/t4_tinyllama_cudagraph_control_fp16.json
+!results/t4_diagnostics_summary_20260929.json
+hf-cache/
+models/
+.env

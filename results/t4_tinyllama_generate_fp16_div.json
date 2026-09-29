@@ -1,0 +1,53 @@
+{
+  "method": "checkpoint-backed greedy generation; fixed prompt and token count; paired alternating wall timings with CUDA synchronization; no compilation",
+  "timestamp_utc": "2026-09-29T11:01:07.953515+00:00",
+  "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+  "requested_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+  "resolved_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+  "model_type": "llama",
+  "layers_patched": 22,
+  "hidden_size": 2048,
+  "intermediate_size": 5632,
+  "prompt_tokens": 128,
+  "new_tokens": 16,
+  "prompt_ids_sha256": "c4d1d52c38ececd24ce5b9e41c90b6d57172932e0b34ed519c281d51e96cc39b",
+  "validation": {
+    "outputs_identical": true,
+    "strict_logit_check_rtol_atol": 0.01,
+    "strict_logit_mismatch_count": 0,
+    "logit_count": 4096000,
+    "max_abs_logit_error": 0.0,
+    "mean_abs_logit_error": 0.0,
+    "top1_mismatch_positions": 0
+  },
+  "status": "strict_logits_passed",
+  "eager_ms_each": [
+    349.47457909584045,
+    346.96896374225616,
+    348.07468950748444,
+    353.7902161478996,
+    350.4554256796837
+  ],
+  "triton_ms_each": [
+    398.9526554942131,
+    402.4053290486336,
+    402.8257727622986,
+    405.66524863243103,
+    401.70440822839737
+  ],
+  "eager_median_ms": 349.47457909584045,
+  "triton_median_ms": 402.4053290486336,
+  "speedup": 0.8684640929633513,
+  "gpu": "Tesla T4",
+  "compute_capability": [
+    7,
+    5
+  ],
+  "python": "3.12.14",
+  "torch": "2.6.0+cu124",
+  "cuda": "12.4",
+  "triton": "3.2.0",
+  "transformers": "4.51.3",
+  "seed": 42,
+  "repeats": 5
+}

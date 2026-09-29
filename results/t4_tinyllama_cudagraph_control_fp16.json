@@ -1,0 +1,291 @@
+{
+  "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+  "revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+  "resolved_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+  "prompt_tokens": 128,
+  "prompt_ids_sha256": "c4d1d52c38ececd24ce5b9e41c90b6d57172932e0b34ed519c281d51e96cc39b",
+  "gpu": "Tesla T4",
+  "torch": "2.6.0+cu124",
+  "transformers": "4.51.3",
+  "cuda": "12.4",
+  "scope": "full-prompt model forward, full logits, SDPA, fixed 4D causal mask; no KV cache, no generation, no torch.compile",
+  "repeats": 8,
+  "calls_per_block": 10,
+  "seed": 42,
+  "strict_check_rtol_atol": 0.01,
+  "status": "strict_validation_passed",
+  "timestamp_utc": "2026-09-29T11:11:01.560304+00:00",
+  "validation": {
+    "original": {
+      "triton_eager": {
+        "logit_count": 4096000,
+        "all_finite": true,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "top1_mismatch_positions": 0
+      },
+      "native_graph": {
+        "logit_count": 4096000,
+        "all_finite": true,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "top1_mismatch_positions": 0
+      },
+      "triton_graph": {
+        "logit_count": 4096000,
+        "all_finite": true,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "top1_mismatch_positions": 0
+      }
+    },
+    "rolled_input": {
+      "triton_eager": {
+        "logit_count": 4096000,
+        "all_finite": true,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "top1_mismatch_positions": 0
+      },
+      "native_graph": {
+        "logit_count": 4096000,
+        "all_finite": true,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "top1_mismatch_positions": 0
+      },
+      "triton_graph": {
+        "logit_count": 4096000,
+        "all_finite": true,
+        "unequal_count": 0,
+        "strict_mismatch_count": 0,
+        "max_abs_error": 0.0,
+        "top1_mismatch_positions": 0
+      }
+    }
+  },
+  "method": "synchronized wall timing of repeated same-input forwards; each block divided by call count; compilation/capture/warmup excluded; provider order rotated evenly",
+  "orders": [
+    [
+      "native_eager",
+      "triton_eager",
+      "native_graph",
+      "triton_graph"
+    ],
+    [
+      "triton_eager",
+      "native_graph",
+      "triton_graph",
+      "native_eager"
+    ],
+    [
+      "native_graph",
+      "triton_graph",
+      "native_eager",
+      "triton_eager"
+    ],
+    [
+      "triton_graph",
+      "native_eager",
+      "triton_eager",
+      "native_graph"
+    ],
+    [
+      "native_eager",
+      "triton_eager",
+      "native_graph",
+      "triton_graph"
+    ],
+    [
+      "triton_eager",
+      "native_graph",
+      "triton_graph",
+      "native_eager"
+    ],
+    [
+      "native_graph",
+      "triton_graph",
+      "native_eager",
+      "triton_eager"
+    ],
+    [
+      "triton_graph",
+      "native_eager",
+      "triton_eager",
+      "native_graph"
+    ]
+  ],
+  "measurements": {
+    "native_eager": [
+      {
+        "wall_ms_per_forward": 21.929435431957245,
+        "submit_ms_per_forward": 21.870572865009308
+      },
+      {
+        "wall_ms_per_forward": 23.192695528268814,
+        "submit_ms_per_forward": 23.13157096505165
+      },
+      {
+        "wall_ms_per_forward": 22.214387357234955,
+        "submit_ms_per_forward": 22.165275365114212
+      },
+      {
+        "wall_ms_per_forward": 21.996314823627472,
+        "submit_ms_per_forward": 21.93535715341568
+      },
+      {
+        "wall_ms_per_forward": 21.8929223716259,
+        "submit_ms_per_forward": 21.83081954717636
+      },
+      {
+        "wall_ms_per_forward": 22.45866358280182,
+        "submit_ms_per_forward": 22.38887846469879
+      },
+      {
+        "wall_ms_per_forward": 22.497384250164032,
+        "submit_ms_per_forward": 22.43790775537491
+      },
+      {
+        "wall_ms_per_forward": 22.017323225736618,
+        "submit_ms_per_forward": 21.957790106534958
+      }
+    ],
+    "triton_eager": [
+      {
+        "wall_ms_per_forward": 24.449029564857483,
+        "submit_ms_per_forward": 24.398715049028397
+      },
+      {
+        "wall_ms_per_forward": 24.81033205986023,
+        "submit_ms_per_forward": 24.759291857481003
+      },
+      {
+        "wall_ms_per_forward": 24.88332986831665,
+        "submit_ms_per_forward": 24.833155423402786
+      },
+      {
+        "wall_ms_per_forward": 25.306540727615356,
+        "submit_ms_per_forward": 25.257428735494614
+      },
+      {
+        "wall_ms_per_forward": 25.920026004314423,
+        "submit_ms_per_forward": 25.86979568004608
+      },
+      {
+        "wall_ms_per_forward": 25.404848903417587,
+        "submit_ms_per_forward": 25.354591012001038
+      },
+      {
+        "wall_ms_per_forward": 24.934453517198563,
+        "submit_ms_per_forward": 24.885984510183334
+      },
+      {
+        "wall_ms_per_forward": 24.966301023960114,
+        "submit_ms_per_forward": 24.91704896092415
+      }
+    ],
+    "native_graph": [
+      {
+        "wall_ms_per_forward": 17.716245353221893,
+        "submit_ms_per_forward": 11.744369566440582
+      },
+      {
+        "wall_ms_per_forward": 18.412842601537704,
+        "submit_ms_per_forward": 12.152130901813507
+      },
+      {
+        "wall_ms_per_forward": 17.662636190652847,
+        "submit_ms_per_forward": 11.822620034217834
+      },
+      {
+        "wall_ms_per_forward": 17.580249905586243,
+        "submit_ms_per_forward": 11.651312559843063
+      },
+      {
+        "wall_ms_per_forward": 17.858833819627762,
+        "submit_ms_per_forward": 11.855193972587585
+      },
+      {
+        "wall_ms_per_forward": 17.5896093249321,
+        "submit_ms_per_forward": 11.731742322444916
+      },
+      {
+        "wall_ms_per_forward": 17.755581438541412,
+        "submit_ms_per_forward": 11.827871948480606
+      },
+      {
+        "wall_ms_per_forward": 18.113669753074646,
+        "submit_ms_per_forward": 12.195823341608047
+      }
+    ],
+    "triton_graph": [
+      {
+        "wall_ms_per_forward": 17.780081182718277,
+        "submit_ms_per_forward": 11.97638213634491
+      },
+      {
+        "wall_ms_per_forward": 18.053970485925674,
+        "submit_ms_per_forward": 12.108606845140457
+      },
+      {
+        "wall_ms_per_forward": 17.75507777929306,
+        "submit_ms_per_forward": 11.810942739248276
+      },
+      {
+        "wall_ms_per_forward": 17.594721913337708,
+        "submit_ms_per_forward": 11.67687475681305
+      },
+      {
+        "wall_ms_per_forward": 17.658138275146484,
+        "submit_ms_per_forward": 11.847344040870667
+      },
+      {
+        "wall_ms_per_forward": 17.955046892166138,
+        "submit_ms_per_forward": 12.09637075662613
+      },
+      {
+        "wall_ms_per_forward": 18.431895971298218,
+        "submit_ms_per_forward": 12.45468333363533
+      },
+      {
+        "wall_ms_per_forward": 17.462806403636932,
+        "submit_ms_per_forward": 11.582589149475098
+      }
+    ]
+  },
+  "median_wall_ms_per_forward": {
+    "native_eager": 22.115855291485786,
+    "triton_eager": 24.950377270579338,
+    "native_graph": 17.735913395881653,
+    "triton_graph": 17.76757948100567
+  },
+  "ratios": {
+    "triton_over_native_eager_speedup": 0.8863936224950022,
+    "triton_over_native_graph_speedup": 0.9982177603225094,
+    "native_graph_over_native_eager_speedup": 1.2469532748519832,
+    "triton_graph_over_triton_eager_speedup": 1.4042642835650405
+  },
+  "paired_graph_speedups": [
+    0.9964096997735629,
+    1.0198777391317768,
+    0.9947935126058404,
+    0.9991774801657709,
+    1.0113656117850065,
+    0.9796470836623946,
+    0.9633073811934514,
+    1.0372714061184438
+  ],
+  "notes": [
+    "Speedup > 1 means the named optimized path is faster.",
+    "Repeated-forward averages are not single-request or generate latency.",
+    "Inputs and masks are already on GPU; graph outputs reuse fixed buffers.",
+    "Submission time can include internal blocking; it is not pure CPU compute.",
+    "Graph replay changes launch and allocation behavior; differences do not isolate Python alone.",
+    "Compare native_graph with triton_graph to assess incremental fusion benefit."
+  ]
+}

@@ -240,7 +240,8 @@ def main() -> None:
         "medians_ms": {name: statistics.median(values) for name, values in times.items()},
         "gpu": torch.cuda.get_device_name(0), "torch": torch.__version__,
         "seed": 42, "repeats": args.repeats,
-        "accuracy_note": "identical greedy IDs on this prompt only; prior Triton full-logit strict check failed",
+        "accuracy_note": "identical greedy IDs on this prompt only; historical sigmoid-path logits failed;"
+                         " validate current Triton logits with bench_hf_llama_generate.py",
     }
     if args.include_compiled:
         result["compiled_backend"] = "inductor"
