@@ -1,0 +1,18 @@
+{
+  "block": 1024,
+  "grid": [
+    704
+  ],
+  "enable_fp_fusion": false,
+  "exported_stages": [
+    "ttir",
+    "ttgir",
+    "llir",
+    "ptx",
+    "cubin"
+  ],
+  "missing_stages": [],
+  "num_warps": 4,
+  "num_ctas": 1,
+  "shared": 0
+}

@@ -1,0 +1,36 @@
+{
+  "compile_trace_t4_smoke_20261102_01": {
+    "status": "verified",
+    "artifacts": 18,
+    "shapes": [
+      [
+        1,
+        5632
+      ]
+    ],
+    "samples": 9,
+    "sha256_verified": true,
+    "source_verified": true
+  },
+  "compile_trace_t4_fp16_20261102_01": {
+    "status": "verified",
+    "artifacts": 54,
+    "shapes": [
+      [
+        1,
+        5632
+      ],
+      [
+        128,
+        5632
+      ],
+      [
+        1024,
+        5632
+      ]
+    ],
+    "samples": 54,
+    "sha256_verified": true,
+    "source_verified": true
+  }
+}

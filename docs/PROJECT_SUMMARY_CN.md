@@ -7,15 +7,15 @@
 v0.1 于 2026-09-29 收尾：完成正确性修复和分层性能验证，未获得真实生成的端到端加速。
 ST-Mamba 论文研究独立推进。
 
-## 环境与模型
+## 历史环境与模型（2026-09-29）
 
 - GPU：Tesla T4，compute capability 7.5。
 - Python 3.12.14，PyTorch 2.6.0+cu124，Triton 3.2.0，Transformers 4.51.3。
 - TinyLlama/TinyLlama-1.1B-Chat-v1.0；revision 为 `fe8a4ea1ffedaf415f4da2f062534de366a451e6`。
 - 模型有 22 层 MLP，hidden=2048，intermediate=5632；batch=1、FP16。
-- 修正接入后的 T4 测试：21 passed、5 skipped。包内新增诊断脚本的实际运行记录见结果说明。
+- 2026-09-29 修正接入后的 T4 测试：21 passed、5 skipped。这是历史记录，不代表 11 月环境重跑了原有 pytest 套件。
 
-## 实验过程
+## 历史实验过程（2026-09-29）
 
 1. 建立 PyTorch eager 参考与 Triton 融合实现，验证独立算子和随机权重 MLP。
 2. 加入 torch.compile 对照，发现手写内核相对编译器没有明确领先证据。
@@ -28,7 +28,7 @@ ST-Mamba 论文研究独立推进。
 9. 接入修正并新增回归测试；原来的 315 个 logits 超差消除，当前测试全部 logits 一致。
 10. 公平比较原版/Triton 的普通执行和 CUDA Graph 执行，按预设停止条件结束本轮优化。
 
-## 最终结果
+## 历史最终结果（2026-09-29）
 
 | 范围 | 结果 | 解释 |
 | --- | --- | --- |
@@ -55,10 +55,58 @@ PyTorch 2.6 CUDA SiLU 使用 `x / (1 + exp(-x))`。原先的 `x * sigmoid(x)` �
 适合以“基于 Triton 的 SwiGLU 算子融合与 LLaMA 推理性能分析”作为工程项目介绍。
 简历中的加速数字必须注明独立算子、T4、FP16、PyTorch eager 基线，不能写成整个大模型加速倍数。
 
-v0.1 暂停新增性能实验。未来如推进 v0.2，应先确定新问题和时间预算，例如静态 KV cache 的真实 decode、
+9 月收尾时 v0.1 暂停新增性能实验；11 月另补下述编译追踪验收。未来如推进 v0.2，应先确定新问题和时间预算，例如静态 KV cache 的真实 decode、
 更大融合范围或 TVM 编译器学习；这些均不属于本版已完成成果。
 
-## 证据与复现
+## 2026-11-02 编译追踪与独立计时验收
+
+在现有 AutoDL Tesla T4（CC 7.5、16 GB）、驱动 565.57.01 上运行，使用
+Python 3.12.3、PyTorch 2.5.1+cu124、Triton 3.1.0、CUDA runtime 12.4；未升级依赖。
+这是 v0.1 之后的编译证据补充，未改变此前模型生成结论。
+只测投影后的 contiguous FP16 `F.silu(gate) * up`，shape 为 `[T,5632]`，
+不含 Linear、模型加载、KV cache 或 generate，也没有实现新的编译器 Pass。
+
+计时协议：trace/benchmark 独立新进程、独立缓存；benchmark 关闭调试日志；
+`fullgraph=True, dynamic=False, triton.cudagraphs=False`。
+每条路径均分配输出，首次编译、数值检查及 25 次预热排除在计时外；
+6 轮均衡旋转顺序，每块 100 次调用，块前后同步，报告块内单次平均 wall 时间的六轮中位数。
+同时保存 submit 和 event interval；event 可含提交间隙，不等于纯 kernel 时间，块均值不等于单请求延迟。
+
+| shape | eager（ms/调用） | compiled | 手写 Triton |
+|---|---:|---:|---:|
+| [1,5632] | 0.026587 | 0.060086 | 0.038759 |
+| [128,5632] | 0.030074 | 0.050715 | 0.029001 |
+| [1024,5632] | 0.212632 | 0.123808 | 0.124002 |
+
+冒烟和正式验收状态均为 completed。正式 54 项产物、54 组性能样本和 SHA-256 核对通过；
+三个 shape 的两条候选均通过 `rtol=atol=0.01`。手写路径在本次输入上与 eager 逐位一致，
+compiled 位型不等数分别为 1510、192085、1534695，最大绝对误差为 0.00390625、0.0078125、0.0078125。
+容差通过不等于逐位一致，也不能外推所有输入或其他环境。
+
+以 T=1 的实际文件对应一次融合与舍入差异：
+
+| 文件（均在 `evidence/compiler_trace_20261102/formal/t1/`） | 已确认事实 |
+|---|---|
+| [fx_graph_readable.py](evidence/compiler_trace_20261102/formal/t1/fx_graph_readable.py):4–8 | FP32 sigmoid/乘法分解 SiLU，图中有 FP16 激活转换，再乘 up |
+| [ir_pre_fusion.txt](evidence/compiler_trace_20261102/formal/t1/ir_pre_fusion.txt)、[ir_post_fusion.txt](evidence/compiler_trace_20261102/formal/t1/ir_post_fusion.txt) | 前后均已是单个 op0，文件相同；不能声称 scheduler pass 将两个节点合一 |
+| [output_code.py](evidence/compiler_trace_20261102/formal/t1/output_code.py):67–74、81–95 | 激活保持 FP32 再乘 up；一次输出分配和一次融合 kernel 的 `.run()` 调用，无激活中间 tensor |
+| [handwritten/kernel.ttir](evidence/compiler_trace_20261102/formal/t1/handwritten/kernel.ttir):24–33 | exp/精确除法后 f32→f16→f32，再乘 up |
+| [handwritten/kernel.ptx](evidence/compiler_trace_20261102/formal/t1/handwritten/kernel.ptx):216–245 | 实际存在中间 `cvt.rn.f16.f32`，后续用 `mul.rn.f16x2` |
+
+融合事实来自成功运行的生成包装函数和编译文件，没有额外采集 profiler launch 轨迹。
+算术表达式与 FP16 中间舍入差异是事实；没有消融实验，不能将全部位型误差归因于其中一项。
+小 shape 减速、大 shape 改善是本轮测量事实；主机派发/分配开销、减少内存流量属于可能解释，
+没有 profiler 或控制实验支撑具体性能归因。T=1 波动明显；T=1024 两种融合实现差距很小，不能断言稳定优劣。
+
+本轮只通过本地及远端各 11 项标准库流程回归、语法与 diff 检查。
+**原有 pytest 套件未运行**：尝试 `tests/test_ops.py` 时环境没有 pytest，启动即失败。
+不能表述为“全套测试通过”。本轮独立算子结果也不是模型生成加速。
+
+详见[验收报告](compiler_trace_gpu_acceptance_20261102_CN.md)、
+[文本证据来源](evidence/compiler_trace_20261102/README.md)和
+[建议提交清单](compiler_trace_submission_20261102_CN.md)。完整含二进制与缓存的归档继续保留本地。
+
+## 历史证据与复现
 
 详见根目录 README 和 `results/PROVENANCE.md`。首次发布的最后几轮结果来自终端转录；
 随后用户上传服务器备份，核对一致后已换成原始文件，并补齐逐层诊断和 profiler 记录。

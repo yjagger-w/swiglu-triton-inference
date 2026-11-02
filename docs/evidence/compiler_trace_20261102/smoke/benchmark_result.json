@@ -1,0 +1,141 @@
+{
+  "status": "completed",
+  "phase": "benchmark",
+  "environment": {
+    "python": "3.12.3",
+    "torch": "2.5.1+cu124",
+    "triton": "3.1.0",
+    "cuda": "12.4",
+    "device": 0,
+    "gpu": "Tesla T4",
+    "compute_capability": [
+      7,
+      5
+    ],
+    "total_memory_bytes": 16707551232
+  },
+  "scope": "FP16 contiguous post-projection SwiGLU; no model or generation",
+  "compiler": {
+    "backend": "inductor",
+    "fullgraph": true,
+    "dynamic": false,
+    "triton.cudagraphs": false
+  },
+  "seed": 42,
+  "rtol": 0.01,
+  "atol": 0.01,
+  "rows": [
+    {
+      "shape": [
+        1,
+        5632
+      ],
+      "accuracy": {
+        "compiled": {
+          "all_finite": true,
+          "count": 5632,
+          "strict_mismatch_count": 0,
+          "unequal_count": 1510,
+          "bitwise_mismatch_count": 1510,
+          "max_abs_error": 0.00390625,
+          "mean_abs_error": 5.752140350523405e-05
+        },
+        "triton": {
+          "all_finite": true,
+          "count": 5632,
+          "strict_mismatch_count": 0,
+          "unequal_count": 0,
+          "bitwise_mismatch_count": 0,
+          "max_abs_error": 0.0,
+          "mean_abs_error": 0.0
+        }
+      },
+      "accuracy_status": "strict_tolerance_passed",
+      "orders": [
+        [
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        [
+          "compiled",
+          "triton",
+          "eager"
+        ],
+        [
+          "triton",
+          "eager",
+          "compiled"
+        ]
+      ],
+      "samples": {
+        "eager": [
+          {
+            "wall_ms_per_call": 0.029641389846801758,
+            "submit_ms_per_call": 0.027462095022201538,
+            "event_interval_ms_per_call": 0.02476159930229187
+          },
+          {
+            "wall_ms_per_call": 0.025394558906555176,
+            "submit_ms_per_call": 0.023411214351654053,
+            "event_interval_ms_per_call": 0.021558399498462676
+          },
+          {
+            "wall_ms_per_call": 0.022070109844207764,
+            "submit_ms_per_call": 0.02044886350631714,
+            "event_interval_ms_per_call": 0.018783999979496
+          }
+        ],
+        "compiled": [
+          {
+            "wall_ms_per_call": 0.07406026124954224,
+            "submit_ms_per_call": 0.07132217288017273,
+            "event_interval_ms_per_call": 0.06878719925880432
+          },
+          {
+            "wall_ms_per_call": 0.07014945149421692,
+            "submit_ms_per_call": 0.06749555468559265,
+            "event_interval_ms_per_call": 0.06513599753379821
+          },
+          {
+            "wall_ms_per_call": 0.06654486060142517,
+            "submit_ms_per_call": 0.06397441029548645,
+            "event_interval_ms_per_call": 0.061292797327041626
+          }
+        ],
+        "triton": [
+          {
+            "wall_ms_per_call": 0.06458908319473267,
+            "submit_ms_per_call": 0.0621303915977478,
+            "event_interval_ms_per_call": 0.05980160236358643
+          },
+          {
+            "wall_ms_per_call": 0.03754720091819763,
+            "submit_ms_per_call": 0.03547891974449158,
+            "event_interval_ms_per_call": 0.03355840146541596
+          },
+          {
+            "wall_ms_per_call": 0.035171955823898315,
+            "submit_ms_per_call": 0.03316029906272888,
+            "event_interval_ms_per_call": 0.031167998909950256
+          }
+        ]
+      },
+      "median_wall_ms": {
+        "eager": 0.025394558906555176,
+        "compiled": 0.07014945149421692,
+        "triton": 0.03754720091819763
+      }
+    }
+  ],
+  "method": "fresh process; debug logging disabled; compile/first use/validation/warmup excluded; output allocation included for all providers; balanced rotating order; synchronized block wall timing",
+  "warmups": 3,
+  "repeats": 3,
+  "calls_per_block": 10,
+  "notes": [
+    "event interval is not pure kernel compute time",
+    "block averages are not single-request latency",
+    "strict tolerance success is not bitwise equality",
+    "failed strict checks remain exploratory, not validated wins"
+  ]
+}

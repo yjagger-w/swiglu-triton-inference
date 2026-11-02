@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "environment": {
+    "python": "3.12.3",
+    "torch": "2.5.1+cu124",
+    "triton": "3.1.0",
+    "cuda": "12.4",
+    "device": 0,
+    "gpu": "Tesla T4",
+    "compute_capability": [
+      7,
+      5
+    ],
+    "total_memory_bytes": 16707551232
+  }
+}

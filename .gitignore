@@ -32,3 +32,5 @@ results/*.csv
 hf-cache/
 models/
 .env
+results/compile_trace*/
+torch_compile_debug/

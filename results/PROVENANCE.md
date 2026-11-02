@@ -1,7 +1,25 @@
 # Result provenance
 
-GPU measurements were run by the user on AutoDL T4. No GPU measurements were
-executed by the packaging environment.
+September GPU measurements were run by the user on AutoDL T4. The Windows
+packaging environment performed no GPU measurements. The separately authorized
+November remote CUDA acceptance is documented below.
+
+## Compiler acceptance evidence — 2026-11-02
+
+Codex ran the authorized smoke and formal operator acceptance on the user's
+existing AutoDL T4 using Python 3.12.3, PyTorch 2.5.1+cu124 and Triton 3.1.0.
+This is post-projection FP16 SwiGLU only, with no model generation. The protocol
+and limits are in the [acceptance report](../docs/compiler_trace_gpu_acceptance_20261102_CN.md).
+
+The full original archive remains local, outside the repository:
+`handoff-20261030/swiglu-cuda-acceptance-20261102_01.tar.gz` (679566 bytes),
+SHA-256 `dd90a601360fb188226a0ed7a4263bb4cf0ea48a44bce3da06f3d774ad6e88c7`.
+The selected [text evidence](../docs/evidence/compiler_trace_20261102/README.md)
+and its manifest preserve exact archive members, byte counts and hashes.
+The original result summaries inventory binary/cache artifacts that are present
+in that archive, not all in the selected subset. No placeholder artifacts were created.
+The 11 workflow regressions passed; the original pytest suite was not run
+because pytest was absent. September test results do not validate this environment.
 
 ## Original server evidence received on 2026-09-29
 

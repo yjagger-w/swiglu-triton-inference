@@ -13,6 +13,15 @@ stable incremental model-forward benefit from this fusion.
 [本地解压与推送](docs/LOCAL_PUSH_CN.md) ·
 [Result provenance](results/PROVENANCE.md)
 
+[Compiler trace and separate benchmark runbook](docs/compiler_trace_runbook_CN.md)
+documents the new `benchmarks/trace_compile_swiglu.py` entry point. It captures
+FX/Inductor artifacts and hand-written Triton stages in one process, then runs
+a balanced three-provider benchmark in another. The
+[2026-11-02 CUDA acceptance report](docs/compiler_trace_gpu_acceptance_20261102_CN.md)
+records completed T4 smoke and six-round FP16 operator measurements with
+PyTorch 2.5.1 / Triton 3.1.0. These results do not establish model-generation
+speedups or add a compiler pass.
+
 ## What is fused?
 
 ```python
@@ -28,7 +37,63 @@ The final FP16 kernel uses CUDA libdevice exp and precise division, then
 rounds the SiLU intermediate to FP16 before multiplication. FP32/BF16 use
 the earlier sigmoid path; native BF16 requires compute capability >= 8.0.
 
-## Final measured results — 2026-09-29
+## Compiler trace acceptance — 2026-11-02
+
+Hardware/software: Tesla T4 (CC 7.5, 16 GB), NVIDIA driver 565.57.01,
+Python 3.12.3, PyTorch 2.5.1+cu124, Triton 3.1.0, CUDA runtime 12.4.
+Scope: contiguous FP16 `F.silu(gate) * up` on post-projection `[T,5632]`
+activations. No linear projections, model loading, KV cache or generation.
+These measurements use a different environment and protocol from September.
+
+Trace and benchmark run in separate fresh processes with separate caches;
+benchmark debug logging and compiled CUDA Graphs are disabled. All providers
+allocate outputs. Compilation, validation and 25 warmup calls are excluded.
+Six balanced rotating rounds use 100 calls per block, synchronized before and
+after each block. Values below are medians of per-block average wall time,
+in ms/call, including host calls, output allocation and final synchronization.
+
+| Shape | Eager | Compiled | Hand-written Triton |
+| --- | ---: | ---: | ---: |
+| [1,5632] | 0.026587 | 0.060086 | 0.038759 |
+| [128,5632] | 0.030074 | 0.050715 | 0.029001 |
+| [1024,5632] | 0.212632 | 0.123808 | 0.124002 |
+
+Smoke and formal runs completed; all three shapes passed `rtol=atol=0.01`.
+The hand-written kernel matched eager bitwise on these seeded inputs;
+compiled had 1510 / 192085 / 1534695 bitwise mismatches, with maximum absolute
+errors 0.00390625 / 0.0078125 / 0.0078125. Tolerance success is not bitwise equality.
+
+Confirmed fusion evidence for T=1: the
+[FX graph](docs/evidence/compiler_trace_20261102/formal/t1/fx_graph_readable.py)
+contains FP32 SiLU decomposition, an FP16 conversion, and multiplication by up.
+The [pre-fusion](docs/evidence/compiler_trace_20261102/formal/t1/ir_pre_fusion.txt)
+and [post-fusion IR](docs/evidence/compiler_trace_20261102/formal/t1/ir_post_fusion.txt)
+already contain the same single `op0`; this does not demonstrate a scheduler
+pass merging two nodes. The
+[generated wrapper/kernel](docs/evidence/compiler_trace_20261102/formal/t1/output_code.py)
+has one output allocation and one `triton_poi_fused_mul_silu_0.run` call,
+with FP32 activation arithmetic through the up multiplication. The
+[hand-written TTIR](docs/evidence/compiler_trace_20261102/formal/t1/handwritten/kernel.ttir)
+and [PTX](docs/evidence/compiler_trace_20261102/formal/t1/handwritten/kernel.ptx)
+instead preserve the intermediate FP16 rounding. See the report for line references.
+
+The measured small-shape slowdowns and large-shape improvements are facts.
+Host dispatch/allocation overhead and reduced memory traffic are possible
+explanations, not established causes: no profiler or controlled ablation was
+collected. Event intervals can contain submission gaps; these block averages
+are not single-request latency or model-generation speedups.
+
+**Test boundary:** the 11 standard-library workflow regressions passed locally
+and remotely. The original pytest suite was **not run** in this environment:
+the attempted `tests/test_ops.py` invocation failed because pytest was absent.
+This is not a claim that the full test suite passed.
+
+[Acceptance report](docs/compiler_trace_gpu_acceptance_20261102_CN.md) ·
+[Raw timing and accuracy](docs/evidence/compiler_trace_20261102/formal/benchmark_result.json) ·
+[Evidence provenance](docs/evidence/compiler_trace_20261102/README.md) ·
+[Proposed submission inventory](docs/compiler_trace_submission_20261102_CN.md)
+
+## Historical measured results — 2026-09-29
 
 Environment: Tesla T4 (CC 7.5), Python 3.12.14, PyTorch 2.6.0+cu124,
 Triton 3.2.0, Transformers 4.51.3. The user ran **21 tests passed, 5 BF16
@@ -108,12 +173,14 @@ python benchmarks/bench_hf_cudagraph_control.py \
   --output results/recheck_graph.json
 ```
 
-For the existing AutoDL environment, the Python executable is
+For the historical September AutoDL environment, the Python executable was
 `/root/autodl-tmp/st-mamba/environment/st-mamba-py312/bin/python`. Set
 `HF_HOME=/root/autodl-tmp/hf-cache` and `HF_HUB_OFFLINE=1` when using the
 already downloaded checkpoint. The package does not contain model weights
 or a Python environment. Dependency minimums are not a compatibility guarantee
 for every version combination; reproduce with the measured environment first.
+The November operator-only acceptance used `/root/miniconda3/bin/python` and
+the separate protocol above; it did not rerun these model commands.
 
 ## Diagnostic tools
 
@@ -122,6 +189,7 @@ for every version combination; reproduce with the measured environment first.
 | `bench_swiglu.py` | Standalone operator timing |
 | `bench_llama_mlp.py`, `bench_mlp_stages.py` | Synthetic full layer and isolated stages |
 | `bench_compiled_swiglu.py` | Compiled activation reference |
+| `trace_compile_swiglu.py` | Separate compiler evidence capture and balanced operator timing |
 | `bench_hf_llama_generate.py` | Checkpoint generation and optional profiler |
 | `bench_decode_dispatch.py` | Repeated decode-shaped activation calls |
 | `bench_hf_mlp_variants.py` | Native, reordered, Triton and optional compiled controls |

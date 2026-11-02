@@ -1,0 +1,16 @@
+test_artifacts_from_one_shape_do_not_cover_another (test_compile_trace.CompileTraceTests.test_artifacts_from_one_shape_do_not_cover_another) ... ok
+test_child_commands_and_logs_are_separated (test_compile_trace.CompileTraceTests.test_child_commands_and_logs_are_separated) ... ok
+test_debug_settings_are_not_inherited_by_benchmark (test_compile_trace.CompileTraceTests.test_debug_settings_are_not_inherited_by_benchmark) ... ok
+test_existing_evidence_is_never_overwritten (test_compile_trace.CompileTraceTests.test_existing_evidence_is_never_overwritten) ... ok
+test_failed_accuracy_remains_exploratory (test_compile_trace.CompileTraceTests.test_failed_accuracy_remains_exploratory) ... ok
+test_failed_preflight_stops_before_trace_and_benchmark (test_compile_trace.CompileTraceTests.test_failed_preflight_stops_before_trace_and_benchmark) ... ok
+test_invalid_repeats_are_rejected_before_creating_output (test_compile_trace.CompileTraceTests.test_invalid_repeats_are_rejected_before_creating_output) ... ok
+test_missing_ir_does_not_claim_complete_capture (test_compile_trace.CompileTraceTests.test_missing_ir_does_not_claim_complete_capture) ... ok
+test_six_rounds_balance_every_position (test_compile_trace.CompileTraceTests.test_six_rounds_balance_every_position) ... ok
+test_worker_failure_preserves_completed_stage (test_compile_trace.CompileTraceTests.test_worker_failure_preserves_completed_stage) ... ok
+test_zero_exit_without_results_is_not_completion (test_compile_trace.CompileTraceTests.test_zero_exit_without_results_is_not_completion) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.020s
+
+OK

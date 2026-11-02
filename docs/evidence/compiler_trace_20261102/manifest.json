@@ -1,0 +1,247 @@
+{
+  "archive_name": "swiglu-cuda-acceptance-20261102_01.tar.gz",
+  "archive_sha256": "dd90a601360fb188226a0ed7a4263bb4cf0ea48a44bce3da06f3d774ad6e88c7",
+  "scope": "Selected original UTF-8 text evidence; complete binary artifacts and caches remain in the local archive.",
+  "files": [
+    {
+      "path": "smoke/run.json",
+      "archive_member": "swiglu-triton-inference/results/compile_trace_t4_smoke_20261102_01/run.json",
+      "bytes": 886,
+      "sha256": "ebee0cca3db679b3497ce76e3841bea2865416091df6d1eebd3dfbd8dd46866b"
+    },
+    {
+      "path": "smoke/summary.json",
+      "archive_member": "swiglu-triton-inference/results/compile_trace_t4_smoke_20261102_01/summary.json",
+      "bytes": 3985,
+      "sha256": "14fe15597795188a908a2dfc047de4a5b9f55429d23e52cd7e39cbf3bbcbf70a"
+    },
+    {
+      "path": "smoke/preflight.json",
+      "archive_member": "swiglu-triton-inference/results/compile_trace_t4_smoke_20261102_01/preflight.json",
+      "bytes": 274,
+      "sha256": "8f922900834f7d88621e43e893705250d7b795eb1a462be475140119c2bde4d0"
+    },
+    {
+      "path": "smoke/trace_result.json",
+      "archive_member": "swiglu-triton-inference/results/compile_trace_t4_smoke_20261102_01/trace/result.json",
+      "bytes": 1734,
+      "sha256": "14fbe65ae3da98f820905f281b361d044114e67d3c4d5783f24c28d6ad253fc3"
+    },
+    {
+      "path": "smoke/benchmark_result.json",
+      "archive_member": "swiglu-triton-inference/results/compile_trace_t4_smoke_20261102_01/benchmark/result.json",
+      "bytes": 4060,
+      "sha256": "4bc05e4714144f587a3cc87093950e22f501d9c1b88d55bb13e209cfb7f9d7fa"
+    },
+    {
+      "path": "smoke/trace.log",
+      "archive_member": "swiglu-triton-inference/results/compile_trace_t4_smoke_20261102_01/trace.log",
+      "bytes": 24568,
+      "sha256": "1a5c0b099b460fb8b594c46a7752ff4f025889cf0812bc366a52037e77daecee"
+    },
+    {
+      "path": "formal/run.json",
+      "archive_member": "swiglu-triton-inference/results/compile_trace_t4_fp16_20261102_01/run.json",
+      "bytes": 910,
+      "sha256": "b847d52f1f81a06b0ab4850a814056ea76bec4613c40a7b43137570473931335"
+    },
+    {
+      "path": "formal/summary.json",
+      "archive_member": "swiglu-triton-inference/results/compile_trace_t4_fp16_20261102_01/summary.json",
+      "bytes": 11605,
+      "sha256": "542bb995d6c7baa3009ef465df799d821d4a34ae25f2001b2f79e6fefa51ef61"
+    },
+    {
+      "path": "formal/preflight.json",
+      "archive_member": "swiglu-triton-inference/results/compile_trace_t4_fp16_20261102_01/preflight.json",
+      "bytes": 274,
+      "sha256": "8f922900834f7d88621e43e893705250d7b795eb1a462be475140119c2bde4d0"
+    },
+    {
+      "path": "formal/trace_result.json",
+      "archive_member": "swiglu-triton-inference/results/compile_trace_t4_fp16_20261102_01/trace/result.json",
+      "bytes": 4007,
+      "sha256": "2925ee371097027bdfb5bde7b31921b377989870d60999ed01b4165917155240"
+    },
+    {
+      "path": "formal/benchmark_result.json",
+      "archive_member": "swiglu-triton-inference/results/compile_trace_t4_fp16_20261102_01/benchmark/result.json",
+      "bytes": 16088,
+      "sha256": "46899e7b3c93dddb7435e436b67f74fe4aa0fb5e5b123cfa0a364dbc5f1f9df6"
+    },
+    {
+      "path": "formal/trace.log",
+      "archive_member": "swiglu-triton-inference/results/compile_trace_t4_fp16_20261102_01/trace.log",
+      "bytes": 75038,
+      "sha256": "689655d11b650e8efd113edf58fc43509e5c1728cde10cd0c36c4fed3c385b7c"
+    },
+    {
+      "path": "formal/t1/fx_graph_readable.py",
+      "archive_member": "swiglu-triton-inference/results/compile_trace_t4_fp16_20261102_01/trace/inductor_debug/t1_f5632/torchinductor/model__0_inference_0.0/fx_graph_readable.py",
+      "bytes": 873,
+      "sha256": "fd89e156dcd6f6dd777b448edfb3179115df98b59a0126c20de8014bba1dca26"
+    },
+    {
+      "path": "formal/t1/ir_pre_fusion.txt",
+      "archive_member": "swiglu-triton-inference/results/compile_trace_t4_fp16_20261102_01/trace/inductor_debug/t1_f5632/torchinductor/model__0_inference_0.0/ir_pre_fusion.txt",
+      "bytes": 3733,
+      "sha256": "4d466816c9fabf1df02ab114201352461d97118d5eb48d4aa21acec8f8bd1372"
+    },
+    {
+      "path": "formal/t1/ir_post_fusion.txt",
+      "archive_member": "swiglu-triton-inference/results/compile_trace_t4_fp16_20261102_01/trace/inductor_debug/t1_f5632/torchinductor/model__0_inference_0.0/ir_post_fusion.txt",
+      "bytes": 3733,
+      "sha256": "4d466816c9fabf1df02ab114201352461d97118d5eb48d4aa21acec8f8bd1372"
+    },
+    {
+      "path": "formal/t1/output_code.py",
+      "archive_member": "swiglu-triton-inference/results/compile_trace_t4_fp16_20261102_01/trace/inductor_debug/t1_f5632/torchinductor/model__0_inference_0.0/output_code.py",
+      "bytes": 5667,
+      "sha256": "ec00ef06392bac93791e9a24b4324ee987f467346147826ba779f3d702ec526b"
+    },
+    {
+      "path": "formal/t1/handwritten/launch.json",
+      "archive_member": "swiglu-triton-inference/results/compile_trace_t4_fp16_20261102_01/trace/handwritten_t1_f5632/launch.json",
+      "bytes": 234,
+      "sha256": "7d1e0601721aead04fba56395028b336c6076331f7a7b1a4722e68b40165671d"
+    },
+    {
+      "path": "formal/t128/fx_graph_readable.py",
+      "archive_member": "swiglu-triton-inference/results/compile_trace_t4_fp16_20261102_01/trace/inductor_debug/t128_f5632/torchinductor/model__1_inference_1.1/fx_graph_readable.py",
+      "bytes": 887,
+      "sha256": "5f04c16ec0927bc697b2e1b0f86a0f2ecca379b880bee9b65b3cff6a679d6f24"
+    },
+    {
+      "path": "formal/t128/ir_pre_fusion.txt",
+      "archive_member": "swiglu-triton-inference/results/compile_trace_t4_fp16_20261102_01/trace/inductor_debug/t128_f5632/torchinductor/model__1_inference_1.1/ir_pre_fusion.txt",
+      "bytes": 3772,
+      "sha256": "56274bd56a8f3cb32ce5faa4336a39453599d9d757e98ad2638aa5dbc7019f2e"
+    },
+    {
+      "path": "formal/t128/ir_post_fusion.txt",
+      "archive_member": "swiglu-triton-inference/results/compile_trace_t4_fp16_20261102_01/trace/inductor_debug/t128_f5632/torchinductor/model__1_inference_1.1/ir_post_fusion.txt",
+      "bytes": 3772,
+      "sha256": "56274bd56a8f3cb32ce5faa4336a39453599d9d757e98ad2638aa5dbc7019f2e"
+    },
+    {
+      "path": "formal/t128/output_code.py",
+      "archive_member": "swiglu-triton-inference/results/compile_trace_t4_fp16_20261102_01/trace/inductor_debug/t128_f5632/torchinductor/model__1_inference_1.1/output_code.py",
+      "bytes": 5700,
+      "sha256": "73c124b958fb2dcef576bca66e15cf312a16fe7c951ecb77b16dcefe8c7442e9"
+    },
+    {
+      "path": "formal/t128/handwritten/launch.json",
+      "archive_member": "swiglu-triton-inference/results/compile_trace_t4_fp16_20261102_01/trace/handwritten_t128_f5632/launch.json",
+      "bytes": 236,
+      "sha256": "7f89c9ed79f23419de8b06395ee0f479538a21f5fcd1b76a5fadc18cae08bdbd"
+    },
+    {
+      "path": "formal/t1024/fx_graph_readable.py",
+      "archive_member": "swiglu-triton-inference/results/compile_trace_t4_fp16_20261102_01/trace/inductor_debug/t1024_f5632/torchinductor/model__2_inference_2.2/fx_graph_readable.py",
+      "bytes": 894,
+      "sha256": "50e27a126f70904890e2bd7f891a2ce6d79f395e5c57accdf7e35a0d66d19c63"
+    },
+    {
+      "path": "formal/t1024/ir_pre_fusion.txt",
+      "archive_member": "swiglu-triton-inference/results/compile_trace_t4_fp16_20261102_01/trace/inductor_debug/t1024_f5632/torchinductor/model__2_inference_2.2/ir_pre_fusion.txt",
+      "bytes": 3783,
+      "sha256": "77f6f523e9c47c3510a306f5db5f22c65cd8a2f3920a9584d6bf62dee2bde450"
+    },
+    {
+      "path": "formal/t1024/ir_post_fusion.txt",
+      "archive_member": "swiglu-triton-inference/results/compile_trace_t4_fp16_20261102_01/trace/inductor_debug/t1024_f5632/torchinductor/model__2_inference_2.2/ir_post_fusion.txt",
+      "bytes": 3783,
+      "sha256": "77f6f523e9c47c3510a306f5db5f22c65cd8a2f3920a9584d6bf62dee2bde450"
+    },
+    {
+      "path": "formal/t1024/output_code.py",
+      "archive_member": "swiglu-triton-inference/results/compile_trace_t4_fp16_20261102_01/trace/inductor_debug/t1024_f5632/torchinductor/model__2_inference_2.2/output_code.py",
+      "bytes": 5708,
+      "sha256": "b3bcd4104673fde9b9c252a6208e93f5d0cbdb6ec76bf836695e23ff67b04a5c"
+    },
+    {
+      "path": "formal/t1024/handwritten/launch.json",
+      "archive_member": "swiglu-triton-inference/results/compile_trace_t4_fp16_20261102_01/trace/handwritten_t1024_f5632/launch.json",
+      "bytes": 237,
+      "sha256": "a4982cddd457f0343f539d25ec72284ce6711762f5ec0614b3ea7c66c4a30daa"
+    },
+    {
+      "path": "formal/t1/handwritten/kernel.ttir",
+      "archive_member": "swiglu-triton-inference/results/compile_trace_t4_fp16_20261102_01/trace/handwritten_t1_f5632/kernel.ttir",
+      "bytes": 4674,
+      "sha256": "a42c70412c8aeb547381fb4df249fd8fe323aed871e92ab863d904c5f7f2ad1b"
+    },
+    {
+      "path": "formal/t1/handwritten/kernel.ptx",
+      "archive_member": "swiglu-triton-inference/results/compile_trace_t4_fp16_20261102_01/trace/handwritten_t1_f5632/kernel.ptx",
+      "bytes": 8134,
+      "sha256": "e08366a1f03582a3abb2f502a55fa59baff2707e4971aa0b9a20f8c83acc6a9c"
+    },
+    {
+      "path": "checks/remote_unit_tests.log",
+      "archive_member": "codex-swiglu-handoff-20261102/remote_unit_tests.log",
+      "bytes": 1653,
+      "sha256": "69354fc309299daaaa2d951079070b4b72477acce86b1e9dbd3f806c4d7482c7"
+    },
+    {
+      "path": "checks/cuda_ops_tests.log",
+      "archive_member": "codex-swiglu-handoff-20261102/cuda_ops_tests.log",
+      "bytes": 52,
+      "sha256": "bf010ea755711c8b4dfe186f7334b36e910d693b76fc4b6c68d46a98b797cce0"
+    },
+    {
+      "path": "checks/cuda_ops_tests.exit",
+      "archive_member": "codex-swiglu-handoff-20261102/cuda_ops_tests.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "checks/evidence_audit.json",
+      "archive_member": "codex-swiglu-handoff-20261102/evidence_audit.json",
+      "bytes": 554,
+      "sha256": "7afdf2e8c26874474e7658a2ef364eac0beb4c6ada6c098f414331b864eb4840"
+    },
+    {
+      "path": "checks/nvidia_before.txt",
+      "archive_member": "codex-swiglu-handoff-20261102/nvidia_before.txt",
+      "bytes": 9222,
+      "sha256": "d07d185bdc7efa1983a49176a33fe76732d634e2ff82f2cdfaf35d5094ef7931"
+    },
+    {
+      "path": "checks/nvidia_after.txt",
+      "archive_member": "codex-swiglu-handoff-20261102/nvidia_after.txt",
+      "bytes": 9221,
+      "sha256": "5b9f6dd7c07c7b4ce61b6f2990c91fa3a61fed4fef5b8be2847f91ff88c0fa1e"
+    },
+    {
+      "path": "checks/remote_git_status.txt",
+      "archive_member": "codex-swiglu-handoff-20261102/remote_git_status.txt",
+      "bytes": 133,
+      "sha256": "3eba271c1849caf72d71fd628ba2294cecd58ea31cd9263c31ce7f55ef970a88"
+    },
+    {
+      "path": "checks/smoke_launcher.log",
+      "archive_member": "codex-swiglu-handoff-20261102/smoke_launcher.log",
+      "bytes": 479,
+      "sha256": "d87d5eb09b133db76964993658105520ebcb33a102440baf2389e5e96a55e096"
+    },
+    {
+      "path": "checks/formal_launcher.log",
+      "archive_member": "codex-swiglu-handoff-20261102/formal_launcher.log",
+      "bytes": 475,
+      "sha256": "8c4e9a69e55fbebe1e3e6a534f55f82a318f570c67af73107a9a1007caa0768c"
+    },
+    {
+      "path": "checks/smoke.exit",
+      "archive_member": "codex-swiglu-handoff-20261102/smoke.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "checks/formal.exit",
+      "archive_member": "codex-swiglu-handoff-20261102/formal.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "status": "completed",
+  "worker_exit_codes": {
+    "preflight": 0,
+    "trace": 0,
+    "benchmark": 0
+  },
+  "missing_result_files": [],
+  "missing_compiler_artifact_names": [],
+  "artifacts": [
+    {
+      "path": "trace/handwritten_t1_f5632/kernel.cubin",
+      "bytes": 17136,
+      "sha256": "fe53d7268f4ba4484ffea340f48bc5796e357f7fb044c1e2220f52914814f65d"
+    },
+    {
+      "path": "trace/handwritten_t1_f5632/kernel.llir",
+      "bytes": 34875,
+      "sha256": "66ede347fa13d910136f9679682a934751bd58356c173cb9d30ceaba453cb09e"
+    },
+    {
+      "path": "trace/handwritten_t1_f5632/kernel.ptx",
+      "bytes": 8134,
+      "sha256": "e08366a1f03582a3abb2f502a55fa59baff2707e4971aa0b9a20f8c83acc6a9c"
+    },
+    {
+      "path": "trace/handwritten_t1_f5632/kernel.ttgir",
+      "bytes": 5297,
+      "sha256": "8fb3f3013f5f42badbba37734198c78f8f853b744464c546220c4701a87ad8d7"
+    },
+    {
+      "path": "trace/handwritten_t1_f5632/kernel.ttir",
+      "bytes": 4674,
+      "sha256": "a42c70412c8aeb547381fb4df249fd8fe323aed871e92ab863d904c5f7f2ad1b"
+    },
+    {
+      "path": "trace/handwritten_t1_f5632/launch.json",
+      "bytes": 234,
+      "sha256": "7d1e0601721aead04fba56395028b336c6076331f7a7b1a4722e68b40165671d"
+    },
+    {
+      "path": "trace/inductor_cache/fp/cfpdphb3a4vuz2vla5duaxckjxgt4ytj2eyswujbzhrhxwo5asxr.debug/fx_graph_readable.py",
+      "bytes": 873,
+      "sha256": "fd89e156dcd6f6dd777b448edfb3179115df98b59a0126c20de8014bba1dca26"
+    },
+    {
+      "path": "trace/inductor_cache/fp/cfpdphb3a4vuz2vla5duaxckjxgt4ytj2eyswujbzhrhxwo5asxr.debug/fx_graph_runnable.py",
+      "bytes": 2609,
+      "sha256": "8dcfb297dd0f5da04ef3a415cdb6e0d9ccf850a5407d4cd1c1cfdff713f0ec56"
+    },
+    {
+      "path": "trace/inductor_cache/fp/cfpdphb3a4vuz2vla5duaxckjxgt4ytj2eyswujbzhrhxwo5asxr.debug/fx_graph_transformed.py",
+      "bytes": 873,
+      "sha256": "fd89e156dcd6f6dd777b448edfb3179115df98b59a0126c20de8014bba1dca26"
+    },
+    {
+      "path": "trace/inductor_cache/fp/cfpdphb3a4vuz2vla5duaxckjxgt4ytj2eyswujbzhrhxwo5asxr.debug/ir_post_fusion.txt",
+      "bytes": 3733,
+      "sha256": "4d466816c9fabf1df02ab114201352461d97118d5eb48d4aa21acec8f8bd1372"
+    },
+    {
+      "path": "trace/inductor_cache/fp/cfpdphb3a4vuz2vla5duaxckjxgt4ytj2eyswujbzhrhxwo5asxr.debug/ir_pre_fusion.txt",
+      "bytes": 3733,
+      "sha256": "4d466816c9fabf1df02ab114201352461d97118d5eb48d4aa21acec8f8bd1372"
+    },
+    {
+      "path": "trace/inductor_cache/fp/cfpdphb3a4vuz2vla5duaxckjxgt4ytj2eyswujbzhrhxwo5asxr.debug/output_code.py",
+      "bytes": 5668,
+      "sha256": "1523b348d5942bfd570a20e8e13b63f0576adf23df64e5eed8addb3772e130d6"
+    },
+    {
+      "path": "trace/inductor_debug/t1_f5632/torchinductor/model__0_inference_0.0/fx_graph_readable.py",
+      "bytes": 873,
+      "sha256": "fd89e156dcd6f6dd777b448edfb3179115df98b59a0126c20de8014bba1dca26"
+    },
+    {
+      "path": "trace/inductor_debug/t1_f5632/torchinductor/model__0_inference_0.0/fx_graph_runnable.py",
+      "bytes": 2609,
+      "sha256": "8dcfb297dd0f5da04ef3a415cdb6e0d9ccf850a5407d4cd1c1cfdff713f0ec56"
+    },
+    {
+      "path": "trace/inductor_debug/t1_f5632/torchinductor/model__0_inference_0.0/fx_graph_transformed.py",
+      "bytes": 873,
+      "sha256": "fd89e156dcd6f6dd777b448edfb3179115df98b59a0126c20de8014bba1dca26"
+    },
+    {
+      "path": "trace/inductor_debug/t1_f5632/torchinductor/model__0_inference_0.0/ir_post_fusion.txt",
+      "bytes": 3733,
+      "sha256": "4d466816c9fabf1df02ab114201352461d97118d5eb48d4aa21acec8f8bd1372"
+    },
+    {
+      "path": "trace/inductor_debug/t1_f5632/torchinductor/model__0_inference_0.0/ir_pre_fusion.txt",
+      "bytes": 3733,
+      "sha256": "4d466816c9fabf1df02ab114201352461d97118d5eb48d4aa21acec8f8bd1372"
+    },
+    {
+      "path": "trace/inductor_debug/t1_f5632/torchinductor/model__0_inference_0.0/output_code.py",
+      "bytes": 5668,
+      "sha256": "1523b348d5942bfd570a20e8e13b63f0576adf23df64e5eed8addb3772e130d6"
+    }
+  ]
+}

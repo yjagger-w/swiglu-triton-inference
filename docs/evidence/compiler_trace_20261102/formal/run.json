@@ -1,0 +1,28 @@
+{
+  "created_utc": "2026-11-02T07:12:16.277345+00:00",
+  "source": {
+    "git_commit": "5f1e1578cfe7afc65727ff4082db0d00b11c4d24",
+    "git_status": "M .gitignore\n M README.md\n?? benchmarks/trace_compile_swiglu.py\n?? docs/compiler_trace_runbook_CN.md\n?? tests/test_compile_trace.py",
+    "sha256": {
+      "src/swiglu_triton/ops.py": "e9d78c612865b63b64da4280a2753db800355d49fbd1156758e138e1fd1329d0",
+      "benchmarks/trace_compile_swiglu.py": "64e7a35fce88279c2adde10ab13a030a917e88400ae16768a52f9b220e9c8fd6"
+    }
+  },
+  "launcher_python": "/root/miniconda3/bin/python",
+  "arguments": {
+    "output_dir": "/root/autodl-tmp/swiglu-triton-inference/results/compile_trace_t4_fp16_20261102_01",
+    "tokens": [
+      1,
+      128,
+      1024
+    ],
+    "features": 5632,
+    "repeats": 6,
+    "calls": 100,
+    "warmups": 25,
+    "seed": 42,
+    "device": 0,
+    "only": "all",
+    "_worker": null
+  }
+}

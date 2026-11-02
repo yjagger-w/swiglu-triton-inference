@@ -1,0 +1,76 @@
+{
+  "status": "completed",
+  "phase": "trace",
+  "environment": {
+    "python": "3.12.3",
+    "torch": "2.5.1+cu124",
+    "triton": "3.1.0",
+    "cuda": "12.4",
+    "device": 0,
+    "gpu": "Tesla T4",
+    "compute_capability": [
+      7,
+      5
+    ],
+    "total_memory_bytes": 16707551232
+  },
+  "scope": "FP16 contiguous post-projection SwiGLU; no model or generation",
+  "compiler": {
+    "backend": "inductor",
+    "fullgraph": true,
+    "dynamic": false,
+    "triton.cudagraphs": false
+  },
+  "seed": 42,
+  "rtol": 0.01,
+  "atol": 0.01,
+  "rows": [
+    {
+      "shape": [
+        1,
+        5632
+      ],
+      "accuracy": {
+        "compiled": {
+          "all_finite": true,
+          "count": 5632,
+          "strict_mismatch_count": 0,
+          "unequal_count": 1510,
+          "bitwise_mismatch_count": 1510,
+          "max_abs_error": 0.00390625,
+          "mean_abs_error": 5.752140350523405e-05
+        },
+        "triton": {
+          "all_finite": true,
+          "count": 5632,
+          "strict_mismatch_count": 0,
+          "unequal_count": 0,
+          "bitwise_mismatch_count": 0,
+          "max_abs_error": 0.0,
+          "mean_abs_error": 0.0
+        }
+      },
+      "accuracy_status": "strict_tolerance_passed",
+      "inductor_debug_dir": "trace/inductor_debug/t1_f5632",
+      "handwritten_compilation": {
+        "block": 1024,
+        "grid": [
+          6
+        ],
+        "enable_fp_fusion": false,
+        "exported_stages": [
+          "ttir",
+          "ttgir",
+          "llir",
+          "ptx",
+          "cubin"
+        ],
+        "missing_stages": [],
+        "num_warps": 4,
+        "num_ctas": 1,
+        "shared": 0
+      }
+    }
+  ],
+  "method": "diagnostics only; no performance claim"
+}

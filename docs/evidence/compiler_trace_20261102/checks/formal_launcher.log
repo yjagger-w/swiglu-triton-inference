@@ -1,0 +1,4 @@
+Running preflight; log: /root/autodl-tmp/swiglu-triton-inference/results/compile_trace_t4_fp16_20261102_01/preflight.log
+Running trace; log: /root/autodl-tmp/swiglu-triton-inference/results/compile_trace_t4_fp16_20261102_01/trace.log
+Running benchmark; log: /root/autodl-tmp/swiglu-triton-inference/results/compile_trace_t4_fp16_20261102_01/benchmark.log
+Status: completed; report: /root/autodl-tmp/swiglu-triton-inference/results/compile_trace_t4_fp16_20261102_01/REPORT.md

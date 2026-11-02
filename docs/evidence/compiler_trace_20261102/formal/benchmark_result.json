@@ -1,0 +1,525 @@
+{
+  "status": "completed",
+  "phase": "benchmark",
+  "environment": {
+    "python": "3.12.3",
+    "torch": "2.5.1+cu124",
+    "triton": "3.1.0",
+    "cuda": "12.4",
+    "device": 0,
+    "gpu": "Tesla T4",
+    "compute_capability": [
+      7,
+      5
+    ],
+    "total_memory_bytes": 16707551232
+  },
+  "scope": "FP16 contiguous post-projection SwiGLU; no model or generation",
+  "compiler": {
+    "backend": "inductor",
+    "fullgraph": true,
+    "dynamic": false,
+    "triton.cudagraphs": false
+  },
+  "seed": 42,
+  "rtol": 0.01,
+  "atol": 0.01,
+  "rows": [
+    {
+      "shape": [
+        1,
+        5632
+      ],
+      "accuracy": {
+        "compiled": {
+          "all_finite": true,
+          "count": 5632,
+          "strict_mismatch_count": 0,
+          "unequal_count": 1510,
+          "bitwise_mismatch_count": 1510,
+          "max_abs_error": 0.00390625,
+          "mean_abs_error": 5.752140350523405e-05
+        },
+        "triton": {
+          "all_finite": true,
+          "count": 5632,
+          "strict_mismatch_count": 0,
+          "unequal_count": 0,
+          "bitwise_mismatch_count": 0,
+          "max_abs_error": 0.0,
+          "mean_abs_error": 0.0
+        }
+      },
+      "accuracy_status": "strict_tolerance_passed",
+      "orders": [
+        [
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        [
+          "compiled",
+          "triton",
+          "eager"
+        ],
+        [
+          "triton",
+          "eager",
+          "compiled"
+        ],
+        [
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        [
+          "compiled",
+          "triton",
+          "eager"
+        ],
+        [
+          "triton",
+          "eager",
+          "compiled"
+        ]
+      ],
+      "samples": {
+        "eager": [
+          {
+            "wall_ms_per_call": 0.027992427349090576,
+            "submit_ms_per_call": 0.027620792388916016,
+            "event_interval_ms_per_call": 0.027258880138397217
+          },
+          {
+            "wall_ms_per_call": 0.027042552828788757,
+            "submit_ms_per_call": 0.02673797309398651,
+            "event_interval_ms_per_call": 0.02645983934402466
+          },
+          {
+            "wall_ms_per_call": 0.024866312742233276,
+            "submit_ms_per_call": 0.024578571319580078,
+            "event_interval_ms_per_call": 0.0243507194519043
+          },
+          {
+            "wall_ms_per_call": 0.024416595697402954,
+            "submit_ms_per_call": 0.024167969822883606,
+            "event_interval_ms_per_call": 0.02394144058227539
+          },
+          {
+            "wall_ms_per_call": 0.03749080002307892,
+            "submit_ms_per_call": 0.03705218434333801,
+            "event_interval_ms_per_call": 0.03670592069625855
+          },
+          {
+            "wall_ms_per_call": 0.02613179385662079,
+            "submit_ms_per_call": 0.025852471590042114,
+            "event_interval_ms_per_call": 0.02559999942779541
+          }
+        ],
+        "compiled": [
+          {
+            "wall_ms_per_call": 0.06613969802856445,
+            "submit_ms_per_call": 0.06572067737579346,
+            "event_interval_ms_per_call": 0.06539872169494629
+          },
+          {
+            "wall_ms_per_call": 0.05683399736881256,
+            "submit_ms_per_call": 0.056454092264175415,
+            "event_interval_ms_per_call": 0.05613503932952881
+          },
+          {
+            "wall_ms_per_call": 0.05965292453765869,
+            "submit_ms_per_call": 0.059365108609199524,
+            "event_interval_ms_per_call": 0.05910272121429443
+          },
+          {
+            "wall_ms_per_call": 0.05685083568096161,
+            "submit_ms_per_call": 0.056431740522384644,
+            "event_interval_ms_per_call": 0.056146240234375
+          },
+          {
+            "wall_ms_per_call": 0.07849596440792084,
+            "submit_ms_per_call": 0.07796801626682281,
+            "event_interval_ms_per_call": 0.07765247821807861
+          },
+          {
+            "wall_ms_per_call": 0.06051890552043915,
+            "submit_ms_per_call": 0.060203224420547485,
+            "event_interval_ms_per_call": 0.059924159049987796
+          }
+        ],
+        "triton": [
+          {
+            "wall_ms_per_call": 0.03582574427127838,
+            "submit_ms_per_call": 0.03546819090843201,
+            "event_interval_ms_per_call": 0.03517632007598877
+          },
+          {
+            "wall_ms_per_call": 0.034940242767333984,
+            "submit_ms_per_call": 0.03464408218860626,
+            "event_interval_ms_per_call": 0.03438080072402954
+          },
+          {
+            "wall_ms_per_call": 0.03634817898273468,
+            "submit_ms_per_call": 0.035990551114082336,
+            "event_interval_ms_per_call": 0.03570559978485108
+          },
+          {
+            "wall_ms_per_call": 0.045173317193984985,
+            "submit_ms_per_call": 0.044860467314720154,
+            "event_interval_ms_per_call": 0.04457344055175781
+          },
+          {
+            "wall_ms_per_call": 0.05585901439189911,
+            "submit_ms_per_call": 0.05545109510421753,
+            "event_interval_ms_per_call": 0.055117440223693845
+          },
+          {
+            "wall_ms_per_call": 0.04117004573345184,
+            "submit_ms_per_call": 0.04085153341293335,
+            "event_interval_ms_per_call": 0.04050943851470947
+          }
+        ]
+      },
+      "median_wall_ms": {
+        "eager": 0.026587173342704773,
+        "compiled": 0.06008591502904892,
+        "triton": 0.03875911235809326
+      }
+    },
+    {
+      "shape": [
+        128,
+        5632
+      ],
+      "accuracy": {
+        "compiled": {
+          "all_finite": true,
+          "count": 720896,
+          "strict_mismatch_count": 0,
+          "unequal_count": 192085,
+          "bitwise_mismatch_count": 192085,
+          "max_abs_error": 0.0078125,
+          "mean_abs_error": 5.606883132713847e-05
+        },
+        "triton": {
+          "all_finite": true,
+          "count": 720896,
+          "strict_mismatch_count": 0,
+          "unequal_count": 0,
+          "bitwise_mismatch_count": 0,
+          "max_abs_error": 0.0,
+          "mean_abs_error": 0.0
+        }
+      },
+      "accuracy_status": "strict_tolerance_passed",
+      "orders": [
+        [
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        [
+          "compiled",
+          "triton",
+          "eager"
+        ],
+        [
+          "triton",
+          "eager",
+          "compiled"
+        ],
+        [
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        [
+          "compiled",
+          "triton",
+          "eager"
+        ],
+        [
+          "triton",
+          "eager",
+          "compiled"
+        ]
+      ],
+      "samples": {
+        "eager": [
+          {
+            "wall_ms_per_call": 0.02998143434524536,
+            "submit_ms_per_call": 0.016630664467811584,
+            "event_interval_ms_per_call": 0.02956415891647339
+          },
+          {
+            "wall_ms_per_call": 0.03031119704246521,
+            "submit_ms_per_call": 0.01668378710746765,
+            "event_interval_ms_per_call": 0.030001919269561767
+          },
+          {
+            "wall_ms_per_call": 0.030028969049453735,
+            "submit_ms_per_call": 0.020876973867416382,
+            "event_interval_ms_per_call": 0.029747838973999022
+          },
+          {
+            "wall_ms_per_call": 0.03003731369972229,
+            "submit_ms_per_call": 0.017616748809814453,
+            "event_interval_ms_per_call": 0.029798400402069092
+          },
+          {
+            "wall_ms_per_call": 0.030216127634048462,
+            "submit_ms_per_call": 0.017384886741638184,
+            "event_interval_ms_per_call": 0.029881279468536377
+          },
+          {
+            "wall_ms_per_call": 0.030109956860542297,
+            "submit_ms_per_call": 0.0183095782995224,
+            "event_interval_ms_per_call": 0.02981760025024414
+          }
+        ],
+        "compiled": [
+          {
+            "wall_ms_per_call": 0.051699355244636536,
+            "submit_ms_per_call": 0.051350146532058716,
+            "event_interval_ms_per_call": 0.05107135772705078
+          },
+          {
+            "wall_ms_per_call": 0.05115732550621033,
+            "submit_ms_per_call": 0.05082771182060242,
+            "event_interval_ms_per_call": 0.05058591842651367
+          },
+          {
+            "wall_ms_per_call": 0.04993647336959839,
+            "submit_ms_per_call": 0.049581676721572876,
+            "event_interval_ms_per_call": 0.049317121505737305
+          },
+          {
+            "wall_ms_per_call": 0.05133897066116333,
+            "submit_ms_per_call": 0.05098976194858551,
+            "event_interval_ms_per_call": 0.05062367916107178
+          },
+          {
+            "wall_ms_per_call": 0.05027174949645996,
+            "submit_ms_per_call": 0.04981637001037598,
+            "event_interval_ms_per_call": 0.0495411205291748
+          },
+          {
+            "wall_ms_per_call": 0.048824623227119446,
+            "submit_ms_per_call": 0.04852011799812317,
+            "event_interval_ms_per_call": 0.04823071956634521
+          }
+        ],
+        "triton": [
+          {
+            "wall_ms_per_call": 0.02916574478149414,
+            "submit_ms_per_call": 0.028861239552497864,
+            "event_interval_ms_per_call": 0.028627519607543946
+          },
+          {
+            "wall_ms_per_call": 0.028827637434005737,
+            "submit_ms_per_call": 0.028525888919830322,
+            "event_interval_ms_per_call": 0.028294401168823244
+          },
+          {
+            "wall_ms_per_call": 0.026785582304000854,
+            "submit_ms_per_call": 0.026528537273406982,
+            "event_interval_ms_per_call": 0.02620896100997925
+          },
+          {
+            "wall_ms_per_call": 0.02886958420276642,
+            "submit_ms_per_call": 0.028551071882247925,
+            "event_interval_ms_per_call": 0.028303039073944092
+          },
+          {
+            "wall_ms_per_call": 0.029132142663002014,
+            "submit_ms_per_call": 0.028822049498558044,
+            "event_interval_ms_per_call": 0.028569281101226807
+          },
+          {
+            "wall_ms_per_call": 0.03048710525035858,
+            "submit_ms_per_call": 0.030068084597587585,
+            "event_interval_ms_per_call": 0.02983936071395874
+          }
+        ]
+      },
+      "median_wall_ms": {
+        "eager": 0.030073635280132294,
+        "compiled": 0.050714537501335144,
+        "triton": 0.029000863432884216
+      }
+    },
+    {
+      "shape": [
+        1024,
+        5632
+      ],
+      "accuracy": {
+        "compiled": {
+          "all_finite": true,
+          "count": 5767168,
+          "strict_mismatch_count": 0,
+          "unequal_count": 1534695,
+          "bitwise_mismatch_count": 1534695,
+          "max_abs_error": 0.0078125,
+          "mean_abs_error": 5.622800381388515e-05
+        },
+        "triton": {
+          "all_finite": true,
+          "count": 5767168,
+          "strict_mismatch_count": 0,
+          "unequal_count": 0,
+          "bitwise_mismatch_count": 0,
+          "max_abs_error": 0.0,
+          "mean_abs_error": 0.0
+        }
+      },
+      "accuracy_status": "strict_tolerance_passed",
+      "orders": [
+        [
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        [
+          "compiled",
+          "triton",
+          "eager"
+        ],
+        [
+          "triton",
+          "eager",
+          "compiled"
+        ],
+        [
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        [
+          "compiled",
+          "triton",
+          "eager"
+        ],
+        [
+          "triton",
+          "eager",
+          "compiled"
+        ]
+      ],
+      "samples": {
+        "eager": [
+          {
+            "wall_ms_per_call": 0.21225877106189728,
+            "submit_ms_per_call": 0.018214508891105652,
+            "event_interval_ms_per_call": 0.21163711547851563
+          },
+          {
+            "wall_ms_per_call": 0.21229788661003113,
+            "submit_ms_per_call": 0.018591731786727905,
+            "event_interval_ms_per_call": 0.21171104431152343
+          },
+          {
+            "wall_ms_per_call": 0.21248795092105865,
+            "submit_ms_per_call": 0.01704968512058258,
+            "event_interval_ms_per_call": 0.2117638397216797
+          },
+          {
+            "wall_ms_per_call": 0.21285943686962128,
+            "submit_ms_per_call": 0.01850508153438568,
+            "event_interval_ms_per_call": 0.21216575622558595
+          },
+          {
+            "wall_ms_per_call": 0.21283984184265137,
+            "submit_ms_per_call": 0.019429773092269897,
+            "event_interval_ms_per_call": 0.21218303680419923
+          },
+          {
+            "wall_ms_per_call": 0.21277561783790588,
+            "submit_ms_per_call": 0.017345771193504333,
+            "event_interval_ms_per_call": 0.21209280014038087
+          }
+        ],
+        "compiled": [
+          {
+            "wall_ms_per_call": 0.12397103011608124,
+            "submit_ms_per_call": 0.053618550300598145,
+            "event_interval_ms_per_call": 0.12359807968139648
+          },
+          {
+            "wall_ms_per_call": 0.12293174862861633,
+            "submit_ms_per_call": 0.04846982657909393,
+            "event_interval_ms_per_call": 0.12256064414978027
+          },
+          {
+            "wall_ms_per_call": 0.12422248721122742,
+            "submit_ms_per_call": 0.04904262721538544,
+            "event_interval_ms_per_call": 0.12378111839294434
+          },
+          {
+            "wall_ms_per_call": 0.12474767863750458,
+            "submit_ms_per_call": 0.05404040217399597,
+            "event_interval_ms_per_call": 0.12429599761962891
+          },
+          {
+            "wall_ms_per_call": 0.12364417314529419,
+            "submit_ms_per_call": 0.05001753568649292,
+            "event_interval_ms_per_call": 0.12318719863891602
+          },
+          {
+            "wall_ms_per_call": 0.12359954416751862,
+            "submit_ms_per_call": 0.04871293902397156,
+            "event_interval_ms_per_call": 0.12306207656860352
+          }
+        ],
+        "triton": [
+          {
+            "wall_ms_per_call": 0.12357719242572784,
+            "submit_ms_per_call": 0.028537213802337646,
+            "event_interval_ms_per_call": 0.12320768356323242
+          },
+          {
+            "wall_ms_per_call": 0.12348495423793793,
+            "submit_ms_per_call": 0.029392018914222717,
+            "event_interval_ms_per_call": 0.1231276798248291
+          },
+          {
+            "wall_ms_per_call": 0.12413032352924347,
+            "submit_ms_per_call": 0.0273749977350235,
+            "event_interval_ms_per_call": 0.12355999946594239
+          },
+          {
+            "wall_ms_per_call": 0.1239459216594696,
+            "submit_ms_per_call": 0.02743653953075409,
+            "event_interval_ms_per_call": 0.12349727630615234
+          },
+          {
+            "wall_ms_per_call": 0.12405753135681152,
+            "submit_ms_per_call": 0.0316687673330307,
+            "event_interval_ms_per_call": 0.12363264083862305
+          },
+          {
+            "wall_ms_per_call": 0.12544050812721252,
+            "submit_ms_per_call": 0.029892027378082275,
+            "event_interval_ms_per_call": 0.12488287925720215
+          }
+        ]
+      },
+      "median_wall_ms": {
+        "eager": 0.21263178437948227,
+        "compiled": 0.12380760163068771,
+        "triton": 0.12400172650814056
+      }
+    }
+  ],
+  "method": "fresh process; debug logging disabled; compile/first use/validation/warmup excluded; output allocation included for all providers; balanced rotating order; synchronized block wall timing",
+  "warmups": 25,
+  "repeats": 6,
+  "calls_per_block": 100,
+  "notes": [
+    "event interval is not pure kernel compute time",
+    "block averages are not single-request latency",
+    "strict tolerance success is not bitwise equality",
+    "failed strict checks remain exploratory, not validated wins"
+  ]
+}

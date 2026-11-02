@@ -8,3 +8,6 @@ results/*.csv -text
 
 # Preserve profiler output formatting and original bytes.
 results/**/*.txt -text -whitespace
+
+# Keep selected compiler/log evidence byte-for-byte, including emitted spacing.
+docs/evidence/compiler_trace_20261102/** -text -whitespace
