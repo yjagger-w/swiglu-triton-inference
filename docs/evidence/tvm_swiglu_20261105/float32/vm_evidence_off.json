@@ -1,0 +1,7 @@
+{
+  "tensor_calls": [
+    "call  contract_silu    in: %0, %3       dst: %void",
+    "call  multiply         in: %3, %1, %5   dst: %void"
+  ],
+  "tensor_allocations": 2
+}

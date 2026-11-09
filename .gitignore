@@ -3,6 +3,7 @@ __pycache__/
 *.pyc
 *.egg-info/
 .venv/
+.venv-tvm/
 .hf_deps/
 results/*.json
 results/*.csv

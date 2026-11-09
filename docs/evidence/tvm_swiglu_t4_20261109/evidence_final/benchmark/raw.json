@@ -1,0 +1,5984 @@
+[
+  {
+    "dtype": "float32",
+    "shape": [
+      1,
+      5632
+    ],
+    "compile": {
+      "triton_first_call_seconds": 1.6478194892406464,
+      "compiled_first_call_seconds": 1.6556743904948235,
+      "tvm_off_build_first_call_seconds": 0.4509020000696182,
+      "tvm_on_build_first_call_seconds": 0.43320729583501816
+    },
+    "accuracy": {
+      "eager": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "triton": {
+        "bitwise_mismatches": 1759,
+        "max_abs_error": 9.5367431640625e-07,
+        "tolerance_passed": true
+      },
+      "compiled": {
+        "bitwise_mismatches": 1759,
+        "max_abs_error": 9.5367431640625e-07,
+        "tolerance_passed": true
+      },
+      "tvm_off": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "tvm_on": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      }
+    },
+    "rtol": 3e-05,
+    "atol": 3e-05,
+    "samples": [
+      {
+        "round": 0,
+        "provider": "eager",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.019697993993759155,
+        "submit_ms_per_call": 0.019468963146209717,
+        "event_interval_ms_per_call": 0.019232959747314454
+      },
+      {
+        "round": 0,
+        "provider": "compiled",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.0529509037733078,
+        "submit_ms_per_call": 0.05271062254905701,
+        "event_interval_ms_per_call": 0.05248223781585693
+      },
+      {
+        "round": 0,
+        "provider": "triton",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.030185356736183167,
+        "submit_ms_per_call": 0.02993956208229065,
+        "event_interval_ms_per_call": 0.02973695993423462
+      },
+      {
+        "round": 0,
+        "provider": "tvm_off",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.009945407509803772,
+        "submit_ms_per_call": 0.00978618860244751,
+        "event_interval_ms_per_call": 0.009625279903411865
+      },
+      {
+        "round": 0,
+        "provider": "tvm_on",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.007132217288017273,
+        "submit_ms_per_call": 0.006978586316108704,
+        "event_interval_ms_per_call": 0.006832320094108581
+      },
+      {
+        "round": 1,
+        "provider": "compiled",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.05350679159164429,
+        "submit_ms_per_call": 0.05319945514202118,
+        "event_interval_ms_per_call": 0.053002238273620605
+      },
+      {
+        "round": 1,
+        "provider": "triton",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.028224289417266846,
+        "submit_ms_per_call": 0.027975663542747498,
+        "event_interval_ms_per_call": 0.02770944118499756
+      },
+      {
+        "round": 1,
+        "provider": "tvm_off",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.011523738503456116,
+        "submit_ms_per_call": 0.011333823204040527,
+        "event_interval_ms_per_call": 0.011161600351333617
+      },
+      {
+        "round": 1,
+        "provider": "tvm_on",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.007269084453582764,
+        "submit_ms_per_call": 0.007123798131942749,
+        "event_interval_ms_per_call": 0.006975679993629456
+      },
+      {
+        "round": 1,
+        "provider": "eager",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.01794084906578064,
+        "submit_ms_per_call": 0.01774810254573822,
+        "event_interval_ms_per_call": 0.017566399574279787
+      },
+      {
+        "round": 2,
+        "provider": "triton",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.030123889446258545,
+        "submit_ms_per_call": 0.029889270663261414,
+        "event_interval_ms_per_call": 0.029694080352783203
+      },
+      {
+        "round": 2,
+        "provider": "tvm_off",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.009733065962791443,
+        "submit_ms_per_call": 0.00957384705543518,
+        "event_interval_ms_per_call": 0.009420480132102966
+      },
+      {
+        "round": 2,
+        "provider": "tvm_on",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.007034391164779663,
+        "submit_ms_per_call": 0.006897523999214172,
+        "event_interval_ms_per_call": 0.006756160259246826
+      },
+      {
+        "round": 2,
+        "provider": "eager",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.018060952425003052,
+        "submit_ms_per_call": 0.017848610877990723,
+        "event_interval_ms_per_call": 0.017528320550918578
+      },
+      {
+        "round": 2,
+        "provider": "compiled",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.052084848284721375,
+        "submit_ms_per_call": 0.051833465695381165,
+        "event_interval_ms_per_call": 0.05161824226379395
+      },
+      {
+        "round": 3,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.01202113926410675,
+        "submit_ms_per_call": 0.011822730302810669,
+        "event_interval_ms_per_call": 0.011635839939117432
+      },
+      {
+        "round": 3,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.007249489426612854,
+        "submit_ms_per_call": 0.007098689675331116,
+        "event_interval_ms_per_call": 0.00694208025932312
+      },
+      {
+        "round": 3,
+        "provider": "eager",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.018301233649253845,
+        "submit_ms_per_call": 0.01808054745197296,
+        "event_interval_ms_per_call": 0.017912319898605346
+      },
+      {
+        "round": 3,
+        "provider": "compiled",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.053112879395484924,
+        "submit_ms_per_call": 0.05286984145641327,
+        "event_interval_ms_per_call": 0.05265984058380127
+      },
+      {
+        "round": 3,
+        "provider": "triton",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.02921879291534424,
+        "submit_ms_per_call": 0.02897299826145172,
+        "event_interval_ms_per_call": 0.028774399757385254
+      },
+      {
+        "round": 4,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.009839236736297607,
+        "submit_ms_per_call": 0.009635314345359802,
+        "event_interval_ms_per_call": 0.009461119771003723
+      },
+      {
+        "round": 4,
+        "provider": "eager",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.01745477318763733,
+        "submit_ms_per_call": 0.01726485788822174,
+        "event_interval_ms_per_call": 0.017099839448928834
+      },
+      {
+        "round": 4,
+        "provider": "compiled",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.0699809193611145,
+        "submit_ms_per_call": 0.06974063813686371,
+        "event_interval_ms_per_call": 0.06952960014343262
+      },
+      {
+        "round": 4,
+        "provider": "triton",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.029813870787620544,
+        "submit_ms_per_call": 0.029579252004623413,
+        "event_interval_ms_per_call": 0.029400959014892578
+      },
+      {
+        "round": 4,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.009830817580223083,
+        "submit_ms_per_call": 0.009666010737419128,
+        "event_interval_ms_per_call": 0.009502400159835816
+      },
+      {
+        "round": 5,
+        "provider": "eager",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.017426759004592896,
+        "submit_ms_per_call": 0.017248019576072693,
+        "event_interval_ms_per_call": 0.01708575963973999
+      },
+      {
+        "round": 5,
+        "provider": "compiled",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.05291447043418884,
+        "submit_ms_per_call": 0.05268260836601257,
+        "event_interval_ms_per_call": 0.0524787187576294
+      },
+      {
+        "round": 5,
+        "provider": "triton",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.02778567373752594,
+        "submit_ms_per_call": 0.027562156319618225,
+        "event_interval_ms_per_call": 0.02737567901611328
+      },
+      {
+        "round": 5,
+        "provider": "tvm_off",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.01077510416507721,
+        "submit_ms_per_call": 0.01058235764503479,
+        "event_interval_ms_per_call": 0.010407359600067138
+      },
+      {
+        "round": 5,
+        "provider": "tvm_on",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.007224380970001221,
+        "submit_ms_per_call": 0.007073506712913513,
+        "event_interval_ms_per_call": 0.006923519968986511
+      },
+      {
+        "round": 6,
+        "provider": "compiled",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.0503472238779068,
+        "submit_ms_per_call": 0.050106942653656006,
+        "event_interval_ms_per_call": 0.04990623950958252
+      },
+      {
+        "round": 6,
+        "provider": "triton",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.04936389625072479,
+        "submit_ms_per_call": 0.048511773347854614,
+        "event_interval_ms_per_call": 0.048249921798706054
+      },
+      {
+        "round": 6,
+        "provider": "tvm_off",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.013264268636703491,
+        "submit_ms_per_call": 0.013065934181213379,
+        "event_interval_ms_per_call": 0.012871040105819702
+      },
+      {
+        "round": 6,
+        "provider": "tvm_on",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.007568001747131348,
+        "submit_ms_per_call": 0.007414370775222778,
+        "event_interval_ms_per_call": 0.007266240119934082
+      },
+      {
+        "round": 6,
+        "provider": "eager",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.018242523074150085,
+        "submit_ms_per_call": 0.018044263124465942,
+        "event_interval_ms_per_call": 0.01787775993347168
+      },
+      {
+        "round": 7,
+        "provider": "triton",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.030629634857177734,
+        "submit_ms_per_call": 0.030394867062568665,
+        "event_interval_ms_per_call": 0.030207040309906005
+      },
+      {
+        "round": 7,
+        "provider": "tvm_off",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.009557083249092102,
+        "submit_ms_per_call": 0.009389519691467285,
+        "event_interval_ms_per_call": 0.00922976016998291
+      },
+      {
+        "round": 7,
+        "provider": "tvm_on",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.009090453386306763,
+        "submit_ms_per_call": 0.008897781372070312,
+        "event_interval_ms_per_call": 0.0087363201379776
+      },
+      {
+        "round": 7,
+        "provider": "eager",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.01747429370880127,
+        "submit_ms_per_call": 0.017292723059654236,
+        "event_interval_ms_per_call": 0.017121280431747436
+      },
+      {
+        "round": 7,
+        "provider": "compiled",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.052841976284980774,
+        "submit_ms_per_call": 0.052610114216804504,
+        "event_interval_ms_per_call": 0.052401919364929196
+      },
+      {
+        "round": 8,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.011646747589111328,
+        "submit_ms_per_call": 0.011451244354248047,
+        "event_interval_ms_per_call": 0.01126431941986084
+      },
+      {
+        "round": 8,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.007204785943031311,
+        "submit_ms_per_call": 0.007059574127197266,
+        "event_interval_ms_per_call": 0.006904640197753906
+      },
+      {
+        "round": 8,
+        "provider": "eager",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.01743510365486145,
+        "submit_ms_per_call": 0.017236769199371338,
+        "event_interval_ms_per_call": 0.017066880464553832
+      },
+      {
+        "round": 8,
+        "provider": "compiled",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.05114056169986725,
+        "submit_ms_per_call": 0.050903111696243286,
+        "event_interval_ms_per_call": 0.050704641342163084
+      },
+      {
+        "round": 8,
+        "provider": "triton",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.02803698182106018,
+        "submit_ms_per_call": 0.027793943881988525,
+        "event_interval_ms_per_call": 0.02760704040527344
+      },
+      {
+        "round": 9,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.009411796927452087,
+        "submit_ms_per_call": 0.009219050407409668,
+        "event_interval_ms_per_call": 0.00903551995754242
+      },
+      {
+        "round": 9,
+        "provider": "eager",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.017465874552726746,
+        "submit_ms_per_call": 0.01727871596813202,
+        "event_interval_ms_per_call": 0.017104320526123047
+      },
+      {
+        "round": 9,
+        "provider": "compiled",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.051696524024009705,
+        "submit_ms_per_call": 0.05145065486431122,
+        "event_interval_ms_per_call": 0.05123551845550537
+      },
+      {
+        "round": 9,
+        "provider": "triton",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.03044523298740387,
+        "submit_ms_per_call": 0.030199363827705383,
+        "event_interval_ms_per_call": 0.030003840923309325
+      },
+      {
+        "round": 9,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.00982530415058136,
+        "submit_ms_per_call": 0.009660422801971436,
+        "event_interval_ms_per_call": 0.00950272023677826
+      }
+    ],
+    "input_sha256": [
+      "3b1c4bd64fe2acb4d4c416685c31610395652c12a412ff0c0af0b7892d74cf91",
+      "f24a0128b37c7bd282f30c887bf949b776320b31d74285767d4ffea341fac56e"
+    ]
+  },
+  {
+    "dtype": "float32",
+    "shape": [
+      128,
+      5632
+    ],
+    "compile": {
+      "triton_first_call_seconds": 0.09873126447200775,
+      "compiled_first_call_seconds": 0.35389693081378937,
+      "tvm_off_build_first_call_seconds": 0.44663358479738235,
+      "tvm_on_build_first_call_seconds": 0.4416678696870804
+    },
+    "accuracy": {
+      "eager": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "triton": {
+        "bitwise_mismatches": 226252,
+        "max_abs_error": 9.5367431640625e-07,
+        "tolerance_passed": true
+      },
+      "compiled": {
+        "bitwise_mismatches": 226252,
+        "max_abs_error": 9.5367431640625e-07,
+        "tolerance_passed": true
+      },
+      "tvm_off": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "tvm_on": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      }
+    },
+    "rtol": 3e-05,
+    "atol": 3e-05,
+    "samples": [
+      {
+        "round": 0,
+        "provider": "eager",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.052241235971450806,
+        "submit_ms_per_call": 0.017524510622024536,
+        "event_interval_ms_per_call": 0.05193408012390137
+      },
+      {
+        "round": 0,
+        "provider": "compiled",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.05137525498867035,
+        "submit_ms_per_call": 0.051126629114151,
+        "event_interval_ms_per_call": 0.050928959846496584
+      },
+      {
+        "round": 0,
+        "provider": "triton",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.03506310284137726,
+        "submit_ms_per_call": 0.030615702271461487,
+        "event_interval_ms_per_call": 0.03484639883041382
+      },
+      {
+        "round": 0,
+        "provider": "tvm_off",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.0635247677564621,
+        "submit_ms_per_call": 0.009685531258583069,
+        "event_interval_ms_per_call": 0.06322303771972657
+      },
+      {
+        "round": 0,
+        "provider": "tvm_on",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.03448203206062317,
+        "submit_ms_per_call": 0.007151737809181213,
+        "event_interval_ms_per_call": 0.03422944068908691
+      },
+      {
+        "round": 1,
+        "provider": "compiled",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.050316452980041504,
+        "submit_ms_per_call": 0.05007900297641754,
+        "event_interval_ms_per_call": 0.04990943908691406
+      },
+      {
+        "round": 1,
+        "provider": "triton",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.03373339772224426,
+        "submit_ms_per_call": 0.029079094529151917,
+        "event_interval_ms_per_call": 0.033462719917297365
+      },
+      {
+        "round": 1,
+        "provider": "tvm_off",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.06344668567180634,
+        "submit_ms_per_call": 0.009543150663375854,
+        "event_interval_ms_per_call": 0.0631606388092041
+      },
+      {
+        "round": 1,
+        "provider": "tvm_on",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.03444857895374298,
+        "submit_ms_per_call": 0.008917376399040222,
+        "event_interval_ms_per_call": 0.03423615932464599
+      },
+      {
+        "round": 1,
+        "provider": "eager",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.052224546670913696,
+        "submit_ms_per_call": 0.01889355480670929,
+        "event_interval_ms_per_call": 0.05193408012390137
+      },
+      {
+        "round": 2,
+        "provider": "triton",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.03376685082912445,
+        "submit_ms_per_call": 0.0275314599275589,
+        "event_interval_ms_per_call": 0.03350816011428833
+      },
+      {
+        "round": 2,
+        "provider": "tvm_off",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.06341300904750824,
+        "submit_ms_per_call": 0.011431574821472168,
+        "event_interval_ms_per_call": 0.06315199851989746
+      },
+      {
+        "round": 2,
+        "provider": "tvm_on",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.03447920083999634,
+        "submit_ms_per_call": 0.007126554846763611,
+        "event_interval_ms_per_call": 0.03422208070755005
+      },
+      {
+        "round": 2,
+        "provider": "eager",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.052280426025390625,
+        "submit_ms_per_call": 0.017390474677085876,
+        "event_interval_ms_per_call": 0.05198592185974121
+      },
+      {
+        "round": 2,
+        "provider": "compiled",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.0515708327293396,
+        "submit_ms_per_call": 0.05133338272571564,
+        "event_interval_ms_per_call": 0.05114751815795898
+      },
+      {
+        "round": 3,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.06349973380565643,
+        "submit_ms_per_call": 0.00972755253314972,
+        "event_interval_ms_per_call": 0.0631660795211792
+      },
+      {
+        "round": 3,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.03446251153945923,
+        "submit_ms_per_call": 0.00726357102394104,
+        "event_interval_ms_per_call": 0.03421600103378296
+      },
+      {
+        "round": 3,
+        "provider": "eager",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.05228310823440552,
+        "submit_ms_per_call": 0.017315000295639038,
+        "event_interval_ms_per_call": 0.052019200325012206
+      },
+      {
+        "round": 3,
+        "provider": "compiled",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.05245082080364227,
+        "submit_ms_per_call": 0.052218958735466,
+        "event_interval_ms_per_call": 0.052039999961853024
+      },
+      {
+        "round": 3,
+        "provider": "triton",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.03380320966243744,
+        "submit_ms_per_call": 0.027528703212738037,
+        "event_interval_ms_per_call": 0.03336191892623901
+      },
+      {
+        "round": 4,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.03448761999607086,
+        "submit_ms_per_call": 0.00722154974937439,
+        "event_interval_ms_per_call": 0.03427488088607788
+      },
+      {
+        "round": 4,
+        "provider": "eager",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.052143484354019165,
+        "submit_ms_per_call": 0.019055455923080444,
+        "event_interval_ms_per_call": 0.05186079978942871
+      },
+      {
+        "round": 4,
+        "provider": "compiled",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.050280168652534485,
+        "submit_ms_per_call": 0.050045475363731384,
+        "event_interval_ms_per_call": 0.049843521118164064
+      },
+      {
+        "round": 4,
+        "provider": "triton",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.03363564610481262,
+        "submit_ms_per_call": 0.029160231351852417,
+        "event_interval_ms_per_call": 0.033382720947265625
+      },
+      {
+        "round": 4,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.06347179412841797,
+        "submit_ms_per_call": 0.0098477303981781,
+        "event_interval_ms_per_call": 0.06319488048553466
+      },
+      {
+        "round": 5,
+        "provider": "eager",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.05235306918621063,
+        "submit_ms_per_call": 0.017597228288650513,
+        "event_interval_ms_per_call": 0.05200160026550293
+      },
+      {
+        "round": 5,
+        "provider": "compiled",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.049131959676742554,
+        "submit_ms_per_call": 0.04889458417892456,
+        "event_interval_ms_per_call": 0.04872191905975342
+      },
+      {
+        "round": 5,
+        "provider": "triton",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.03365233540534973,
+        "submit_ms_per_call": 0.02866007387638092,
+        "event_interval_ms_per_call": 0.0334006404876709
+      },
+      {
+        "round": 5,
+        "provider": "tvm_off",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.06348848342895508,
+        "submit_ms_per_call": 0.009467676281929016,
+        "event_interval_ms_per_call": 0.06321856021881103
+      },
+      {
+        "round": 5,
+        "provider": "tvm_on",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.03448203206062317,
+        "submit_ms_per_call": 0.007112622261047363,
+        "event_interval_ms_per_call": 0.03423968076705933
+      },
+      {
+        "round": 6,
+        "provider": "compiled",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.07812716066837311,
+        "submit_ms_per_call": 0.07788695394992828,
+        "event_interval_ms_per_call": 0.07766143798828125
+      },
+      {
+        "round": 6,
+        "provider": "triton",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.036666616797447205,
+        "submit_ms_per_call": 0.03182247281074524,
+        "event_interval_ms_per_call": 0.0364297604560852
+      },
+      {
+        "round": 6,
+        "provider": "tvm_off",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.05651839077472687,
+        "submit_ms_per_call": 0.011875852942466736,
+        "event_interval_ms_per_call": 0.056260480880737304
+      },
+      {
+        "round": 6,
+        "provider": "tvm_on",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.0323505699634552,
+        "submit_ms_per_call": 0.0072021037340164185,
+        "event_interval_ms_per_call": 0.032081279754638675
+      },
+      {
+        "round": 6,
+        "provider": "eager",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.051229968667030334,
+        "submit_ms_per_call": 0.017521753907203674,
+        "event_interval_ms_per_call": 0.05095327854156494
+      },
+      {
+        "round": 7,
+        "provider": "triton",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.032763928174972534,
+        "submit_ms_per_call": 0.029565244913101196,
+        "event_interval_ms_per_call": 0.032517120838165284
+      },
+      {
+        "round": 7,
+        "provider": "tvm_off",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.05598194897174835,
+        "submit_ms_per_call": 0.009456425905227661,
+        "event_interval_ms_per_call": 0.05571743965148926
+      },
+      {
+        "round": 7,
+        "provider": "tvm_on",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.03222472965717316,
+        "submit_ms_per_call": 0.007174089550971985,
+        "event_interval_ms_per_call": 0.0319817590713501
+      },
+      {
+        "round": 7,
+        "provider": "eager",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.05149535834789276,
+        "submit_ms_per_call": 0.017421171069145203,
+        "event_interval_ms_per_call": 0.05113855838775635
+      },
+      {
+        "round": 7,
+        "provider": "compiled",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.05411870777606964,
+        "submit_ms_per_call": 0.0538867712020874,
+        "event_interval_ms_per_call": 0.05368832111358643
+      },
+      {
+        "round": 8,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.05602940917015076,
+        "submit_ms_per_call": 0.0096883624792099,
+        "event_interval_ms_per_call": 0.05576704025268555
+      },
+      {
+        "round": 8,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.0322694331407547,
+        "submit_ms_per_call": 0.007154494524002075,
+        "event_interval_ms_per_call": 0.03199264049530029
+      },
+      {
+        "round": 8,
+        "provider": "eager",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.05139760673046112,
+        "submit_ms_per_call": 0.01720614731311798,
+        "event_interval_ms_per_call": 0.05113215923309326
+      },
+      {
+        "round": 8,
+        "provider": "compiled",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.05148984491825104,
+        "submit_ms_per_call": 0.05124673247337341,
+        "event_interval_ms_per_call": 0.05107135772705078
+      },
+      {
+        "round": 8,
+        "provider": "triton",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.03512732684612274,
+        "submit_ms_per_call": 0.029839053750038147,
+        "event_interval_ms_per_call": 0.03266848087310791
+      },
+      {
+        "round": 9,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.03228910267353058,
+        "submit_ms_per_call": 0.00947609543800354,
+        "event_interval_ms_per_call": 0.03205120086669922
+      },
+      {
+        "round": 9,
+        "provider": "eager",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.05134165287017822,
+        "submit_ms_per_call": 0.019097328186035156,
+        "event_interval_ms_per_call": 0.051078081130981445
+      },
+      {
+        "round": 9,
+        "provider": "compiled",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.051271915435791016,
+        "submit_ms_per_call": 0.051037147641181946,
+        "event_interval_ms_per_call": 0.05080671787261963
+      },
+      {
+        "round": 9,
+        "provider": "triton",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.03263548016548157,
+        "submit_ms_per_call": 0.029760822653770447,
+        "event_interval_ms_per_call": 0.03242048025131226
+      },
+      {
+        "round": 9,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.056082531809806824,
+        "submit_ms_per_call": 0.009414628148078918,
+        "event_interval_ms_per_call": 0.055830078125
+      }
+    ],
+    "input_sha256": [
+      "a6456e4499796c9e727964a6fb9d3248eb0e99372ddb75a79ac628ef3eacd538",
+      "875968bddc69e41466e30e1a436119371664a708888280ea031d3fb8c47be695"
+    ]
+  },
+  {
+    "dtype": "float32",
+    "shape": [
+      1024,
+      5632
+    ],
+    "compile": {
+      "triton_first_call_seconds": 0.09884943068027496,
+      "compiled_first_call_seconds": 0.4192253425717354,
+      "tvm_off_build_first_call_seconds": 0.4539881497621536,
+      "tvm_on_build_first_call_seconds": 0.4279169589281082
+    },
+    "accuracy": {
+      "eager": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "triton": {
+        "bitwise_mismatches": 1809977,
+        "max_abs_error": 1.430511474609375e-06,
+        "tolerance_passed": true
+      },
+      "compiled": {
+        "bitwise_mismatches": 1809977,
+        "max_abs_error": 1.430511474609375e-06,
+        "tolerance_passed": true
+      },
+      "tvm_off": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "tvm_on": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      }
+    },
+    "rtol": 3e-05,
+    "atol": 3e-05,
+    "samples": [
+      {
+        "round": 0,
+        "provider": "eager",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.4016823321580887,
+        "submit_ms_per_call": 0.01784585416316986,
+        "event_interval_ms_per_call": 0.40084606170654297
+      },
+      {
+        "round": 0,
+        "provider": "compiled",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.23986853659152985,
+        "submit_ms_per_call": 0.055582523345947266,
+        "event_interval_ms_per_call": 0.2395756721496582
+      },
+      {
+        "round": 0,
+        "provider": "triton",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.23884601891040802,
+        "submit_ms_per_call": 0.030610039830207825,
+        "event_interval_ms_per_call": 0.2385433578491211
+      },
+      {
+        "round": 0,
+        "provider": "tvm_off",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.41028670966625214,
+        "submit_ms_per_call": 0.010842159390449524,
+        "event_interval_ms_per_call": 0.40994815826416015
+      },
+      {
+        "round": 0,
+        "provider": "tvm_on",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.23794084787368774,
+        "submit_ms_per_call": 0.007271915674209595,
+        "event_interval_ms_per_call": 0.2376438331604004
+      },
+      {
+        "round": 1,
+        "provider": "compiled",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.23912541568279266,
+        "submit_ms_per_call": 0.05107074975967407,
+        "event_interval_ms_per_call": 0.23883552551269532
+      },
+      {
+        "round": 1,
+        "provider": "triton",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.23864485323429108,
+        "submit_ms_per_call": 0.029950737953186035,
+        "event_interval_ms_per_call": 0.2383350372314453
+      },
+      {
+        "round": 1,
+        "provider": "tvm_off",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.4099515825510025,
+        "submit_ms_per_call": 0.009945407509803772,
+        "event_interval_ms_per_call": 0.40961280822753904
+      },
+      {
+        "round": 1,
+        "provider": "tvm_on",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.2376922219991684,
+        "submit_ms_per_call": 0.00965207815170288,
+        "event_interval_ms_per_call": 0.23736736297607422
+      },
+      {
+        "round": 1,
+        "provider": "eager",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.4028026759624481,
+        "submit_ms_per_call": 0.020170137286186218,
+        "event_interval_ms_per_call": 0.4024671936035156
+      },
+      {
+        "round": 2,
+        "provider": "triton",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.24244137108325958,
+        "submit_ms_per_call": 0.02980545163154602,
+        "event_interval_ms_per_call": 0.24037824630737303
+      },
+      {
+        "round": 2,
+        "provider": "tvm_off",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.4099962115287781,
+        "submit_ms_per_call": 0.010336488485336304,
+        "event_interval_ms_per_call": 0.40967105865478515
+      },
+      {
+        "round": 2,
+        "provider": "tvm_on",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.23792967200279236,
+        "submit_ms_per_call": 0.010470673441886902,
+        "event_interval_ms_per_call": 0.237587833404541
+      },
+      {
+        "round": 2,
+        "provider": "eager",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.40238916873931885,
+        "submit_ms_per_call": 0.017507895827293396,
+        "event_interval_ms_per_call": 0.4020576095581055
+      },
+      {
+        "round": 2,
+        "provider": "compiled",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.23986287415027618,
+        "submit_ms_per_call": 0.051621124148368835,
+        "event_interval_ms_per_call": 0.23956544876098632
+      },
+      {
+        "round": 3,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.4100996255874634,
+        "submit_ms_per_call": 0.00966884195804596,
+        "event_interval_ms_per_call": 0.40974529266357423
+      },
+      {
+        "round": 3,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.23809172213077545,
+        "submit_ms_per_call": 0.007380843162536621,
+        "event_interval_ms_per_call": 0.23774015426635742
+      },
+      {
+        "round": 3,
+        "provider": "eager",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.4022885859012604,
+        "submit_ms_per_call": 0.019211918115615845,
+        "event_interval_ms_per_call": 0.40197311401367186
+      },
+      {
+        "round": 3,
+        "provider": "compiled",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.2395947277545929,
+        "submit_ms_per_call": 0.06089605391025543,
+        "event_interval_ms_per_call": 0.23929183959960937
+      },
+      {
+        "round": 3,
+        "provider": "triton",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.23946627974510193,
+        "submit_ms_per_call": 0.03142304718494415,
+        "event_interval_ms_per_call": 0.23907167434692383
+      },
+      {
+        "round": 4,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.23814186453819275,
+        "submit_ms_per_call": 0.00766851007938385,
+        "event_interval_ms_per_call": 0.23777599334716798
+      },
+      {
+        "round": 4,
+        "provider": "eager",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.4028639942407608,
+        "submit_ms_per_call": 0.019449368119239807,
+        "event_interval_ms_per_call": 0.40249759674072266
+      },
+      {
+        "round": 4,
+        "provider": "compiled",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.23999974131584167,
+        "submit_ms_per_call": 0.05569145083427429,
+        "event_interval_ms_per_call": 0.23963647842407226
+      },
+      {
+        "round": 4,
+        "provider": "triton",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.23924551904201508,
+        "submit_ms_per_call": 0.030548572540283203,
+        "event_interval_ms_per_call": 0.23892032623291015
+      },
+      {
+        "round": 4,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.41035108268260956,
+        "submit_ms_per_call": 0.011643916368484497,
+        "event_interval_ms_per_call": 0.4099679946899414
+      },
+      {
+        "round": 5,
+        "provider": "eager",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.4043698310852051,
+        "submit_ms_per_call": 0.02372927963733673,
+        "event_interval_ms_per_call": 0.4040003204345703
+      },
+      {
+        "round": 5,
+        "provider": "compiled",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.24022892117500305,
+        "submit_ms_per_call": 0.05017399787902832,
+        "event_interval_ms_per_call": 0.23993663787841796
+      },
+      {
+        "round": 5,
+        "provider": "triton",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.23965895175933838,
+        "submit_ms_per_call": 0.02980545163154602,
+        "event_interval_ms_per_call": 0.2393497657775879
+      },
+      {
+        "round": 5,
+        "provider": "tvm_off",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.41032589972019196,
+        "submit_ms_per_call": 0.010431483387947083,
+        "event_interval_ms_per_call": 0.40996158599853516
+      },
+      {
+        "round": 5,
+        "provider": "tvm_on",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.23759715259075165,
+        "submit_ms_per_call": 0.007486939430236816,
+        "event_interval_ms_per_call": 0.23728544235229493
+      },
+      {
+        "round": 6,
+        "provider": "compiled",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.2389354258775711,
+        "submit_ms_per_call": 0.05307383835315704,
+        "event_interval_ms_per_call": 0.23860000610351562
+      },
+      {
+        "round": 6,
+        "provider": "triton",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.23846052587032318,
+        "submit_ms_per_call": 0.030760914087295532,
+        "event_interval_ms_per_call": 0.23807584762573242
+      },
+      {
+        "round": 6,
+        "provider": "tvm_off",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.4106946289539337,
+        "submit_ms_per_call": 0.010238736867904663,
+        "event_interval_ms_per_call": 0.40968799591064453
+      },
+      {
+        "round": 6,
+        "provider": "tvm_on",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.23863084614276886,
+        "submit_ms_per_call": 0.010238662362098694,
+        "event_interval_ms_per_call": 0.23830591201782225
+      },
+      {
+        "round": 6,
+        "provider": "eager",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.40235839784145355,
+        "submit_ms_per_call": 0.02215638756752014,
+        "event_interval_ms_per_call": 0.4020428848266602
+      },
+      {
+        "round": 7,
+        "provider": "triton",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.23954443633556366,
+        "submit_ms_per_call": 0.030473247170448303,
+        "event_interval_ms_per_call": 0.2392505645751953
+      },
+      {
+        "round": 7,
+        "provider": "tvm_off",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.4102308303117752,
+        "submit_ms_per_call": 0.013060271739959717,
+        "event_interval_ms_per_call": 0.409931526184082
+      },
+      {
+        "round": 7,
+        "provider": "tvm_on",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.237644761800766,
+        "submit_ms_per_call": 0.007461830973625183,
+        "event_interval_ms_per_call": 0.23736320495605467
+      },
+      {
+        "round": 7,
+        "provider": "eager",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.40220484137535095,
+        "submit_ms_per_call": 0.017952024936676025,
+        "event_interval_ms_per_call": 0.4019120025634766
+      },
+      {
+        "round": 7,
+        "provider": "compiled",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.2418128401041031,
+        "submit_ms_per_call": 0.054280608892440796,
+        "event_interval_ms_per_call": 0.24147775650024414
+      },
+      {
+        "round": 8,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.4102645069360733,
+        "submit_ms_per_call": 0.009674429893493652,
+        "event_interval_ms_per_call": 0.4099059295654297
+      },
+      {
+        "round": 8,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.2378597855567932,
+        "submit_ms_per_call": 0.007489845156669617,
+        "event_interval_ms_per_call": 0.23758880615234376
+      },
+      {
+        "round": 8,
+        "provider": "eager",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.4024030268192291,
+        "submit_ms_per_call": 0.01941300928592682,
+        "event_interval_ms_per_call": 0.4021014404296875
+      },
+      {
+        "round": 8,
+        "provider": "compiled",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.23939363658428192,
+        "submit_ms_per_call": 0.05063496530056,
+        "event_interval_ms_per_call": 0.23908351898193358
+      },
+      {
+        "round": 8,
+        "provider": "triton",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.23953333497047424,
+        "submit_ms_per_call": 0.035308972001075745,
+        "event_interval_ms_per_call": 0.2391859245300293
+      },
+      {
+        "round": 9,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.23783743381500244,
+        "submit_ms_per_call": 0.007517710328102112,
+        "event_interval_ms_per_call": 0.23754751205444335
+      },
+      {
+        "round": 9,
+        "provider": "eager",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.40167108178138733,
+        "submit_ms_per_call": 0.019837692379951477,
+        "event_interval_ms_per_call": 0.40134654998779296
+      },
+      {
+        "round": 9,
+        "provider": "compiled",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.23903876543045044,
+        "submit_ms_per_call": 0.05093105137348175,
+        "event_interval_ms_per_call": 0.23870271682739258
+      },
+      {
+        "round": 9,
+        "provider": "triton",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.2391505241394043,
+        "submit_ms_per_call": 0.029774680733680725,
+        "event_interval_ms_per_call": 0.23877920150756837
+      },
+      {
+        "round": 9,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.4100632667541504,
+        "submit_ms_per_call": 0.0096101313829422,
+        "event_interval_ms_per_call": 0.4097139358520508
+      }
+    ],
+    "input_sha256": [
+      "68dfe17e57af09aecc58471da2d17930bd5305d284b56aa38837765d2b893930",
+      "d87936780cf367ad6d0555a7d0470ef890f5cee1aee5a39f5fa5ef654387c2b7"
+    ]
+  },
+  {
+    "dtype": "float32",
+    "shape": [
+      1025
+    ],
+    "compile": {
+      "triton_first_call_seconds": 0.10906889289617538,
+      "compiled_first_call_seconds": 0.3959011510014534,
+      "tvm_off_build_first_call_seconds": 0.43219683319330215,
+      "tvm_on_build_first_call_seconds": 0.44697244465351105
+    },
+    "accuracy": {
+      "eager": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "triton": {
+        "bitwise_mismatches": 322,
+        "max_abs_error": 4.76837158203125e-07,
+        "tolerance_passed": true
+      },
+      "compiled": {
+        "bitwise_mismatches": 322,
+        "max_abs_error": 4.76837158203125e-07,
+        "tolerance_passed": true
+      },
+      "tvm_off": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "tvm_on": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      }
+    },
+    "rtol": 3e-05,
+    "atol": 3e-05,
+    "samples": [
+      {
+        "round": 0,
+        "provider": "eager",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.017342939972877502,
+        "submit_ms_per_call": 0.01714177429676056,
+        "event_interval_ms_per_call": 0.016910079717636108
+      },
+      {
+        "round": 0,
+        "provider": "compiled",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.05176357924938202,
+        "submit_ms_per_call": 0.05151771008968353,
+        "event_interval_ms_per_call": 0.05130112171173096
+      },
+      {
+        "round": 0,
+        "provider": "triton",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.03628671169281006,
+        "submit_ms_per_call": 0.035971030592918396,
+        "event_interval_ms_per_call": 0.035744960308074954
+      },
+      {
+        "round": 0,
+        "provider": "tvm_off",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.016468539834022522,
+        "submit_ms_per_call": 0.01619197428226471,
+        "event_interval_ms_per_call": 0.0159334397315979
+      },
+      {
+        "round": 0,
+        "provider": "tvm_on",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.010585114359855652,
+        "submit_ms_per_call": 0.010358765721321106,
+        "event_interval_ms_per_call": 0.0101363205909729
+      },
+      {
+        "round": 1,
+        "provider": "compiled",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.05343131721019745,
+        "submit_ms_per_call": 0.05313798785209656,
+        "event_interval_ms_per_call": 0.05287936210632324
+      },
+      {
+        "round": 1,
+        "provider": "triton",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.03054305911064148,
+        "submit_ms_per_call": 0.030305534601211548,
+        "event_interval_ms_per_call": 0.030105600357055663
+      },
+      {
+        "round": 1,
+        "provider": "tvm_off",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.009749829769134521,
+        "submit_ms_per_call": 0.009585022926330566,
+        "event_interval_ms_per_call": 0.00942080020904541
+      },
+      {
+        "round": 1,
+        "provider": "tvm_on",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.007486939430236816,
+        "submit_ms_per_call": 0.007322207093238831,
+        "event_interval_ms_per_call": 0.007044159770011902
+      },
+      {
+        "round": 1,
+        "provider": "eager",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.017720162868499756,
+        "submit_ms_per_call": 0.01751333475112915,
+        "event_interval_ms_per_call": 0.017331520318984984
+      },
+      {
+        "round": 2,
+        "provider": "triton",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.02949260175228119,
+        "submit_ms_per_call": 0.029266253113746643,
+        "event_interval_ms_per_call": 0.029078080654144287
+      },
+      {
+        "round": 2,
+        "provider": "tvm_off",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.010456666350364685,
+        "submit_ms_per_call": 0.010182857513427734,
+        "event_interval_ms_per_call": 0.009977279901504517
+      },
+      {
+        "round": 2,
+        "provider": "tvm_on",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.010411888360977173,
+        "submit_ms_per_call": 0.010180100798606873,
+        "event_interval_ms_per_call": 0.009935680031776428
+      },
+      {
+        "round": 2,
+        "provider": "eager",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.024829953908920288,
+        "submit_ms_per_call": 0.024547800421714783,
+        "event_interval_ms_per_call": 0.024279680252075195
+      },
+      {
+        "round": 2,
+        "provider": "compiled",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.05721680819988251,
+        "submit_ms_per_call": 0.05697377026081085,
+        "event_interval_ms_per_call": 0.05672639846801758
+      },
+      {
+        "round": 3,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.010400712490081787,
+        "submit_ms_per_call": 0.010196790099143982,
+        "event_interval_ms_per_call": 0.010024960041046143
+      },
+      {
+        "round": 3,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.007213205099105835,
+        "submit_ms_per_call": 0.007076337933540344,
+        "event_interval_ms_per_call": 0.0069222402572631835
+      },
+      {
+        "round": 3,
+        "provider": "eager",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.01883760094642639,
+        "submit_ms_per_call": 0.018284469842910767,
+        "event_interval_ms_per_call": 0.01810688018798828
+      },
+      {
+        "round": 3,
+        "provider": "compiled",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.049615278840065,
+        "submit_ms_per_call": 0.04937499761581421,
+        "event_interval_ms_per_call": 0.049159998893737795
+      },
+      {
+        "round": 3,
+        "provider": "triton",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.030548572540283203,
+        "submit_ms_per_call": 0.03030836582183838,
+        "event_interval_ms_per_call": 0.030126399993896484
+      },
+      {
+        "round": 4,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.0076517462730407715,
+        "submit_ms_per_call": 0.0074729323387146,
+        "event_interval_ms_per_call": 0.007311360239982605
+      },
+      {
+        "round": 4,
+        "provider": "eager",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.017228424549102783,
+        "submit_ms_per_call": 0.017035752534866333,
+        "event_interval_ms_per_call": 0.016870720386505125
+      },
+      {
+        "round": 4,
+        "provider": "compiled",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.049539729952812195,
+        "submit_ms_per_call": 0.04929393529891968,
+        "event_interval_ms_per_call": 0.04908703804016113
+      },
+      {
+        "round": 4,
+        "provider": "triton",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.02858184278011322,
+        "submit_ms_per_call": 0.028333216905593872,
+        "event_interval_ms_per_call": 0.02795520067214966
+      },
+      {
+        "round": 4,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.011741667985916138,
+        "submit_ms_per_call": 0.011509880423545837,
+        "event_interval_ms_per_call": 0.011321280002593994
+      },
+      {
+        "round": 5,
+        "provider": "eager",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.017421171069145203,
+        "submit_ms_per_call": 0.017236843705177307,
+        "event_interval_ms_per_call": 0.017068480253219605
+      },
+      {
+        "round": 5,
+        "provider": "compiled",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.050319209694862366,
+        "submit_ms_per_call": 0.05007058382034302,
+        "event_interval_ms_per_call": 0.049856319427490234
+      },
+      {
+        "round": 5,
+        "provider": "triton",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.02943389117717743,
+        "submit_ms_per_call": 0.029196366667747498,
+        "event_interval_ms_per_call": 0.028996479511260987
+      },
+      {
+        "round": 5,
+        "provider": "tvm_off",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.009861588478088379,
+        "submit_ms_per_call": 0.009694024920463562,
+        "event_interval_ms_per_call": 0.009541760087013245
+      },
+      {
+        "round": 5,
+        "provider": "tvm_on",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.007140561938285828,
+        "submit_ms_per_call": 0.006995350122451782,
+        "event_interval_ms_per_call": 0.006844800114631653
+      },
+      {
+        "round": 6,
+        "provider": "compiled",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.05269661545753479,
+        "submit_ms_per_call": 0.052456334233284,
+        "event_interval_ms_per_call": 0.052250881195068356
+      },
+      {
+        "round": 6,
+        "provider": "triton",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.030171498656272888,
+        "submit_ms_per_call": 0.02992004156112671,
+        "event_interval_ms_per_call": 0.029716479778289794
+      },
+      {
+        "round": 6,
+        "provider": "tvm_off",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.009953752160072327,
+        "submit_ms_per_call": 0.009794533252716064,
+        "event_interval_ms_per_call": 0.009643840193748475
+      },
+      {
+        "round": 6,
+        "provider": "tvm_on",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.007188096642494202,
+        "submit_ms_per_call": 0.007040053606033325,
+        "event_interval_ms_per_call": 0.00690176010131836
+      },
+      {
+        "round": 6,
+        "provider": "eager",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.02039089798927307,
+        "submit_ms_per_call": 0.018122419714927673,
+        "event_interval_ms_per_call": 0.01794047951698303
+      },
+      {
+        "round": 7,
+        "provider": "triton",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.027704685926437378,
+        "submit_ms_per_call": 0.027442052960395813,
+        "event_interval_ms_per_call": 0.02724128007888794
+      },
+      {
+        "round": 7,
+        "provider": "tvm_off",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.011129975318908691,
+        "submit_ms_per_call": 0.010864511132240295,
+        "event_interval_ms_per_call": 0.010688960552215576
+      },
+      {
+        "round": 7,
+        "provider": "tvm_on",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.01032806932926178,
+        "submit_ms_per_call": 0.010054334998130798,
+        "event_interval_ms_per_call": 0.009794880151748658
+      },
+      {
+        "round": 7,
+        "provider": "eager",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.025017186999320984,
+        "submit_ms_per_call": 0.024732202291488647,
+        "event_interval_ms_per_call": 0.0244815993309021
+      },
+      {
+        "round": 7,
+        "provider": "compiled",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.05582273006439209,
+        "submit_ms_per_call": 0.05557417869567871,
+        "event_interval_ms_per_call": 0.05457920074462891
+      },
+      {
+        "round": 8,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.009772107005119324,
+        "submit_ms_per_call": 0.009612888097763062,
+        "event_interval_ms_per_call": 0.009441599845886231
+      },
+      {
+        "round": 8,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.007724389433860779,
+        "submit_ms_per_call": 0.007542818784713745,
+        "event_interval_ms_per_call": 0.007387199997901916
+      },
+      {
+        "round": 8,
+        "provider": "eager",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.019404664635658264,
+        "submit_ms_per_call": 0.019186735153198242,
+        "event_interval_ms_per_call": 0.019009920358657836
+      },
+      {
+        "round": 8,
+        "provider": "compiled",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.050358399748802185,
+        "submit_ms_per_call": 0.05011811852455139,
+        "event_interval_ms_per_call": 0.049911999702453615
+      },
+      {
+        "round": 8,
+        "provider": "triton",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.03112122416496277,
+        "submit_ms_per_call": 0.03087259829044342,
+        "event_interval_ms_per_call": 0.030685760974884034
+      },
+      {
+        "round": 9,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.007475763559341431,
+        "submit_ms_per_call": 0.0073165446519851685,
+        "event_interval_ms_per_call": 0.007165759801864624
+      },
+      {
+        "round": 9,
+        "provider": "eager",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.019809752702713013,
+        "submit_ms_per_call": 0.019580572843551636,
+        "event_interval_ms_per_call": 0.019415040016174317
+      },
+      {
+        "round": 9,
+        "provider": "compiled",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.0673297792673111,
+        "submit_ms_per_call": 0.06701134145259857,
+        "event_interval_ms_per_call": 0.0667852783203125
+      },
+      {
+        "round": 9,
+        "provider": "triton",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.029601454734802246,
+        "submit_ms_per_call": 0.029352828860282898,
+        "event_interval_ms_per_call": 0.029081599712371828
+      },
+      {
+        "round": 9,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.009962096810340881,
+        "submit_ms_per_call": 0.009797289967536926,
+        "event_interval_ms_per_call": 0.009625599980354308
+      }
+    ],
+    "input_sha256": [
+      "06837bfb7d9048eb200033f09b088b5c9ce836c20e68c5f2460a2b88493841ef",
+      "3671d2476c22d1d0c57eb785a533ff97eeff2658a519a5a25c7a21c4d2004df0"
+    ]
+  },
+  {
+    "dtype": "float16",
+    "shape": [
+      1,
+      5632
+    ],
+    "compile": {
+      "triton_first_call_seconds": 0.12366599589586258,
+      "compiled_first_call_seconds": 0.39674847573041916,
+      "tvm_off_build_first_call_seconds": 0.5399887338280678,
+      "tvm_on_build_first_call_seconds": 0.5321936160326004
+    },
+    "accuracy": {
+      "eager": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "triton": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "compiled": {
+        "bitwise_mismatches": 1510,
+        "max_abs_error": 0.00390625,
+        "tolerance_passed": true
+      },
+      "tvm_off": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "tvm_on": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      }
+    },
+    "rtol": 0.003,
+    "atol": 0.003,
+    "samples": [
+      {
+        "round": 0,
+        "provider": "eager",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.018393471837043762,
+        "submit_ms_per_call": 0.018169954419136047,
+        "event_interval_ms_per_call": 0.017952959537506103
+      },
+      {
+        "round": 0,
+        "provider": "compiled",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.053543075919151306,
+        "submit_ms_per_call": 0.05323581397533417,
+        "event_interval_ms_per_call": 0.05302271842956543
+      },
+      {
+        "round": 0,
+        "provider": "triton",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.04704505205154419,
+        "submit_ms_per_call": 0.046804770827293396,
+        "event_interval_ms_per_call": 0.04655104160308838
+      },
+      {
+        "round": 0,
+        "provider": "tvm_off",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.009850412607192993,
+        "submit_ms_per_call": 0.009685605764389038,
+        "event_interval_ms_per_call": 0.009528639912605285
+      },
+      {
+        "round": 0,
+        "provider": "tvm_on",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.007311031222343445,
+        "submit_ms_per_call": 0.007160156965255737,
+        "event_interval_ms_per_call": 0.0070156800746917726
+      },
+      {
+        "round": 1,
+        "provider": "compiled",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.052822455763816833,
+        "submit_ms_per_call": 0.05258210003376007,
+        "event_interval_ms_per_call": 0.05238783836364746
+      },
+      {
+        "round": 1,
+        "provider": "triton",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.028612539172172546,
+        "submit_ms_per_call": 0.02834998071193695,
+        "event_interval_ms_per_call": 0.028161280155181885
+      },
+      {
+        "round": 1,
+        "provider": "tvm_off",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.01161038875579834,
+        "submit_ms_per_call": 0.01141764223575592,
+        "event_interval_ms_per_call": 0.011240320205688476
+      },
+      {
+        "round": 1,
+        "provider": "tvm_on",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.0073165446519851685,
+        "submit_ms_per_call": 0.007168501615524292,
+        "event_interval_ms_per_call": 0.007018240094184875
+      },
+      {
+        "round": 1,
+        "provider": "eager",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.017683804035186768,
+        "submit_ms_per_call": 0.01749381422996521,
+        "event_interval_ms_per_call": 0.01732800006866455
+      },
+      {
+        "round": 2,
+        "provider": "triton",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.04137121140956879,
+        "submit_ms_per_call": 0.041052624583244324,
+        "event_interval_ms_per_call": 0.04082431793212891
+      },
+      {
+        "round": 2,
+        "provider": "tvm_off",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.015088468790054321,
+        "submit_ms_per_call": 0.014809072017669678,
+        "event_interval_ms_per_call": 0.014561280012130737
+      },
+      {
+        "round": 2,
+        "provider": "tvm_on",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.009856000542640686,
+        "submit_ms_per_call": 0.00966884195804596,
+        "event_interval_ms_per_call": 0.009456319808959961
+      },
+      {
+        "round": 2,
+        "provider": "eager",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.017700642347335815,
+        "submit_ms_per_call": 0.017524585127830505,
+        "event_interval_ms_per_call": 0.017363840341567995
+      },
+      {
+        "round": 2,
+        "provider": "compiled",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.05093663930892944,
+        "submit_ms_per_call": 0.05069643259048462,
+        "event_interval_ms_per_call": 0.05035808086395264
+      },
+      {
+        "round": 3,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.00974699854850769,
+        "submit_ms_per_call": 0.009585022926330566,
+        "event_interval_ms_per_call": 0.00942143976688385
+      },
+      {
+        "round": 3,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.007115453481674194,
+        "submit_ms_per_call": 0.006972998380661011,
+        "event_interval_ms_per_call": 0.006819519996643066
+      },
+      {
+        "round": 3,
+        "provider": "eager",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.020111575722694397,
+        "submit_ms_per_call": 0.019896402955055237,
+        "event_interval_ms_per_call": 0.019720319509506225
+      },
+      {
+        "round": 3,
+        "provider": "compiled",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.05253739655017853,
+        "submit_ms_per_call": 0.052260830998420715,
+        "event_interval_ms_per_call": 0.05206143856048584
+      },
+      {
+        "round": 3,
+        "provider": "triton",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.030956491827964783,
+        "submit_ms_per_call": 0.030727460980415344,
+        "event_interval_ms_per_call": 0.030532159805297852
+      },
+      {
+        "round": 4,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.007425546646118164,
+        "submit_ms_per_call": 0.007260739803314209,
+        "event_interval_ms_per_call": 0.0071043199300765995
+      },
+      {
+        "round": 4,
+        "provider": "eager",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.027386173605918884,
+        "submit_ms_per_call": 0.027081668376922607,
+        "event_interval_ms_per_call": 0.0268287992477417
+      },
+      {
+        "round": 4,
+        "provider": "compiled",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.059099793434143066,
+        "submit_ms_per_call": 0.05885384976863861,
+        "event_interval_ms_per_call": 0.058583040237426755
+      },
+      {
+        "round": 4,
+        "provider": "triton",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.030238479375839233,
+        "submit_ms_per_call": 0.030003860592842102,
+        "event_interval_ms_per_call": 0.029816639423370362
+      },
+      {
+        "round": 4,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.009481608867645264,
+        "submit_ms_per_call": 0.009325146675109863,
+        "event_interval_ms_per_call": 0.009172800183296203
+      },
+      {
+        "round": 5,
+        "provider": "eager",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.019547194242477417,
+        "submit_ms_per_call": 0.019332095980644226,
+        "event_interval_ms_per_call": 0.019157119989395142
+      },
+      {
+        "round": 5,
+        "provider": "compiled",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.05014874041080475,
+        "submit_ms_per_call": 0.049908533692359924,
+        "event_interval_ms_per_call": 0.04970304012298584
+      },
+      {
+        "round": 5,
+        "provider": "triton",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.04364803433418274,
+        "submit_ms_per_call": 0.04333235323429108,
+        "event_interval_ms_per_call": 0.0431276798248291
+      },
+      {
+        "round": 5,
+        "provider": "tvm_off",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.015119165182113647,
+        "submit_ms_per_call": 0.014834180474281311,
+        "event_interval_ms_per_call": 0.014602559804916381
+      },
+      {
+        "round": 5,
+        "provider": "tvm_on",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.007539987564086914,
+        "submit_ms_per_call": 0.00737801194190979,
+        "event_interval_ms_per_call": 0.007210879921913147
+      },
+      {
+        "round": 6,
+        "provider": "compiled",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.050766244530677795,
+        "submit_ms_per_call": 0.05053430795669556,
+        "event_interval_ms_per_call": 0.05032639980316162
+      },
+      {
+        "round": 6,
+        "provider": "triton",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.030428394675254822,
+        "submit_ms_per_call": 0.030179768800735474,
+        "event_interval_ms_per_call": 0.02998879909515381
+      },
+      {
+        "round": 6,
+        "provider": "tvm_off",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.009635314345359802,
+        "submit_ms_per_call": 0.009473264217376709,
+        "event_interval_ms_per_call": 0.00931711971759796
+      },
+      {
+        "round": 6,
+        "provider": "tvm_on",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.007520541548728943,
+        "submit_ms_per_call": 0.007344484329223633,
+        "event_interval_ms_per_call": 0.007186560034751892
+      },
+      {
+        "round": 6,
+        "provider": "eager",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.019586235284805298,
+        "submit_ms_per_call": 0.019368305802345276,
+        "event_interval_ms_per_call": 0.019190720319747924
+      },
+      {
+        "round": 7,
+        "provider": "triton",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.032669007778167725,
+        "submit_ms_per_call": 0.03237009048461914,
+        "event_interval_ms_per_call": 0.03217184066772461
+      },
+      {
+        "round": 7,
+        "provider": "tvm_off",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.014244765043258667,
+        "submit_ms_per_call": 0.013987720012664795,
+        "event_interval_ms_per_call": 0.01375264048576355
+      },
+      {
+        "round": 7,
+        "provider": "tvm_on",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.010649338364601135,
+        "submit_ms_per_call": 0.01042589545249939,
+        "event_interval_ms_per_call": 0.010098880529403687
+      },
+      {
+        "round": 7,
+        "provider": "eager",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.02413436770439148,
+        "submit_ms_per_call": 0.023910850286483765,
+        "event_interval_ms_per_call": 0.023690240383148195
+      },
+      {
+        "round": 7,
+        "provider": "compiled",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.05106233060359955,
+        "submit_ms_per_call": 0.050824880599975586,
+        "event_interval_ms_per_call": 0.050611200332641604
+      },
+      {
+        "round": 8,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.009738653898239136,
+        "submit_ms_per_call": 0.009582266211509705,
+        "event_interval_ms_per_call": 0.009433919787406922
+      },
+      {
+        "round": 8,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.008763670921325684,
+        "submit_ms_per_call": 0.008584931492805481,
+        "event_interval_ms_per_call": 0.00841472029685974
+      },
+      {
+        "round": 8,
+        "provider": "eager",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.017644688487052917,
+        "submit_ms_per_call": 0.01745752990245819,
+        "event_interval_ms_per_call": 0.017297279834747315
+      },
+      {
+        "round": 8,
+        "provider": "compiled",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.04970744252204895,
+        "submit_ms_per_call": 0.04947282373905182,
+        "event_interval_ms_per_call": 0.04925439834594727
+      },
+      {
+        "round": 8,
+        "provider": "triton",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.03155432641506195,
+        "submit_ms_per_call": 0.03131687641143799,
+        "event_interval_ms_per_call": 0.03112544059753418
+      },
+      {
+        "round": 9,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.007509291172027588,
+        "submit_ms_per_call": 0.007347315549850464,
+        "event_interval_ms_per_call": 0.007188479900360107
+      },
+      {
+        "round": 9,
+        "provider": "eager",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.01980133354663849,
+        "submit_ms_per_call": 0.01957230269908905,
+        "event_interval_ms_per_call": 0.019400960206985472
+      },
+      {
+        "round": 9,
+        "provider": "compiled",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.05071870982646942,
+        "submit_ms_per_call": 0.05041144788265228,
+        "event_interval_ms_per_call": 0.05021183967590332
+      },
+      {
+        "round": 9,
+        "provider": "triton",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.0469333678483963,
+        "submit_ms_per_call": 0.04661768674850464,
+        "event_interval_ms_per_call": 0.04634592056274414
+      },
+      {
+        "round": 9,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.012828484177589417,
+        "submit_ms_per_call": 0.012618973851203918,
+        "event_interval_ms_per_call": 0.01238368034362793
+      }
+    ],
+    "input_sha256": [
+      "30e0cab8017e9352250f973e83e6e23f60bb4e32580f2c04fb1948ae4e20ec9a",
+      "5275b8f10c7ac977ffeedc9ef3a440c4848f3f8dacda3c4f9080076ae9aeaa66"
+    ]
+  },
+  {
+    "dtype": "float16",
+    "shape": [
+      128,
+      5632
+    ],
+    "compile": {
+      "triton_first_call_seconds": 0.12577660381793976,
+      "compiled_first_call_seconds": 0.4177866205573082,
+      "tvm_off_build_first_call_seconds": 0.5475986450910568,
+      "tvm_on_build_first_call_seconds": 0.5415772199630737
+    },
+    "accuracy": {
+      "eager": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "triton": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "compiled": {
+        "bitwise_mismatches": 192085,
+        "max_abs_error": 0.0078125,
+        "tolerance_passed": true
+      },
+      "tvm_off": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "tvm_on": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      }
+    },
+    "rtol": 0.003,
+    "atol": 0.003,
+    "samples": [
+      {
+        "round": 0,
+        "provider": "eager",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.030028969049453735,
+        "submit_ms_per_call": 0.01957230269908905,
+        "event_interval_ms_per_call": 0.02977152109146118
+      },
+      {
+        "round": 0,
+        "provider": "compiled",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.05201220512390137,
+        "submit_ms_per_call": 0.05176633596420288,
+        "event_interval_ms_per_call": 0.0515337610244751
+      },
+      {
+        "round": 0,
+        "provider": "triton",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.02902597188949585,
+        "submit_ms_per_call": 0.028785690665245056,
+        "event_interval_ms_per_call": 0.02836319923400879
+      },
+      {
+        "round": 0,
+        "provider": "tvm_off",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.05173005163669586,
+        "submit_ms_per_call": 0.011462345719337463,
+        "event_interval_ms_per_call": 0.05147615909576416
+      },
+      {
+        "round": 0,
+        "provider": "tvm_on",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.02877458930015564,
+        "submit_ms_per_call": 0.007202029228210449,
+        "event_interval_ms_per_call": 0.028551681041717528
+      },
+      {
+        "round": 1,
+        "provider": "compiled",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.053755491971969604,
+        "submit_ms_per_call": 0.05351521074771881,
+        "event_interval_ms_per_call": 0.05331232070922851
+      },
+      {
+        "round": 1,
+        "provider": "triton",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.028729885816574097,
+        "submit_ms_per_call": 0.028511956334114075,
+        "event_interval_ms_per_call": 0.028338239192962647
+      },
+      {
+        "round": 1,
+        "provider": "tvm_off",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.0515931099653244,
+        "submit_ms_per_call": 0.011177361011505127,
+        "event_interval_ms_per_call": 0.051324801445007326
+      },
+      {
+        "round": 1,
+        "provider": "tvm_on",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.028819292783737183,
+        "submit_ms_per_call": 0.007182508707046509,
+        "event_interval_ms_per_call": 0.028567039966583253
+      },
+      {
+        "round": 1,
+        "provider": "eager",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.031193941831588745,
+        "submit_ms_per_call": 0.019332095980644226,
+        "event_interval_ms_per_call": 0.03094496011734009
+      },
+      {
+        "round": 2,
+        "provider": "triton",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.03087267279624939,
+        "submit_ms_per_call": 0.03056257963180542,
+        "event_interval_ms_per_call": 0.030372159481048586
+      },
+      {
+        "round": 2,
+        "provider": "tvm_off",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.05175240337848663,
+        "submit_ms_per_call": 0.009330809116363525,
+        "event_interval_ms_per_call": 0.05146592140197754
+      },
+      {
+        "round": 2,
+        "provider": "tvm_on",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.028768926858901978,
+        "submit_ms_per_call": 0.00873573124408722,
+        "event_interval_ms_per_call": 0.028527679443359374
+      },
+      {
+        "round": 2,
+        "provider": "eager",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.029984265565872192,
+        "submit_ms_per_call": 0.019429773092269897,
+        "event_interval_ms_per_call": 0.029739201068878174
+      },
+      {
+        "round": 2,
+        "provider": "compiled",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.05256257951259613,
+        "submit_ms_per_call": 0.052322372794151306,
+        "event_interval_ms_per_call": 0.05210207939147949
+      },
+      {
+        "round": 3,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.05165174603462219,
+        "submit_ms_per_call": 0.010283440351486206,
+        "event_interval_ms_per_call": 0.051384320259094236
+      },
+      {
+        "round": 3,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.028783008456230164,
+        "submit_ms_per_call": 0.008685439825057983,
+        "event_interval_ms_per_call": 0.028548800945281984
+      },
+      {
+        "round": 3,
+        "provider": "eager",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.029975920915603638,
+        "submit_ms_per_call": 0.019354522228240967,
+        "event_interval_ms_per_call": 0.029752640724182128
+      },
+      {
+        "round": 3,
+        "provider": "compiled",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.05174949765205383,
+        "submit_ms_per_call": 0.05151204764842987,
+        "event_interval_ms_per_call": 0.05129183769226074
+      },
+      {
+        "round": 3,
+        "provider": "triton",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.0298222154378891,
+        "submit_ms_per_call": 0.029584765434265137,
+        "event_interval_ms_per_call": 0.029389119148254393
+      },
+      {
+        "round": 4,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.028861165046691895,
+        "submit_ms_per_call": 0.0071824342012405396,
+        "event_interval_ms_per_call": 0.02858400106430054
+      },
+      {
+        "round": 4,
+        "provider": "eager",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.030065253376960754,
+        "submit_ms_per_call": 0.01730106770992279,
+        "event_interval_ms_per_call": 0.029684479236602782
+      },
+      {
+        "round": 4,
+        "provider": "compiled",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.051464587450027466,
+        "submit_ms_per_call": 0.05123555660247803,
+        "event_interval_ms_per_call": 0.05095424175262451
+      },
+      {
+        "round": 4,
+        "provider": "triton",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.03063797950744629,
+        "submit_ms_per_call": 0.030411705374717712,
+        "event_interval_ms_per_call": 0.03021536111831665
+      },
+      {
+        "round": 4,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.05170494318008423,
+        "submit_ms_per_call": 0.00980861485004425,
+        "event_interval_ms_per_call": 0.051425600051879884
+      },
+      {
+        "round": 5,
+        "provider": "eager",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.029989853501319885,
+        "submit_ms_per_call": 0.017253607511520386,
+        "event_interval_ms_per_call": 0.029716479778289794
+      },
+      {
+        "round": 5,
+        "provider": "compiled",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.05132213234901428,
+        "submit_ms_per_call": 0.05109027028083801,
+        "event_interval_ms_per_call": 0.05087232112884522
+      },
+      {
+        "round": 5,
+        "provider": "triton",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.029752403497695923,
+        "submit_ms_per_call": 0.029520466923713684,
+        "event_interval_ms_per_call": 0.029327359199523926
+      },
+      {
+        "round": 5,
+        "provider": "tvm_off",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.05177199840545654,
+        "submit_ms_per_call": 0.009423047304153442,
+        "event_interval_ms_per_call": 0.05148640155792236
+      },
+      {
+        "round": 5,
+        "provider": "tvm_on",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.028822124004364014,
+        "submit_ms_per_call": 0.007143393158912659,
+        "event_interval_ms_per_call": 0.028559041023254395
+      },
+      {
+        "round": 6,
+        "provider": "compiled",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.05147024989128113,
+        "submit_ms_per_call": 0.05122445523738861,
+        "event_interval_ms_per_call": 0.05101600170135498
+      },
+      {
+        "round": 6,
+        "provider": "triton",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.03026634454727173,
+        "submit_ms_per_call": 0.030034556984901428,
+        "event_interval_ms_per_call": 0.029838080406188964
+      },
+      {
+        "round": 6,
+        "provider": "tvm_off",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.05174405872821808,
+        "submit_ms_per_call": 0.009428560733795166,
+        "event_interval_ms_per_call": 0.051445441246032717
+      },
+      {
+        "round": 6,
+        "provider": "tvm_on",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.028878003358840942,
+        "submit_ms_per_call": 0.007218793034553528,
+        "event_interval_ms_per_call": 0.028593599796295166
+      },
+      {
+        "round": 6,
+        "provider": "eager",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.03021053969860077,
+        "submit_ms_per_call": 0.017273128032684326,
+        "event_interval_ms_per_call": 0.02993920087814331
+      },
+      {
+        "round": 7,
+        "provider": "triton",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.02881646156311035,
+        "submit_ms_per_call": 0.028604120016098022,
+        "event_interval_ms_per_call": 0.02842623949050903
+      },
+      {
+        "round": 7,
+        "provider": "tvm_off",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.051637813448905945,
+        "submit_ms_per_call": 0.011230409145355225,
+        "event_interval_ms_per_call": 0.0513702392578125
+      },
+      {
+        "round": 7,
+        "provider": "tvm_on",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.02879418432712555,
+        "submit_ms_per_call": 0.007207617163658142,
+        "event_interval_ms_per_call": 0.028575038909912108
+      },
+      {
+        "round": 7,
+        "provider": "eager",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.031093284487724304,
+        "submit_ms_per_call": 0.019094571471214294,
+        "event_interval_ms_per_call": 0.03086303949356079
+      },
+      {
+        "round": 7,
+        "provider": "compiled",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.053501203656196594,
+        "submit_ms_per_call": 0.05327492952346802,
+        "event_interval_ms_per_call": 0.053066558837890625
+      },
+      {
+        "round": 8,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.0516238808631897,
+        "submit_ms_per_call": 0.009956508874893188,
+        "event_interval_ms_per_call": 0.051363840103149414
+      },
+      {
+        "round": 8,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.028802528977394104,
+        "submit_ms_per_call": 0.00716574490070343,
+        "event_interval_ms_per_call": 0.02856640100479126
+      },
+      {
+        "round": 8,
+        "provider": "eager",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.029956325888633728,
+        "submit_ms_per_call": 0.017197728157043457,
+        "event_interval_ms_per_call": 0.02972991943359375
+      },
+      {
+        "round": 8,
+        "provider": "compiled",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.056476518511772156,
+        "submit_ms_per_call": 0.05622789263725281,
+        "event_interval_ms_per_call": 0.05601439952850342
+      },
+      {
+        "round": 8,
+        "provider": "triton",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.0311240553855896,
+        "submit_ms_per_call": 0.030886605381965637,
+        "event_interval_ms_per_call": 0.030687999725341798
+      },
+      {
+        "round": 9,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.028914213180541992,
+        "submit_ms_per_call": 0.007383599877357483,
+        "event_interval_ms_per_call": 0.028677759170532228
+      },
+      {
+        "round": 9,
+        "provider": "eager",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.0300569087266922,
+        "submit_ms_per_call": 0.019636601209640503,
+        "event_interval_ms_per_call": 0.029838080406188964
+      },
+      {
+        "round": 9,
+        "provider": "compiled",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.05084730684757233,
+        "submit_ms_per_call": 0.0506071001291275,
+        "event_interval_ms_per_call": 0.05039872169494629
+      },
+      {
+        "round": 9,
+        "provider": "triton",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.03189511597156525,
+        "submit_ms_per_call": 0.031660497188568115,
+        "event_interval_ms_per_call": 0.0314736008644104
+      },
+      {
+        "round": 9,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.0528474897146225,
+        "submit_ms_per_call": 0.00994265079498291,
+        "event_interval_ms_per_call": 0.05148767948150635
+      }
+    ],
+    "input_sha256": [
+      "e9878f0f84f5a79e1f46ba822172767d753ef4e0cc78f1345d2370f8e0ee2ee1",
+      "5614a520f912ca072d8f33845f33a764514fb11efa71e7d1b9559afa9213bb56"
+    ]
+  },
+  {
+    "dtype": "float16",
+    "shape": [
+      1024,
+      5632
+    ],
+    "compile": {
+      "triton_first_call_seconds": 0.11697100847959518,
+      "compiled_first_call_seconds": 0.4228068068623543,
+      "tvm_off_build_first_call_seconds": 0.5513371080160141,
+      "tvm_on_build_first_call_seconds": 0.5298883020877838
+    },
+    "accuracy": {
+      "eager": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "triton": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "compiled": {
+        "bitwise_mismatches": 1534695,
+        "max_abs_error": 0.0078125,
+        "tolerance_passed": true
+      },
+      "tvm_off": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "tvm_on": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      }
+    },
+    "rtol": 0.003,
+    "atol": 0.003,
+    "samples": [
+      {
+        "round": 0,
+        "provider": "eager",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.2023497223854065,
+        "submit_ms_per_call": 0.018069371581077576,
+        "event_interval_ms_per_call": 0.20197376251220703
+      },
+      {
+        "round": 0,
+        "provider": "compiled",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.12245133519172668,
+        "submit_ms_per_call": 0.05192555487155914,
+        "event_interval_ms_per_call": 0.12216256141662597
+      },
+      {
+        "round": 0,
+        "provider": "triton",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.12229204177856445,
+        "submit_ms_per_call": 0.028900280594825745,
+        "event_interval_ms_per_call": 0.12199647903442383
+      },
+      {
+        "round": 0,
+        "provider": "tvm_off",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.2805497497320175,
+        "submit_ms_per_call": 0.01023605465888977,
+        "event_interval_ms_per_call": 0.28022367477416993
+      },
+      {
+        "round": 0,
+        "provider": "tvm_on",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.17247721552848816,
+        "submit_ms_per_call": 0.007380843162536621,
+        "event_interval_ms_per_call": 0.17218944549560547
+      },
+      {
+        "round": 1,
+        "provider": "compiled",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.122409388422966,
+        "submit_ms_per_call": 0.050707533955574036,
+        "event_interval_ms_per_call": 0.12210176467895507
+      },
+      {
+        "round": 1,
+        "provider": "triton",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.12255474925041199,
+        "submit_ms_per_call": 0.030705034732818604,
+        "event_interval_ms_per_call": 0.12224703788757324
+      },
+      {
+        "round": 1,
+        "provider": "tvm_off",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.2648688852787018,
+        "submit_ms_per_call": 0.021343529224395752,
+        "event_interval_ms_per_call": 0.26449888229370117
+      },
+      {
+        "round": 1,
+        "provider": "tvm_on",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.13724930584430695,
+        "submit_ms_per_call": 0.007489845156669617,
+        "event_interval_ms_per_call": 0.13694496154785157
+      },
+      {
+        "round": 1,
+        "provider": "eager",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.205235555768013,
+        "submit_ms_per_call": 0.0209692120552063,
+        "event_interval_ms_per_call": 0.20428575515747072
+      },
+      {
+        "round": 2,
+        "provider": "triton",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.12351565062999725,
+        "submit_ms_per_call": 0.02947293221950531,
+        "event_interval_ms_per_call": 0.12317919731140137
+      },
+      {
+        "round": 2,
+        "provider": "tvm_off",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.24165920913219452,
+        "submit_ms_per_call": 0.009909048676490784,
+        "event_interval_ms_per_call": 0.24135168075561522
+      },
+      {
+        "round": 2,
+        "provider": "tvm_on",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.13145804405212402,
+        "submit_ms_per_call": 0.0074926018714904785,
+        "event_interval_ms_per_call": 0.13118656158447264
+      },
+      {
+        "round": 2,
+        "provider": "eager",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.20348399877548218,
+        "submit_ms_per_call": 0.020119845867156982,
+        "event_interval_ms_per_call": 0.20320127487182618
+      },
+      {
+        "round": 2,
+        "provider": "compiled",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.12426160275936127,
+        "submit_ms_per_call": 0.05822524428367615,
+        "event_interval_ms_per_call": 0.12398719787597656
+      },
+      {
+        "round": 3,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.24090208113193512,
+        "submit_ms_per_call": 0.011534914374351501,
+        "event_interval_ms_per_call": 0.24057632446289062
+      },
+      {
+        "round": 3,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.1309356838464737,
+        "submit_ms_per_call": 0.008512288331985474,
+        "event_interval_ms_per_call": 0.13064672470092772
+      },
+      {
+        "round": 3,
+        "provider": "eager",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.2038806676864624,
+        "submit_ms_per_call": 0.01833193004131317,
+        "event_interval_ms_per_call": 0.20351455688476563
+      },
+      {
+        "round": 3,
+        "provider": "compiled",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.1235855370759964,
+        "submit_ms_per_call": 0.052649155259132385,
+        "event_interval_ms_per_call": 0.12330207824707032
+      },
+      {
+        "round": 3,
+        "provider": "triton",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.12308277189731598,
+        "submit_ms_per_call": 0.030828043818473816,
+        "event_interval_ms_per_call": 0.12276000022888184
+      },
+      {
+        "round": 4,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.1319553703069687,
+        "submit_ms_per_call": 0.007763579487800598,
+        "event_interval_ms_per_call": 0.13164959907531737
+      },
+      {
+        "round": 4,
+        "provider": "eager",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.20342260599136353,
+        "submit_ms_per_call": 0.019896402955055237,
+        "event_interval_ms_per_call": 0.2031283187866211
+      },
+      {
+        "round": 4,
+        "provider": "compiled",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.12328937649726868,
+        "submit_ms_per_call": 0.05384758114814758,
+        "event_interval_ms_per_call": 0.12302592277526855
+      },
+      {
+        "round": 4,
+        "provider": "triton",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.12425877153873444,
+        "submit_ms_per_call": 0.030989870429039,
+        "event_interval_ms_per_call": 0.12394495964050294
+      },
+      {
+        "round": 4,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.23913651704788208,
+        "submit_ms_per_call": 0.010168924927711487,
+        "event_interval_ms_per_call": 0.23878303527832032
+      },
+      {
+        "round": 5,
+        "provider": "eager",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.20386390388011932,
+        "submit_ms_per_call": 0.018100067973136902,
+        "event_interval_ms_per_call": 0.20347808837890624
+      },
+      {
+        "round": 5,
+        "provider": "compiled",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.12394309043884277,
+        "submit_ms_per_call": 0.0538615882396698,
+        "event_interval_ms_per_call": 0.1236355209350586
+      },
+      {
+        "round": 5,
+        "provider": "triton",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.12313857674598694,
+        "submit_ms_per_call": 0.03065750002861023,
+        "event_interval_ms_per_call": 0.12285728454589843
+      },
+      {
+        "round": 5,
+        "provider": "tvm_off",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.237189382314682,
+        "submit_ms_per_call": 0.010009631514549255,
+        "event_interval_ms_per_call": 0.23685792922973634
+      },
+      {
+        "round": 5,
+        "provider": "tvm_on",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.12907512485980988,
+        "submit_ms_per_call": 0.0074478983879089355,
+        "event_interval_ms_per_call": 0.12876255989074706
+      },
+      {
+        "round": 6,
+        "provider": "compiled",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.12344591319561005,
+        "submit_ms_per_call": 0.05178868770599365,
+        "event_interval_ms_per_call": 0.12316672325134277
+      },
+      {
+        "round": 6,
+        "provider": "triton",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.12289278209209442,
+        "submit_ms_per_call": 0.03046482801437378,
+        "event_interval_ms_per_call": 0.12259327888488769
+      },
+      {
+        "round": 6,
+        "provider": "tvm_off",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.24231016635894775,
+        "submit_ms_per_call": 0.011364519596099854,
+        "event_interval_ms_per_call": 0.24198591232299804
+      },
+      {
+        "round": 6,
+        "provider": "tvm_on",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.13231568038463593,
+        "submit_ms_per_call": 0.008772090077400208,
+        "event_interval_ms_per_call": 0.13201248168945312
+      },
+      {
+        "round": 6,
+        "provider": "eager",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.20322687923908234,
+        "submit_ms_per_call": 0.01824811100959778,
+        "event_interval_ms_per_call": 0.20283872604370118
+      },
+      {
+        "round": 7,
+        "provider": "triton",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.12321121990680695,
+        "submit_ms_per_call": 0.031540319323539734,
+        "event_interval_ms_per_call": 0.12288319587707519
+      },
+      {
+        "round": 7,
+        "provider": "tvm_off",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.24271801114082336,
+        "submit_ms_per_call": 0.010230392217636108,
+        "event_interval_ms_per_call": 0.2423420715332031
+      },
+      {
+        "round": 7,
+        "provider": "tvm_on",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.1333995908498764,
+        "submit_ms_per_call": 0.007467344403266907,
+        "event_interval_ms_per_call": 0.13301152229309082
+      },
+      {
+        "round": 7,
+        "provider": "eager",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.2037046104669571,
+        "submit_ms_per_call": 0.02026788890361786,
+        "event_interval_ms_per_call": 0.20336639404296875
+      },
+      {
+        "round": 7,
+        "provider": "compiled",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.12595459818840027,
+        "submit_ms_per_call": 0.05547076463699341,
+        "event_interval_ms_per_call": 0.125665283203125
+      },
+      {
+        "round": 8,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.2389577031135559,
+        "submit_ms_per_call": 0.010110214352607727,
+        "event_interval_ms_per_call": 0.23861248016357423
+      },
+      {
+        "round": 8,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.12992709875106812,
+        "submit_ms_per_call": 0.0074813514947891235,
+        "event_interval_ms_per_call": 0.12965824127197265
+      },
+      {
+        "round": 8,
+        "provider": "eager",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.20324371755123138,
+        "submit_ms_per_call": 0.01811407506465912,
+        "event_interval_ms_per_call": 0.20291488647460937
+      },
+      {
+        "round": 8,
+        "provider": "compiled",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.1231134682893753,
+        "submit_ms_per_call": 0.052202194929122925,
+        "event_interval_ms_per_call": 0.1228121566772461
+      },
+      {
+        "round": 8,
+        "provider": "triton",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.12306042015552521,
+        "submit_ms_per_call": 0.031023547053337097,
+        "event_interval_ms_per_call": 0.12277024269104003
+      },
+      {
+        "round": 9,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.13396672904491425,
+        "submit_ms_per_call": 0.007721632719039917,
+        "event_interval_ms_per_call": 0.1336729621887207
+      },
+      {
+        "round": 9,
+        "provider": "eager",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.2030286192893982,
+        "submit_ms_per_call": 0.018197819590568542,
+        "event_interval_ms_per_call": 0.20268896102905273
+      },
+      {
+        "round": 9,
+        "provider": "compiled",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.12339279055595398,
+        "submit_ms_per_call": 0.05219385027885437,
+        "event_interval_ms_per_call": 0.12306976318359375
+      },
+      {
+        "round": 9,
+        "provider": "triton",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.12287326157093048,
+        "submit_ms_per_call": 0.03044240176677704,
+        "event_interval_ms_per_call": 0.12259615898132324
+      },
+      {
+        "round": 9,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.24220675230026245,
+        "submit_ms_per_call": 0.010258257389068604,
+        "event_interval_ms_per_call": 0.2418079948425293
+      }
+    ],
+    "input_sha256": [
+      "f4ab575e96e8e77725b1fb4d9f020094d64daa1af1a384a445326aa45bacecb7",
+      "8308c51aea945fbf5df178aa3e722834f40a3b1cef462b2e2b16bd123e8aa7df"
+    ]
+  },
+  {
+    "dtype": "float16",
+    "shape": [
+      1025
+    ],
+    "compile": {
+      "triton_first_call_seconds": 0.12670297175645828,
+      "compiled_first_call_seconds": 0.4042002558708191,
+      "tvm_off_build_first_call_seconds": 0.5369914323091507,
+      "tvm_on_build_first_call_seconds": 0.5276687443256378
+    },
+    "accuracy": {
+      "eager": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "triton": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "compiled": {
+        "bitwise_mismatches": 266,
+        "max_abs_error": 0.001953125,
+        "tolerance_passed": true
+      },
+      "tvm_off": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "tvm_on": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      }
+    },
+    "rtol": 0.003,
+    "atol": 0.003,
+    "samples": [
+      {
+        "round": 0,
+        "provider": "eager",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.017139092087745667,
+        "submit_ms_per_call": 0.01695193350315094,
+        "event_interval_ms_per_call": 0.016735999584197997
+      },
+      {
+        "round": 0,
+        "provider": "compiled",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.052065253257751465,
+        "submit_ms_per_call": 0.05181938409805298,
+        "event_interval_ms_per_call": 0.051620798110961916
+      },
+      {
+        "round": 0,
+        "provider": "triton",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.029704943299293518,
+        "submit_ms_per_call": 0.029313787817955017,
+        "event_interval_ms_per_call": 0.029122560024261473
+      },
+      {
+        "round": 0,
+        "provider": "tvm_off",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.009794533252716064,
+        "submit_ms_per_call": 0.009621307253837585,
+        "event_interval_ms_per_call": 0.00944607973098755
+      },
+      {
+        "round": 0,
+        "provider": "tvm_on",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.00704839825630188,
+        "submit_ms_per_call": 0.006914287805557251,
+        "event_interval_ms_per_call": 0.006778879761695862
+      },
+      {
+        "round": 1,
+        "provider": "compiled",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.04910118877887726,
+        "submit_ms_per_call": 0.0488581508398056,
+        "event_interval_ms_per_call": 0.048585920333862304
+      },
+      {
+        "round": 1,
+        "provider": "triton",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.031238645315170288,
+        "submit_ms_per_call": 0.030995607376098633,
+        "event_interval_ms_per_call": 0.030803520679473877
+      },
+      {
+        "round": 1,
+        "provider": "tvm_off",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.009716302156448364,
+        "submit_ms_per_call": 0.009557083249092102,
+        "event_interval_ms_per_call": 0.00939743995666504
+      },
+      {
+        "round": 1,
+        "provider": "tvm_on",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.0069729238748550415,
+        "submit_ms_per_call": 0.006841644644737244,
+        "event_interval_ms_per_call": 0.0066969597339630125
+      },
+      {
+        "round": 1,
+        "provider": "eager",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.01832924783229828,
+        "submit_ms_per_call": 0.018122494220733643,
+        "event_interval_ms_per_call": 0.01796064019203186
+      },
+      {
+        "round": 2,
+        "provider": "triton",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.030612796545028687,
+        "submit_ms_per_call": 0.030380934476852417,
+        "event_interval_ms_per_call": 0.03019007921218872
+      },
+      {
+        "round": 2,
+        "provider": "tvm_off",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.009842067956924438,
+        "submit_ms_per_call": 0.009682774543762207,
+        "event_interval_ms_per_call": 0.009520639777183532
+      },
+      {
+        "round": 2,
+        "provider": "tvm_on",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.007121041417121887,
+        "submit_ms_per_call": 0.006984099745750427,
+        "event_interval_ms_per_call": 0.0068367999792099
+      },
+      {
+        "round": 2,
+        "provider": "eager",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.019544363021850586,
+        "submit_ms_per_call": 0.019332095980644226,
+        "event_interval_ms_per_call": 0.01915552020072937
+      },
+      {
+        "round": 2,
+        "provider": "compiled",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.049911364912986755,
+        "submit_ms_per_call": 0.049676671624183655,
+        "event_interval_ms_per_call": 0.049459519386291506
+      },
+      {
+        "round": 3,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.009763762354850769,
+        "submit_ms_per_call": 0.009601786732673645,
+        "event_interval_ms_per_call": 0.009441279768943787
+      },
+      {
+        "round": 3,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.007132291793823242,
+        "submit_ms_per_call": 0.0069870054721832275,
+        "event_interval_ms_per_call": 0.006835839748382568
+      },
+      {
+        "round": 3,
+        "provider": "eager",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.01892693340778351,
+        "submit_ms_per_call": 0.0187007337808609,
+        "event_interval_ms_per_call": 0.01852992057800293
+      },
+      {
+        "round": 3,
+        "provider": "compiled",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.0489363819360733,
+        "submit_ms_per_call": 0.04869602620601654,
+        "event_interval_ms_per_call": 0.048497920036315915
+      },
+      {
+        "round": 3,
+        "provider": "triton",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.030573755502700806,
+        "submit_ms_per_call": 0.030325129628181458,
+        "event_interval_ms_per_call": 0.03012608051300049
+      },
+      {
+        "round": 4,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.0073976069688797,
+        "submit_ms_per_call": 0.007241144776344299,
+        "event_interval_ms_per_call": 0.007086079716682434
+      },
+      {
+        "round": 4,
+        "provider": "eager",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.017957612872123718,
+        "submit_ms_per_call": 0.017681047320365906,
+        "event_interval_ms_per_call": 0.016552319526672365
+      },
+      {
+        "round": 4,
+        "provider": "compiled",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.04918225109577179,
+        "submit_ms_per_call": 0.04895605146884918,
+        "event_interval_ms_per_call": 0.04869408130645752
+      },
+      {
+        "round": 4,
+        "provider": "triton",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.02809576690196991,
+        "submit_ms_per_call": 0.027872249484062195,
+        "event_interval_ms_per_call": 0.02767647981643677
+      },
+      {
+        "round": 4,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.009861588478088379,
+        "submit_ms_per_call": 0.009696707129478455,
+        "event_interval_ms_per_call": 0.00952127993106842
+      },
+      {
+        "round": 5,
+        "provider": "eager",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.017432421445846558,
+        "submit_ms_per_call": 0.01723960041999817,
+        "event_interval_ms_per_call": 0.0170687997341156
+      },
+      {
+        "round": 5,
+        "provider": "compiled",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.05085840821266174,
+        "submit_ms_per_call": 0.04881627857685089,
+        "event_interval_ms_per_call": 0.048607039451599124
+      },
+      {
+        "round": 5,
+        "provider": "triton",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.02856515347957611,
+        "submit_ms_per_call": 0.028341636061668396,
+        "event_interval_ms_per_call": 0.0281276798248291
+      },
+      {
+        "round": 5,
+        "provider": "tvm_off",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.012238994240760803,
+        "submit_ms_per_call": 0.012040585279464722,
+        "event_interval_ms_per_call": 0.011861120462417602
+      },
+      {
+        "round": 5,
+        "provider": "tvm_on",
+        "order": [
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on"
+        ],
+        "wall_ms_per_call": 0.007232651114463806,
+        "submit_ms_per_call": 0.007090270519256592,
+        "event_interval_ms_per_call": 0.0069417601823806765
+      },
+      {
+        "round": 6,
+        "provider": "compiled",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.04916265606880188,
+        "submit_ms_per_call": 0.04888609051704407,
+        "event_interval_ms_per_call": 0.04869760036468506
+      },
+      {
+        "round": 6,
+        "provider": "triton",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.029716044664382935,
+        "submit_ms_per_call": 0.029489770531654358,
+        "event_interval_ms_per_call": 0.029299840927124024
+      },
+      {
+        "round": 6,
+        "provider": "tvm_off",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.00962965190410614,
+        "submit_ms_per_call": 0.00947602093219757,
+        "event_interval_ms_per_call": 0.009318400025367737
+      },
+      {
+        "round": 6,
+        "provider": "tvm_on",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.006956234574317932,
+        "submit_ms_per_call": 0.006822124123573303,
+        "event_interval_ms_per_call": 0.006678400039672852
+      },
+      {
+        "round": 6,
+        "provider": "eager",
+        "order": [
+          "compiled",
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager"
+        ],
+        "wall_ms_per_call": 0.01885436475276947,
+        "submit_ms_per_call": 0.01863919198513031,
+        "event_interval_ms_per_call": 0.018471360206604004
+      },
+      {
+        "round": 7,
+        "provider": "triton",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.028165653347969055,
+        "submit_ms_per_call": 0.027947723865509033,
+        "event_interval_ms_per_call": 0.027759358882904053
+      },
+      {
+        "round": 7,
+        "provider": "tvm_off",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.011886954307556152,
+        "submit_ms_per_call": 0.011694282293319702,
+        "event_interval_ms_per_call": 0.011530239582061768
+      },
+      {
+        "round": 7,
+        "provider": "tvm_on",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.007221624255180359,
+        "submit_ms_per_call": 0.007070749998092651,
+        "event_interval_ms_per_call": 0.00691648006439209
+      },
+      {
+        "round": 7,
+        "provider": "eager",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.017130747437477112,
+        "submit_ms_per_call": 0.016946345567703247,
+        "event_interval_ms_per_call": 0.016775039434432985
+      },
+      {
+        "round": 7,
+        "provider": "compiled",
+        "order": [
+          "triton",
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled"
+        ],
+        "wall_ms_per_call": 0.05143672227859497,
+        "submit_ms_per_call": 0.05120210349559784,
+        "event_interval_ms_per_call": 0.05099679946899414
+      },
+      {
+        "round": 8,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.009839311242103577,
+        "submit_ms_per_call": 0.009685605764389038,
+        "event_interval_ms_per_call": 0.009523199796676636
+      },
+      {
+        "round": 8,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.007193610072135925,
+        "submit_ms_per_call": 0.0070539116859436035,
+        "event_interval_ms_per_call": 0.006909120082855225
+      },
+      {
+        "round": 8,
+        "provider": "eager",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.018692314624786377,
+        "submit_ms_per_call": 0.018477216362953186,
+        "event_interval_ms_per_call": 0.018293759822845458
+      },
+      {
+        "round": 8,
+        "provider": "compiled",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.04931353032588959,
+        "submit_ms_per_call": 0.049073249101638794,
+        "event_interval_ms_per_call": 0.04886528015136719
+      },
+      {
+        "round": 8,
+        "provider": "triton",
+        "order": [
+          "tvm_off",
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton"
+        ],
+        "wall_ms_per_call": 0.030372589826583862,
+        "submit_ms_per_call": 0.030129551887512207,
+        "event_interval_ms_per_call": 0.02992799997329712
+      },
+      {
+        "round": 9,
+        "provider": "tvm_on",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.0074087828397750854,
+        "submit_ms_per_call": 0.007255151867866516,
+        "event_interval_ms_per_call": 0.007106559872627258
+      },
+      {
+        "round": 9,
+        "provider": "eager",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.017161443829536438,
+        "submit_ms_per_call": 0.016982629895210266,
+        "event_interval_ms_per_call": 0.016814080476760866
+      },
+      {
+        "round": 9,
+        "provider": "compiled",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.04890561103820801,
+        "submit_ms_per_call": 0.04867091774940491,
+        "event_interval_ms_per_call": 0.04845759868621826
+      },
+      {
+        "round": 9,
+        "provider": "triton",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.028492435812950134,
+        "submit_ms_per_call": 0.028199031949043274,
+        "event_interval_ms_per_call": 0.027934720516204836
+      },
+      {
+        "round": 9,
+        "provider": "tvm_off",
+        "order": [
+          "tvm_on",
+          "eager",
+          "compiled",
+          "triton",
+          "tvm_off"
+        ],
+        "wall_ms_per_call": 0.01188419759273529,
+        "submit_ms_per_call": 0.011694282293319702,
+        "event_interval_ms_per_call": 0.011526720523834228
+      }
+    ],
+    "input_sha256": [
+      "eea9fd854817450b6f5eb1cb644875a9f17ad71593e7d6796394b37b2a294e36",
+      "3566d88ce6ac2b174f2b9601f0835305f29a67a1db5917727cf01fed33e0243c"
+    ]
+  }
+]

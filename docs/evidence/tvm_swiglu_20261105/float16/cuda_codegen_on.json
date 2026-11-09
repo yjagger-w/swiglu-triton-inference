@@ -1,0 +1,8 @@
+{
+  "kernel_definitions": [
+    "custom_swiglu_float16_1025_kernel"
+  ],
+  "count": 1,
+  "compiled": false,
+  "executed": false
+}

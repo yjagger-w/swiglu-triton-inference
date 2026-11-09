@@ -1,0 +1,811 @@
+..............................sssss............................FFFFFFFFF [ 80%]
+FFFF.........FFFF                                                        [100%]
+=================================== FAILURES ===================================
+_______________ test_cuda_against_existing_eager[float32-shape0] _______________
+
+shape = (1,), dtype = 'float32'
+
+    @pytest.mark.parametrize("shape", [(1,), (127,), (1025,), (1, 5632), (128, 5632), (1024, 5632)])
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    def test_cuda_against_existing_eager(shape, dtype):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        td = getattr(torch, dtype)
+        generator = torch.Generator(device="cuda").manual_seed(42)
+        g = torch.randn(shape, device="cuda", dtype=td, generator=generator) * 5
+        u = torch.randn(shape, device="cuda", dtype=td, generator=generator)
+        expected = torch.nn.functional.silu(g) * u
+>       lib, _ = build_operator(shape, dtype, {"kind": "cuda", "arch": "sm_75"})
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:105: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/swiglu_tvm/operator.py:63: in build_operator
+    lib = tvm.tirx.build(mod, target=target)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:240: in build
+    return tir_to_runtime(host_mod, device_mod_dict, target_host)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:146: in tir_to_runtime
+    device_modules.append(codegen_build(device_mod, target))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:130: in codegen_build
+    return bf(mod, target)
+           ^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in TVMFFIPyCallback(void*, TVMFFIAny const*, int, TVMFFIAny*)
+    ???
+<unknown>:0: in TVMFFIPyCallManager::ForwardPyErrorToFFI()
+    ???
+<unknown>:0: in TVMFFICyErrorSetRaisedFromPyError(_object*)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   arch = str(target.attrs.get("arch", "sm_75"))
+E   AttributeError: 'NoneType' object has no attribute 'attrs'
+
+src/swiglu_tvm/cuda.py:54: AttributeError
+_______________ test_cuda_against_existing_eager[float32-shape1] _______________
+
+shape = (127,), dtype = 'float32'
+
+    @pytest.mark.parametrize("shape", [(1,), (127,), (1025,), (1, 5632), (128, 5632), (1024, 5632)])
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    def test_cuda_against_existing_eager(shape, dtype):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        td = getattr(torch, dtype)
+        generator = torch.Generator(device="cuda").manual_seed(42)
+        g = torch.randn(shape, device="cuda", dtype=td, generator=generator) * 5
+        u = torch.randn(shape, device="cuda", dtype=td, generator=generator)
+        expected = torch.nn.functional.silu(g) * u
+>       lib, _ = build_operator(shape, dtype, {"kind": "cuda", "arch": "sm_75"})
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:105: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/swiglu_tvm/operator.py:63: in build_operator
+    lib = tvm.tirx.build(mod, target=target)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:240: in build
+    return tir_to_runtime(host_mod, device_mod_dict, target_host)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:146: in tir_to_runtime
+    device_modules.append(codegen_build(device_mod, target))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:130: in codegen_build
+    return bf(mod, target)
+           ^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in TVMFFIPyCallback(void*, TVMFFIAny const*, int, TVMFFIAny*)
+    ???
+<unknown>:0: in TVMFFIPyCallManager::ForwardPyErrorToFFI()
+    ???
+<unknown>:0: in TVMFFICyErrorSetRaisedFromPyError(_object*)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   arch = str(target.attrs.get("arch", "sm_75"))
+E   AttributeError: 'NoneType' object has no attribute 'attrs'
+
+src/swiglu_tvm/cuda.py:54: AttributeError
+_______________ test_cuda_against_existing_eager[float32-shape2] _______________
+
+shape = (1025,), dtype = 'float32'
+
+    @pytest.mark.parametrize("shape", [(1,), (127,), (1025,), (1, 5632), (128, 5632), (1024, 5632)])
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    def test_cuda_against_existing_eager(shape, dtype):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        td = getattr(torch, dtype)
+        generator = torch.Generator(device="cuda").manual_seed(42)
+        g = torch.randn(shape, device="cuda", dtype=td, generator=generator) * 5
+        u = torch.randn(shape, device="cuda", dtype=td, generator=generator)
+        expected = torch.nn.functional.silu(g) * u
+>       lib, _ = build_operator(shape, dtype, {"kind": "cuda", "arch": "sm_75"})
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:105: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/swiglu_tvm/operator.py:63: in build_operator
+    lib = tvm.tirx.build(mod, target=target)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:240: in build
+    return tir_to_runtime(host_mod, device_mod_dict, target_host)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:146: in tir_to_runtime
+    device_modules.append(codegen_build(device_mod, target))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:130: in codegen_build
+    return bf(mod, target)
+           ^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in TVMFFIPyCallback(void*, TVMFFIAny const*, int, TVMFFIAny*)
+    ???
+<unknown>:0: in TVMFFIPyCallManager::ForwardPyErrorToFFI()
+    ???
+<unknown>:0: in TVMFFICyErrorSetRaisedFromPyError(_object*)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   arch = str(target.attrs.get("arch", "sm_75"))
+E   AttributeError: 'NoneType' object has no attribute 'attrs'
+
+src/swiglu_tvm/cuda.py:54: AttributeError
+_______________ test_cuda_against_existing_eager[float32-shape3] _______________
+
+shape = (1, 5632), dtype = 'float32'
+
+    @pytest.mark.parametrize("shape", [(1,), (127,), (1025,), (1, 5632), (128, 5632), (1024, 5632)])
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    def test_cuda_against_existing_eager(shape, dtype):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        td = getattr(torch, dtype)
+        generator = torch.Generator(device="cuda").manual_seed(42)
+        g = torch.randn(shape, device="cuda", dtype=td, generator=generator) * 5
+        u = torch.randn(shape, device="cuda", dtype=td, generator=generator)
+        expected = torch.nn.functional.silu(g) * u
+>       lib, _ = build_operator(shape, dtype, {"kind": "cuda", "arch": "sm_75"})
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:105: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/swiglu_tvm/operator.py:63: in build_operator
+    lib = tvm.tirx.build(mod, target=target)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:240: in build
+    return tir_to_runtime(host_mod, device_mod_dict, target_host)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:146: in tir_to_runtime
+    device_modules.append(codegen_build(device_mod, target))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:130: in codegen_build
+    return bf(mod, target)
+           ^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in TVMFFIPyCallback(void*, TVMFFIAny const*, int, TVMFFIAny*)
+    ???
+<unknown>:0: in TVMFFIPyCallManager::ForwardPyErrorToFFI()
+    ???
+<unknown>:0: in TVMFFICyErrorSetRaisedFromPyError(_object*)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   arch = str(target.attrs.get("arch", "sm_75"))
+E   AttributeError: 'NoneType' object has no attribute 'attrs'
+
+src/swiglu_tvm/cuda.py:54: AttributeError
+_______________ test_cuda_against_existing_eager[float32-shape4] _______________
+
+shape = (128, 5632), dtype = 'float32'
+
+    @pytest.mark.parametrize("shape", [(1,), (127,), (1025,), (1, 5632), (128, 5632), (1024, 5632)])
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    def test_cuda_against_existing_eager(shape, dtype):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        td = getattr(torch, dtype)
+        generator = torch.Generator(device="cuda").manual_seed(42)
+        g = torch.randn(shape, device="cuda", dtype=td, generator=generator) * 5
+        u = torch.randn(shape, device="cuda", dtype=td, generator=generator)
+        expected = torch.nn.functional.silu(g) * u
+>       lib, _ = build_operator(shape, dtype, {"kind": "cuda", "arch": "sm_75"})
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:105: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/swiglu_tvm/operator.py:63: in build_operator
+    lib = tvm.tirx.build(mod, target=target)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:240: in build
+    return tir_to_runtime(host_mod, device_mod_dict, target_host)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:146: in tir_to_runtime
+    device_modules.append(codegen_build(device_mod, target))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:130: in codegen_build
+    return bf(mod, target)
+           ^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in TVMFFIPyCallback(void*, TVMFFIAny const*, int, TVMFFIAny*)
+    ???
+<unknown>:0: in TVMFFIPyCallManager::ForwardPyErrorToFFI()
+    ???
+<unknown>:0: in TVMFFICyErrorSetRaisedFromPyError(_object*)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   arch = str(target.attrs.get("arch", "sm_75"))
+E   AttributeError: 'NoneType' object has no attribute 'attrs'
+
+src/swiglu_tvm/cuda.py:54: AttributeError
+_______________ test_cuda_against_existing_eager[float32-shape5] _______________
+
+shape = (1024, 5632), dtype = 'float32'
+
+    @pytest.mark.parametrize("shape", [(1,), (127,), (1025,), (1, 5632), (128, 5632), (1024, 5632)])
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    def test_cuda_against_existing_eager(shape, dtype):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        td = getattr(torch, dtype)
+        generator = torch.Generator(device="cuda").manual_seed(42)
+        g = torch.randn(shape, device="cuda", dtype=td, generator=generator) * 5
+        u = torch.randn(shape, device="cuda", dtype=td, generator=generator)
+        expected = torch.nn.functional.silu(g) * u
+>       lib, _ = build_operator(shape, dtype, {"kind": "cuda", "arch": "sm_75"})
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:105: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/swiglu_tvm/operator.py:63: in build_operator
+    lib = tvm.tirx.build(mod, target=target)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:240: in build
+    return tir_to_runtime(host_mod, device_mod_dict, target_host)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:146: in tir_to_runtime
+    device_modules.append(codegen_build(device_mod, target))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:130: in codegen_build
+    return bf(mod, target)
+           ^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in TVMFFIPyCallback(void*, TVMFFIAny const*, int, TVMFFIAny*)
+    ???
+<unknown>:0: in TVMFFIPyCallManager::ForwardPyErrorToFFI()
+    ???
+<unknown>:0: in TVMFFICyErrorSetRaisedFromPyError(_object*)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   arch = str(target.attrs.get("arch", "sm_75"))
+E   AttributeError: 'NoneType' object has no attribute 'attrs'
+
+src/swiglu_tvm/cuda.py:54: AttributeError
+_______________ test_cuda_against_existing_eager[float16-shape0] _______________
+
+shape = (1,), dtype = 'float16'
+
+    @pytest.mark.parametrize("shape", [(1,), (127,), (1025,), (1, 5632), (128, 5632), (1024, 5632)])
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    def test_cuda_against_existing_eager(shape, dtype):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        td = getattr(torch, dtype)
+        generator = torch.Generator(device="cuda").manual_seed(42)
+        g = torch.randn(shape, device="cuda", dtype=td, generator=generator) * 5
+        u = torch.randn(shape, device="cuda", dtype=td, generator=generator)
+        expected = torch.nn.functional.silu(g) * u
+>       lib, _ = build_operator(shape, dtype, {"kind": "cuda", "arch": "sm_75"})
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:105: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/swiglu_tvm/operator.py:63: in build_operator
+    lib = tvm.tirx.build(mod, target=target)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:240: in build
+    return tir_to_runtime(host_mod, device_mod_dict, target_host)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:146: in tir_to_runtime
+    device_modules.append(codegen_build(device_mod, target))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:130: in codegen_build
+    return bf(mod, target)
+           ^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in TVMFFIPyCallback(void*, TVMFFIAny const*, int, TVMFFIAny*)
+    ???
+<unknown>:0: in TVMFFIPyCallManager::ForwardPyErrorToFFI()
+    ???
+<unknown>:0: in TVMFFICyErrorSetRaisedFromPyError(_object*)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   arch = str(target.attrs.get("arch", "sm_75"))
+E   AttributeError: 'NoneType' object has no attribute 'attrs'
+
+src/swiglu_tvm/cuda.py:54: AttributeError
+_______________ test_cuda_against_existing_eager[float16-shape1] _______________
+
+shape = (127,), dtype = 'float16'
+
+    @pytest.mark.parametrize("shape", [(1,), (127,), (1025,), (1, 5632), (128, 5632), (1024, 5632)])
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    def test_cuda_against_existing_eager(shape, dtype):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        td = getattr(torch, dtype)
+        generator = torch.Generator(device="cuda").manual_seed(42)
+        g = torch.randn(shape, device="cuda", dtype=td, generator=generator) * 5
+        u = torch.randn(shape, device="cuda", dtype=td, generator=generator)
+        expected = torch.nn.functional.silu(g) * u
+>       lib, _ = build_operator(shape, dtype, {"kind": "cuda", "arch": "sm_75"})
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:105: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/swiglu_tvm/operator.py:63: in build_operator
+    lib = tvm.tirx.build(mod, target=target)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:240: in build
+    return tir_to_runtime(host_mod, device_mod_dict, target_host)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:146: in tir_to_runtime
+    device_modules.append(codegen_build(device_mod, target))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:130: in codegen_build
+    return bf(mod, target)
+           ^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in TVMFFIPyCallback(void*, TVMFFIAny const*, int, TVMFFIAny*)
+    ???
+<unknown>:0: in TVMFFIPyCallManager::ForwardPyErrorToFFI()
+    ???
+<unknown>:0: in TVMFFICyErrorSetRaisedFromPyError(_object*)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   arch = str(target.attrs.get("arch", "sm_75"))
+E   AttributeError: 'NoneType' object has no attribute 'attrs'
+
+src/swiglu_tvm/cuda.py:54: AttributeError
+_______________ test_cuda_against_existing_eager[float16-shape2] _______________
+
+shape = (1025,), dtype = 'float16'
+
+    @pytest.mark.parametrize("shape", [(1,), (127,), (1025,), (1, 5632), (128, 5632), (1024, 5632)])
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    def test_cuda_against_existing_eager(shape, dtype):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        td = getattr(torch, dtype)
+        generator = torch.Generator(device="cuda").manual_seed(42)
+        g = torch.randn(shape, device="cuda", dtype=td, generator=generator) * 5
+        u = torch.randn(shape, device="cuda", dtype=td, generator=generator)
+        expected = torch.nn.functional.silu(g) * u
+>       lib, _ = build_operator(shape, dtype, {"kind": "cuda", "arch": "sm_75"})
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:105: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/swiglu_tvm/operator.py:63: in build_operator
+    lib = tvm.tirx.build(mod, target=target)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:240: in build
+    return tir_to_runtime(host_mod, device_mod_dict, target_host)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:146: in tir_to_runtime
+    device_modules.append(codegen_build(device_mod, target))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:130: in codegen_build
+    return bf(mod, target)
+           ^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in TVMFFIPyCallback(void*, TVMFFIAny const*, int, TVMFFIAny*)
+    ???
+<unknown>:0: in TVMFFIPyCallManager::ForwardPyErrorToFFI()
+    ???
+<unknown>:0: in TVMFFICyErrorSetRaisedFromPyError(_object*)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   arch = str(target.attrs.get("arch", "sm_75"))
+E   AttributeError: 'NoneType' object has no attribute 'attrs'
+
+src/swiglu_tvm/cuda.py:54: AttributeError
+_______________ test_cuda_against_existing_eager[float16-shape3] _______________
+
+shape = (1, 5632), dtype = 'float16'
+
+    @pytest.mark.parametrize("shape", [(1,), (127,), (1025,), (1, 5632), (128, 5632), (1024, 5632)])
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    def test_cuda_against_existing_eager(shape, dtype):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        td = getattr(torch, dtype)
+        generator = torch.Generator(device="cuda").manual_seed(42)
+        g = torch.randn(shape, device="cuda", dtype=td, generator=generator) * 5
+        u = torch.randn(shape, device="cuda", dtype=td, generator=generator)
+        expected = torch.nn.functional.silu(g) * u
+>       lib, _ = build_operator(shape, dtype, {"kind": "cuda", "arch": "sm_75"})
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:105: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/swiglu_tvm/operator.py:63: in build_operator
+    lib = tvm.tirx.build(mod, target=target)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:240: in build
+    return tir_to_runtime(host_mod, device_mod_dict, target_host)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:146: in tir_to_runtime
+    device_modules.append(codegen_build(device_mod, target))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:130: in codegen_build
+    return bf(mod, target)
+           ^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in TVMFFIPyCallback(void*, TVMFFIAny const*, int, TVMFFIAny*)
+    ???
+<unknown>:0: in TVMFFIPyCallManager::ForwardPyErrorToFFI()
+    ???
+<unknown>:0: in TVMFFICyErrorSetRaisedFromPyError(_object*)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   arch = str(target.attrs.get("arch", "sm_75"))
+E   AttributeError: 'NoneType' object has no attribute 'attrs'
+
+src/swiglu_tvm/cuda.py:54: AttributeError
+_______________ test_cuda_against_existing_eager[float16-shape4] _______________
+
+shape = (128, 5632), dtype = 'float16'
+
+    @pytest.mark.parametrize("shape", [(1,), (127,), (1025,), (1, 5632), (128, 5632), (1024, 5632)])
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    def test_cuda_against_existing_eager(shape, dtype):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        td = getattr(torch, dtype)
+        generator = torch.Generator(device="cuda").manual_seed(42)
+        g = torch.randn(shape, device="cuda", dtype=td, generator=generator) * 5
+        u = torch.randn(shape, device="cuda", dtype=td, generator=generator)
+        expected = torch.nn.functional.silu(g) * u
+>       lib, _ = build_operator(shape, dtype, {"kind": "cuda", "arch": "sm_75"})
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:105: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/swiglu_tvm/operator.py:63: in build_operator
+    lib = tvm.tirx.build(mod, target=target)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:240: in build
+    return tir_to_runtime(host_mod, device_mod_dict, target_host)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:146: in tir_to_runtime
+    device_modules.append(codegen_build(device_mod, target))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:130: in codegen_build
+    return bf(mod, target)
+           ^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in TVMFFIPyCallback(void*, TVMFFIAny const*, int, TVMFFIAny*)
+    ???
+<unknown>:0: in TVMFFIPyCallManager::ForwardPyErrorToFFI()
+    ???
+<unknown>:0: in TVMFFICyErrorSetRaisedFromPyError(_object*)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   arch = str(target.attrs.get("arch", "sm_75"))
+E   AttributeError: 'NoneType' object has no attribute 'attrs'
+
+src/swiglu_tvm/cuda.py:54: AttributeError
+_______________ test_cuda_against_existing_eager[float16-shape5] _______________
+
+shape = (1024, 5632), dtype = 'float16'
+
+    @pytest.mark.parametrize("shape", [(1,), (127,), (1025,), (1, 5632), (128, 5632), (1024, 5632)])
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    def test_cuda_against_existing_eager(shape, dtype):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        td = getattr(torch, dtype)
+        generator = torch.Generator(device="cuda").manual_seed(42)
+        g = torch.randn(shape, device="cuda", dtype=td, generator=generator) * 5
+        u = torch.randn(shape, device="cuda", dtype=td, generator=generator)
+        expected = torch.nn.functional.silu(g) * u
+>       lib, _ = build_operator(shape, dtype, {"kind": "cuda", "arch": "sm_75"})
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:105: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/swiglu_tvm/operator.py:63: in build_operator
+    lib = tvm.tirx.build(mod, target=target)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:240: in build
+    return tir_to_runtime(host_mod, device_mod_dict, target_host)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:146: in tir_to_runtime
+    device_modules.append(codegen_build(device_mod, target))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:130: in codegen_build
+    return bf(mod, target)
+           ^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in TVMFFIPyCallback(void*, TVMFFIAny const*, int, TVMFFIAny*)
+    ???
+<unknown>:0: in TVMFFIPyCallManager::ForwardPyErrorToFFI()
+    ???
+<unknown>:0: in TVMFFICyErrorSetRaisedFromPyError(_object*)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   arch = str(target.attrs.get("arch", "sm_75"))
+E   AttributeError: 'NoneType' object has no attribute 'attrs'
+
+src/swiglu_tvm/cuda.py:54: AttributeError
+_________________ test_cuda_fp16_all_finite_bits_and_boundary __________________
+
+    def test_cuda_fp16_all_finite_bits_and_boundary():
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        vals = torch.arange(65536, device="cuda", dtype=torch.int32).to(torch.int16).view(torch.float16)
+        gate = vals[torch.isfinite(vals)].contiguous()
+        gen = torch.Generator(device="cuda").manual_seed(42)
+        ups = [torch.ones_like(gate), gate[torch.randperm(gate.numel(), device="cuda", generator=gen)]]
+>       lib, _ = build_operator(tuple(gate.shape), "float16", {"kind": "cuda", "arch": "sm_75"})
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/swiglu_tvm/operator.py:63: in build_operator
+    lib = tvm.tirx.build(mod, target=target)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:240: in build
+    return tir_to_runtime(host_mod, device_mod_dict, target_host)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:146: in tir_to_runtime
+    device_modules.append(codegen_build(device_mod, target))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:130: in codegen_build
+    return bf(mod, target)
+           ^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in TVMFFIPyCallback(void*, TVMFFIAny const*, int, TVMFFIAny*)
+    ???
+<unknown>:0: in TVMFFIPyCallManager::ForwardPyErrorToFFI()
+    ???
+<unknown>:0: in TVMFFICyErrorSetRaisedFromPyError(_object*)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   arch = str(target.attrs.get("arch", "sm_75"))
+E   AttributeError: 'NoneType' object has no attribute 'attrs'
+
+src/swiglu_tvm/cuda.py:54: AttributeError
+_____________ test_cuda_relax_nonfinite_and_values[False-float32] ______________
+
+dtype = 'float32', enabled = False
+
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    @pytest.mark.parametrize("enabled", [False, True])
+    def test_cuda_relax_nonfinite_and_values(dtype, enabled):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        g = torch.tensor([0, -0.0, -1, 1, -90, 90, float("nan"), float("inf"), -float("inf")],
+                         dtype=getattr(torch, dtype), device="cuda")
+        u = torch.ones_like(g)
+>       exe, _, _ = build_relax(example((9,), dtype), {"kind": "cuda", "arch": "sm_75"}, enabled, fp16=True)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:242: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/swiglu_tvm/fusion.py:152: in build_relax
+    exe = relax.build(lowered, target=target)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/relax/vm_build.py:276: in build
+    return _vmlink(
+<VENV>/lib/python3.12/site-packages/tvm/relax/vm_build.py:157: in _vmlink
+    lib = tvm.tirx.build(tir_mod, target=target, pipeline=tir_pipeline)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:240: in build
+    return tir_to_runtime(host_mod, device_mod_dict, target_host)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:146: in tir_to_runtime
+    device_modules.append(codegen_build(device_mod, target))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:130: in codegen_build
+    return bf(mod, target)
+           ^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in TVMFFIPyCallback(void*, TVMFFIAny const*, int, TVMFFIAny*)
+    ???
+<unknown>:0: in TVMFFIPyCallManager::ForwardPyErrorToFFI()
+    ???
+<unknown>:0: in TVMFFICyErrorSetRaisedFromPyError(_object*)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   arch = str(target.attrs.get("arch", "sm_75"))
+E   AttributeError: 'NoneType' object has no attribute 'attrs'
+
+src/swiglu_tvm/cuda.py:54: AttributeError
+_____________ test_cuda_relax_nonfinite_and_values[False-float16] ______________
+
+dtype = 'float16', enabled = False
+
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    @pytest.mark.parametrize("enabled", [False, True])
+    def test_cuda_relax_nonfinite_and_values(dtype, enabled):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        g = torch.tensor([0, -0.0, -1, 1, -90, 90, float("nan"), float("inf"), -float("inf")],
+                         dtype=getattr(torch, dtype), device="cuda")
+        u = torch.ones_like(g)
+>       exe, _, _ = build_relax(example((9,), dtype), {"kind": "cuda", "arch": "sm_75"}, enabled, fp16=True)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:242: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/swiglu_tvm/fusion.py:152: in build_relax
+    exe = relax.build(lowered, target=target)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/relax/vm_build.py:276: in build
+    return _vmlink(
+<VENV>/lib/python3.12/site-packages/tvm/relax/vm_build.py:157: in _vmlink
+    lib = tvm.tirx.build(tir_mod, target=target, pipeline=tir_pipeline)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:240: in build
+    return tir_to_runtime(host_mod, device_mod_dict, target_host)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:146: in tir_to_runtime
+    device_modules.append(codegen_build(device_mod, target))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:130: in codegen_build
+    return bf(mod, target)
+           ^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in TVMFFIPyCallback(void*, TVMFFIAny const*, int, TVMFFIAny*)
+    ???
+<unknown>:0: in TVMFFIPyCallManager::ForwardPyErrorToFFI()
+    ???
+<unknown>:0: in TVMFFICyErrorSetRaisedFromPyError(_object*)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   arch = str(target.attrs.get("arch", "sm_75"))
+E   AttributeError: 'NoneType' object has no attribute 'attrs'
+
+src/swiglu_tvm/cuda.py:54: AttributeError
+______________ test_cuda_relax_nonfinite_and_values[True-float32] ______________
+
+dtype = 'float32', enabled = True
+
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    @pytest.mark.parametrize("enabled", [False, True])
+    def test_cuda_relax_nonfinite_and_values(dtype, enabled):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        g = torch.tensor([0, -0.0, -1, 1, -90, 90, float("nan"), float("inf"), -float("inf")],
+                         dtype=getattr(torch, dtype), device="cuda")
+        u = torch.ones_like(g)
+>       exe, _, _ = build_relax(example((9,), dtype), {"kind": "cuda", "arch": "sm_75"}, enabled, fp16=True)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:242: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/swiglu_tvm/fusion.py:152: in build_relax
+    exe = relax.build(lowered, target=target)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/relax/vm_build.py:276: in build
+    return _vmlink(
+<VENV>/lib/python3.12/site-packages/tvm/relax/vm_build.py:157: in _vmlink
+    lib = tvm.tirx.build(tir_mod, target=target, pipeline=tir_pipeline)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:240: in build
+    return tir_to_runtime(host_mod, device_mod_dict, target_host)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:146: in tir_to_runtime
+    device_modules.append(codegen_build(device_mod, target))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:130: in codegen_build
+    return bf(mod, target)
+           ^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in TVMFFIPyCallback(void*, TVMFFIAny const*, int, TVMFFIAny*)
+    ???
+<unknown>:0: in TVMFFIPyCallManager::ForwardPyErrorToFFI()
+    ???
+<unknown>:0: in TVMFFICyErrorSetRaisedFromPyError(_object*)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   arch = str(target.attrs.get("arch", "sm_75"))
+E   AttributeError: 'NoneType' object has no attribute 'attrs'
+
+src/swiglu_tvm/cuda.py:54: AttributeError
+______________ test_cuda_relax_nonfinite_and_values[True-float16] ______________
+
+dtype = 'float16', enabled = True
+
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    @pytest.mark.parametrize("enabled", [False, True])
+    def test_cuda_relax_nonfinite_and_values(dtype, enabled):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        g = torch.tensor([0, -0.0, -1, 1, -90, 90, float("nan"), float("inf"), -float("inf")],
+                         dtype=getattr(torch, dtype), device="cuda")
+        u = torch.ones_like(g)
+>       exe, _, _ = build_relax(example((9,), dtype), {"kind": "cuda", "arch": "sm_75"}, enabled, fp16=True)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:242: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/swiglu_tvm/fusion.py:152: in build_relax
+    exe = relax.build(lowered, target=target)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/relax/vm_build.py:276: in build
+    return _vmlink(
+<VENV>/lib/python3.12/site-packages/tvm/relax/vm_build.py:157: in _vmlink
+    lib = tvm.tirx.build(tir_mod, target=target, pipeline=tir_pipeline)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:240: in build
+    return tir_to_runtime(host_mod, device_mod_dict, target_host)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:146: in tir_to_runtime
+    device_modules.append(codegen_build(device_mod, target))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<VENV>/lib/python3.12/site-packages/tvm/tirx/build.py:130: in codegen_build
+    return bf(mod, target)
+           ^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in TVMFFIPyCallback(void*, TVMFFIAny const*, int, TVMFFIAny*)
+    ???
+<unknown>:0: in TVMFFIPyCallManager::ForwardPyErrorToFFI()
+    ???
+<unknown>:0: in TVMFFICyErrorSetRaisedFromPyError(_object*)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   arch = str(target.attrs.get("arch", "sm_75"))
+E   AttributeError: 'NoneType' object has no attribute 'attrs'
+
+src/swiglu_tvm/cuda.py:54: AttributeError
+=========================== short test summary info ============================
+FAILED tests/test_tvm_swiglu.py::test_cuda_against_existing_eager[float32-shape0]
+FAILED tests/test_tvm_swiglu.py::test_cuda_against_existing_eager[float32-shape1]
+FAILED tests/test_tvm_swiglu.py::test_cuda_against_existing_eager[float32-shape2]
+FAILED tests/test_tvm_swiglu.py::test_cuda_against_existing_eager[float32-shape3]
+FAILED tests/test_tvm_swiglu.py::test_cuda_against_existing_eager[float32-shape4]
+FAILED tests/test_tvm_swiglu.py::test_cuda_against_existing_eager[float32-shape5]
+FAILED tests/test_tvm_swiglu.py::test_cuda_against_existing_eager[float16-shape0]
+FAILED tests/test_tvm_swiglu.py::test_cuda_against_existing_eager[float16-shape1]
+FAILED tests/test_tvm_swiglu.py::test_cuda_against_existing_eager[float16-shape2]
+FAILED tests/test_tvm_swiglu.py::test_cuda_against_existing_eager[float16-shape3]
+FAILED tests/test_tvm_swiglu.py::test_cuda_against_existing_eager[float16-shape4]
+FAILED tests/test_tvm_swiglu.py::test_cuda_against_existing_eager[float16-shape5]
+FAILED tests/test_tvm_swiglu.py::test_cuda_fp16_all_finite_bits_and_boundary
+FAILED tests/test_tvm_swiglu.py::test_cuda_relax_nonfinite_and_values[False-float32]
+FAILED tests/test_tvm_swiglu.py::test_cuda_relax_nonfinite_and_values[False-float16]
+FAILED tests/test_tvm_swiglu.py::test_cuda_relax_nonfinite_and_values[True-float32]
+FAILED tests/test_tvm_swiglu.py::test_cuda_relax_nonfinite_and_values[True-float16]
+17 failed, 67 passed, 5 skipped in 9.16s

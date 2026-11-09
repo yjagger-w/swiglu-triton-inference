@@ -1,0 +1,16 @@
+[
+  {
+    "index": 0,
+    "kind": "relax.VMExecutable",
+    "sources": {},
+    "errors": {}
+  },
+  {
+    "index": 1,
+    "kind": "llvm",
+    "sources": {
+      "ll": "module_1.ll"
+    },
+    "errors": {}
+  }
+]

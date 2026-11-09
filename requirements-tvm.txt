@@ -1,0 +1,5 @@
+# Separate environment; does not install the Triton project's mandatory dependencies.
+apache-tvm==0.25.0.post1
+apache-tvm-ffi==0.1.12
+numpy==2.5.4
+pytest==9.2.0

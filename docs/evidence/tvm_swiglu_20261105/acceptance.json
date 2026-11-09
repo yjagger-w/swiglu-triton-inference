@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-05",
+  "overall": "incomplete_t4_acceptance_pending",
+  "branch": "feature/tvm-swiglu-fusion",
+  "tvm": "0.25.0.post1",
+  "ffi": "0.1.12",
+  "local_tests": {"passed": 46, "skipped": 21, "failed": 0},
+  "without_tvm_simulated": {"passed": 11, "skipped": 5, "failed": 0},
+  "cpu_operator_and_relax": "passed",
+  "cuda_codegen": "passed_source_only",
+  "cuda_kernel_definitions": {"pass_off": 2, "pass_on": 1},
+  "ptx_compilation": "not_run",
+  "gpu_correctness": "not_run",
+  "gpu_fp16_bitwise": "not_run",
+  "t4_performance": {
+    "eager": "not_run", "compiled": "not_run", "triton": "not_run",
+    "tvm_off": "not_run", "tvm_on": "not_run"
+  },
+  "blocker": "No local NVIDIA runtime/GPU; no configured accessible T4 SSH endpoint. WSL enumeration returned E_ACCESSDENIED.",
+  "performance_claim": false,
+  "remaining": [
+    "Run pinned Linux CUDA toolkit/T4 compilation and all GPU regressions",
+    "Confirm FP16 bitwise contract including all-finite-gate sweeps",
+    "Collect PTX and actual kernel launches/intermediate storage",
+    "Run balanced five-provider timing and inspect any slowdowns",
+    "Measure profiler kernel durations separately if pure GPU execution time is required",
+    "Choose schedule parameters using actual T4 evidence; current vectorize lowers to scalar lanes"
+  ]
+}

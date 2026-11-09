@@ -37,6 +37,35 @@ The final FP16 kernel uses CUDA libdevice exp and precise division, then
 rounds the SiLU intermediate to FP16 before multiplication. FP32/BF16 use
 the earlier sigmoid path; native BF16 requires compute capability >= 8.0.
 
+## TVM Relax Pass acceptance — 2026-11-09
+
+The November 9 T4 run covers post-projection SwiGLU on contiguous FP32 and
+FP16 tensors. It compares five providers across eight dtype and shape cases:
+PyTorch eager, torch.compile, handwritten Triton, TVM pass off, and TVM pass on.
+The November 2 experiment below covers FP16 compiler tracing and three providers
+with a separate timing protocol.
+
+The full suite exited normally with **84 passed, 5 skipped**. The skips are
+the existing Triton BF16 cases on T4. TVM pass on, TVM pass off, and handwritten
+Triton matched PyTorch eager bitwise on all four seeded FP16 inputs.
+
+Independent CUPTI traces measured **two to one TVM GPU kernel launches per call**.
+The pass removes an **11 MiB SiLU workspace** at FP16 `[1024,5632]`, as shown by
+the generated host LLVM. The balanced benchmark measured **1.35–1.84×** wall-time
+speedup for TVM pass on versus off. At FP16 `[1024,5632]`, wall time went from
+**241.933 to 132.136 µs/call**. Handwritten Triton took **123.072 µs/call** in the
+same benchmark. Wall timing includes host submission, allocation and final
+synchronization. CUPTI kernel durations were collected in a separate process.
+
+The optional backend pins TVM `0.25.0.post1` and FFI `0.1.12`. The T4 run uses
+the rebuilt CUDA 12.4 runtime and the tested schedule of 128 threads and two
+lanes. Run the opt-in `FuseSwiGLU` before `LegalizeOps` on supported static,
+dense inputs. FP16 requires `enable_fp16=True` to preserve the activation
+rounding contract.
+
+[Full T4 evidence, timings and generated code](docs/evidence/tvm_swiglu_t4_20261109/README.md) ·
+[Implementation, CPU checks and T4 reproduction](docs/tvm_swiglu_CN.md)
+
 ## Compiler trace acceptance — 2026-11-02
 
 Hardware/software: Tesla T4 (CC 7.5, 16 GB), NVIDIA driver 565.57.01,

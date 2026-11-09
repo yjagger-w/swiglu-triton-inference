@@ -1,0 +1,5 @@
+<T4_WORKDIR>/tvm-0.25.0.post1/src/backend/cuda/runtime/cuda_module.cc: In member function 'void tvm::runtime::CUDAWrappedFunc::operator()(tvm::ffi::PackedArgs, tvm::ffi::Any*, void**) const':
+<T4_WORKDIR>/tvm-0.25.0.post1/src/backend/cuda/runtime/cuda_module.cc:252:17: error: 'CU_LAUNCH_ATTRIBUTE_PREFERRED_CLUSTER_DIMENSION' was not declared in this scope; did you mean 'CU_LAUNCH_ATTRIBUTE_CLUSTER_DIMENSION'?
+  252 |       attr.id = CU_LAUNCH_ATTRIBUTE_PREFERRED_CLUSTER_DIMENSION;
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                 CU_LAUNCH_ATTRIBUTE_CLUSTER_DIMENSION

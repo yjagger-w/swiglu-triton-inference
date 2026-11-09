@@ -1,0 +1,46 @@
+# from tvm.script import ir as I
+# from tvm.script import tirx as T
+# from tvm.tirx.layout import Axis
+# from tvm.script import relax as R
+
+@I.ir_module
+class Module:
+    @T.prim_func(private=True, s_tir=True)
+    def contract_silu(gate: T.Buffer((T.int64(128), T.int64(5632)), "float16"), silu: T.Buffer((T.int64(128), T.int64(5632)), "float16")):
+        T.func_attr({"tirx.is_scheduled": True, "tirx.noalias": True})
+        # with T.sblock("root"):
+        for i0_i1_fused_1 in T.thread_binding(T.int64(256), thread="blockIdx.x"):
+            for i0_i1_fused_2 in T.thread_binding(T.int64(1024), thread="threadIdx.x"):
+                for i0_i1_fused_0 in range(T.int64(3)):
+                    with T.sblock("silu"):
+                        v_i0 = T.axis.spatial(T.int64(128), (i0_i1_fused_0 * T.int64(262144) + i0_i1_fused_1 * T.int64(1024) + i0_i1_fused_2) // T.int64(5632))
+                        v_i1 = T.axis.spatial(T.int64(5632), (i0_i1_fused_0 * T.int64(262144) + i0_i1_fused_1 * T.int64(1024) + i0_i1_fused_2) % T.int64(5632))
+                        T.where((i0_i1_fused_0 * T.int64(256) + i0_i1_fused_1) * T.int64(1024) + i0_i1_fused_2 < T.int64(720896))
+                        T.reads(gate[v_i0, v_i1])
+                        T.writes(silu[v_i0, v_i1])
+                        silu[v_i0, v_i1] = T.Cast("float16", T.call_pure_extern("float32", "__fdiv_rn", T.Cast("float32", gate[v_i0, v_i1]), T.float32(1.0) + T.call_pure_extern("float32", "expf", T.Cast("float32", gate[v_i0, v_i1]) * T.float32(-1.0))))
+
+    @T.prim_func(private=True, s_tir=True)
+    def multiply(lv: T.Buffer((T.int64(128), T.int64(5632)), "float16"), up: T.Buffer((T.int64(128), T.int64(5632)), "float16"), T_multiply: T.Buffer((T.int64(128), T.int64(5632)), "float16")):
+        T.func_attr({"tirx.is_scheduled": True, "tirx.noalias": True})
+        # with T.sblock("root"):
+        for ax0_ax1_fused_1 in T.thread_binding(T.int64(256), thread="blockIdx.x"):
+            for ax0_ax1_fused_2 in T.thread_binding(T.int64(1024), thread="threadIdx.x"):
+                for ax0_ax1_fused_0 in range(T.int64(3)):
+                    with T.sblock("T_multiply"):
+                        v_ax0 = T.axis.spatial(T.int64(128), (ax0_ax1_fused_0 * T.int64(262144) + ax0_ax1_fused_1 * T.int64(1024) + ax0_ax1_fused_2) // T.int64(5632))
+                        v_ax1 = T.axis.spatial(T.int64(5632), (ax0_ax1_fused_0 * T.int64(262144) + ax0_ax1_fused_1 * T.int64(1024) + ax0_ax1_fused_2) % T.int64(5632))
+                        T.where((ax0_ax1_fused_0 * T.int64(256) + ax0_ax1_fused_1) * T.int64(1024) + ax0_ax1_fused_2 < T.int64(720896))
+                        T.reads(lv[v_ax0, v_ax1], up[v_ax0, v_ax1])
+                        T.writes(T_multiply[v_ax0, v_ax1])
+                        T_multiply[v_ax0, v_ax1] = lv[v_ax0, v_ax1] * up[v_ax0, v_ax1]
+
+    @R.function
+    def main(gate: R.Tensor((128, 5632), dtype="float16"), up: R.Tensor((128, 5632), dtype="float16")) -> R.Tensor((128, 5632), dtype="float16"):
+        cls = Module
+        with R.dataflow():
+            lv = R.call_tir(cls.contract_silu, (gate,), out_sinfo=R.Tensor((128, 5632), dtype="float16"))
+            lv1 = R.call_tir(cls.multiply, (lv, up), out_sinfo=R.Tensor((128, 5632), dtype="float16"))
+            gv: R.Tensor((128, 5632), dtype="float16") = lv1
+            R.output(gv)
+        return gv

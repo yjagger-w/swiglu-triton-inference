@@ -1,0 +1,2 @@
+0.25.0.post1
+CUDA visible to TVM: True

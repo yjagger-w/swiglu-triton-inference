@@ -1,0 +1,808 @@
+[
+  {
+    "dtype": "float32",
+    "shape": [
+      1,
+      5632
+    ],
+    "compile": {
+      "triton_first_call_seconds": 1.6945502758026123,
+      "compiled_first_call_seconds": 1.6476465538144112,
+      "tvm_off_build_first_call_seconds": 0.4664793983101845,
+      "tvm_on_build_first_call_seconds": 0.4481326565146446
+    },
+    "accuracy": {
+      "eager": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "triton": {
+        "bitwise_mismatches": 1759,
+        "max_abs_error": 9.5367431640625e-07,
+        "tolerance_passed": true
+      },
+      "compiled": {
+        "bitwise_mismatches": 1759,
+        "max_abs_error": 9.5367431640625e-07,
+        "tolerance_passed": true
+      },
+      "tvm_off": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "tvm_on": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      }
+    },
+    "rtol": 3e-05,
+    "atol": 3e-05,
+    "samples": [],
+    "input_sha256": [
+      "3b1c4bd64fe2acb4d4c416685c31610395652c12a412ff0c0af0b7892d74cf91",
+      "f24a0128b37c7bd282f30c887bf949b776320b31d74285767d4ffea341fac56e"
+    ],
+    "profile": {
+      "eager": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 50,
+        "kernels_per_call": 2,
+        "kernel_ms_per_call": 0.00621424,
+        "kernel_names": [
+          "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#2}::operator()() const::{lambda(float)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#2}::operator()() const::{lambda(float)#1}, at::detail::Array<char*, 2>)",
+          "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)"
+        ]
+      },
+      "compiled": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 25,
+        "kernels_per_call": 1,
+        "kernel_ms_per_call": 0.0028825599999999997,
+        "kernel_names": [
+          "triton_"
+        ]
+      },
+      "triton": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 25,
+        "kernels_per_call": 1,
+        "kernel_ms_per_call": 0.00337404,
+        "kernel_names": [
+          "_swiglu_kernel"
+        ]
+      },
+      "tvm_off": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 50,
+        "kernels_per_call": 2,
+        "kernel_ms_per_call": 0.006593239999999999,
+        "kernel_names": [
+          "fused_contract_silu_multiply_kernel",
+          "fused_contract_silu_multiply_kernel_1"
+        ]
+      },
+      "tvm_on": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 25,
+        "kernels_per_call": 1,
+        "kernel_ms_per_call": 0.00338684,
+        "kernel_names": [
+          "custom_swiglu_float32_1x5632_kernel"
+        ]
+      }
+    }
+  },
+  {
+    "dtype": "float32",
+    "shape": [
+      128,
+      5632
+    ],
+    "compile": {
+      "triton_first_call_seconds": 0.09676089137792587,
+      "compiled_first_call_seconds": 0.365749828517437,
+      "tvm_off_build_first_call_seconds": 0.47805125266313553,
+      "tvm_on_build_first_call_seconds": 0.4403925687074661
+    },
+    "accuracy": {
+      "eager": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "triton": {
+        "bitwise_mismatches": 226252,
+        "max_abs_error": 9.5367431640625e-07,
+        "tolerance_passed": true
+      },
+      "compiled": {
+        "bitwise_mismatches": 226252,
+        "max_abs_error": 9.5367431640625e-07,
+        "tolerance_passed": true
+      },
+      "tvm_off": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "tvm_on": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      }
+    },
+    "rtol": 3e-05,
+    "atol": 3e-05,
+    "samples": [],
+    "input_sha256": [
+      "a6456e4499796c9e727964a6fb9d3248eb0e99372ddb75a79ac628ef3eacd538",
+      "875968bddc69e41466e30e1a436119371664a708888280ea031d3fb8c47be695"
+    ],
+    "profile": {
+      "eager": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 50,
+        "kernels_per_call": 2,
+        "kernel_ms_per_call": 0.050842479999999995,
+        "kernel_names": [
+          "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#2}::operator()() const::{lambda(float)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#2}::operator()() const::{lambda(float)#1}, at::detail::Array<char*, 2>)",
+          "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)"
+        ]
+      },
+      "compiled": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 25,
+        "kernels_per_call": 1,
+        "kernel_ms_per_call": 0.03186036,
+        "kernel_names": [
+          "triton_"
+        ]
+      },
+      "triton": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 25,
+        "kernels_per_call": 1,
+        "kernel_ms_per_call": 0.032069679999999996,
+        "kernel_names": [
+          "_swiglu_kernel"
+        ]
+      },
+      "tvm_off": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 50,
+        "kernels_per_call": 2,
+        "kernel_ms_per_call": 0.06706484,
+        "kernel_names": [
+          "fused_contract_silu_multiply_kernel",
+          "fused_contract_silu_multiply_kernel_1"
+        ]
+      },
+      "tvm_on": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 25,
+        "kernels_per_call": 1,
+        "kernel_ms_per_call": 0.035965079999999996,
+        "kernel_names": [
+          "custom_swiglu_float32_128x5632_kernel"
+        ]
+      }
+    }
+  },
+  {
+    "dtype": "float32",
+    "shape": [
+      1024,
+      5632
+    ],
+    "compile": {
+      "triton_first_call_seconds": 0.09667821228504181,
+      "compiled_first_call_seconds": 0.42852262407541275,
+      "tvm_off_build_first_call_seconds": 0.4743482694029808,
+      "tvm_on_build_first_call_seconds": 0.4520839974284172
+    },
+    "accuracy": {
+      "eager": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "triton": {
+        "bitwise_mismatches": 1809977,
+        "max_abs_error": 1.430511474609375e-06,
+        "tolerance_passed": true
+      },
+      "compiled": {
+        "bitwise_mismatches": 1809977,
+        "max_abs_error": 1.430511474609375e-06,
+        "tolerance_passed": true
+      },
+      "tvm_off": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "tvm_on": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      }
+    },
+    "rtol": 3e-05,
+    "atol": 3e-05,
+    "samples": [],
+    "input_sha256": [
+      "68dfe17e57af09aecc58471da2d17930bd5305d284b56aa38837765d2b893930",
+      "d87936780cf367ad6d0555a7d0470ef890f5cee1aee5a39f5fa5ef654387c2b7"
+    ],
+    "profile": {
+      "eager": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 50,
+        "kernels_per_call": 2,
+        "kernel_ms_per_call": 0.39408532,
+        "kernel_names": [
+          "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#2}::operator()() const::{lambda(float)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#2}::operator()() const::{lambda(float)#1}, at::detail::Array<char*, 2>)",
+          "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)"
+        ]
+      },
+      "compiled": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 25,
+        "kernels_per_call": 1,
+        "kernel_ms_per_call": 0.23337887999999998,
+        "kernel_names": [
+          "triton_"
+        ]
+      },
+      "triton": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 25,
+        "kernels_per_call": 1,
+        "kernel_ms_per_call": 0.23427740000000002,
+        "kernel_names": [
+          "_swiglu_kernel"
+        ]
+      },
+      "tvm_off": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 50,
+        "kernels_per_call": 2,
+        "kernel_ms_per_call": 0.43205775999999996,
+        "kernel_names": [
+          "fused_contract_silu_multiply_kernel",
+          "fused_contract_silu_multiply_kernel_1"
+        ]
+      },
+      "tvm_on": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 25,
+        "kernels_per_call": 1,
+        "kernel_ms_per_call": 0.23584416,
+        "kernel_names": [
+          "custom_swiglu_float32_1024x5632_kernel"
+        ]
+      }
+    }
+  },
+  {
+    "dtype": "float32",
+    "shape": [
+      1025
+    ],
+    "compile": {
+      "triton_first_call_seconds": 0.1064048632979393,
+      "compiled_first_call_seconds": 0.4069564715027809,
+      "tvm_off_build_first_call_seconds": 0.45312267541885376,
+      "tvm_on_build_first_call_seconds": 0.47100847214460373
+    },
+    "accuracy": {
+      "eager": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "triton": {
+        "bitwise_mismatches": 322,
+        "max_abs_error": 4.76837158203125e-07,
+        "tolerance_passed": true
+      },
+      "compiled": {
+        "bitwise_mismatches": 322,
+        "max_abs_error": 4.76837158203125e-07,
+        "tolerance_passed": true
+      },
+      "tvm_off": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "tvm_on": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      }
+    },
+    "rtol": 3e-05,
+    "atol": 3e-05,
+    "samples": [],
+    "input_sha256": [
+      "06837bfb7d9048eb200033f09b088b5c9ce836c20e68c5f2460a2b88493841ef",
+      "3671d2476c22d1d0c57eb785a533ff97eeff2658a519a5a25c7a21c4d2004df0"
+    ],
+    "profile": {
+      "eager": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 50,
+        "kernels_per_call": 2,
+        "kernel_ms_per_call": 0.00498436,
+        "kernel_names": [
+          "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#2}::operator()() const::{lambda(float)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#2}::operator()() const::{lambda(float)#1}, at::detail::Array<char*, 2>)",
+          "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)"
+        ]
+      },
+      "compiled": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 25,
+        "kernels_per_call": 1,
+        "kernel_ms_per_call": 0.00231156,
+        "kernel_names": [
+          "triton_"
+        ]
+      },
+      "triton": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 25,
+        "kernels_per_call": 1,
+        "kernel_ms_per_call": 0.0030438400000000003,
+        "kernel_names": [
+          "_swiglu_kernel"
+        ]
+      },
+      "tvm_off": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 50,
+        "kernels_per_call": 2,
+        "kernel_ms_per_call": 0.00521972,
+        "kernel_names": [
+          "fused_contract_silu_multiply_kernel",
+          "fused_contract_silu_multiply_kernel_1"
+        ]
+      },
+      "tvm_on": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 25,
+        "kernels_per_call": 1,
+        "kernel_ms_per_call": 0.0027967599999999997,
+        "kernel_names": [
+          "custom_swiglu_float32_1025_kernel"
+        ]
+      }
+    }
+  },
+  {
+    "dtype": "float16",
+    "shape": [
+      1,
+      5632
+    ],
+    "compile": {
+      "triton_first_call_seconds": 0.11995770037174225,
+      "compiled_first_call_seconds": 0.3992658331990242,
+      "tvm_off_build_first_call_seconds": 0.5670201107859612,
+      "tvm_on_build_first_call_seconds": 0.5435732677578926
+    },
+    "accuracy": {
+      "eager": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "triton": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "compiled": {
+        "bitwise_mismatches": 1510,
+        "max_abs_error": 0.00390625,
+        "tolerance_passed": true
+      },
+      "tvm_off": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "tvm_on": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      }
+    },
+    "rtol": 0.003,
+    "atol": 0.003,
+    "samples": [],
+    "input_sha256": [
+      "30e0cab8017e9352250f973e83e6e23f60bb4e32580f2c04fb1948ae4e20ec9a",
+      "5275b8f10c7ac977ffeedc9ef3a440c4848f3f8dacda3c4f9080076ae9aeaa66"
+    ],
+    "profile": {
+      "eager": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 50,
+        "kernels_per_call": 2,
+        "kernel_ms_per_call": 0.0063779200000000005,
+        "kernel_names": [
+          "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2>)",
+          "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)"
+        ]
+      },
+      "compiled": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 25,
+        "kernels_per_call": 1,
+        "kernel_ms_per_call": 0.00288132,
+        "kernel_names": [
+          "triton_"
+        ]
+      },
+      "triton": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 25,
+        "kernels_per_call": 1,
+        "kernel_ms_per_call": 0.0064062400000000005,
+        "kernel_names": [
+          "_swiglu_fp16_kernel"
+        ]
+      },
+      "tvm_off": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 50,
+        "kernels_per_call": 2,
+        "kernel_ms_per_call": 0.00642568,
+        "kernel_names": [
+          "fused_contract_silu_multiply_kernel",
+          "fused_contract_silu_multiply_kernel_1"
+        ]
+      },
+      "tvm_on": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 25,
+        "kernels_per_call": 1,
+        "kernel_ms_per_call": 0.0034086000000000003,
+        "kernel_names": [
+          "custom_swiglu_float16_1x5632_kernel"
+        ]
+      }
+    }
+  },
+  {
+    "dtype": "float16",
+    "shape": [
+      128,
+      5632
+    ],
+    "compile": {
+      "triton_first_call_seconds": 0.12150286883115768,
+      "compiled_first_call_seconds": 0.413405604660511,
+      "tvm_off_build_first_call_seconds": 0.5634400397539139,
+      "tvm_on_build_first_call_seconds": 0.5597954466938972
+    },
+    "accuracy": {
+      "eager": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "triton": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "compiled": {
+        "bitwise_mismatches": 192085,
+        "max_abs_error": 0.0078125,
+        "tolerance_passed": true
+      },
+      "tvm_off": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "tvm_on": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      }
+    },
+    "rtol": 0.003,
+    "atol": 0.003,
+    "samples": [],
+    "input_sha256": [
+      "e9878f0f84f5a79e1f46ba822172767d753ef4e0cc78f1345d2370f8e0ee2ee1",
+      "5614a520f912ca072d8f33845f33a764514fb11efa71e7d1b9559afa9213bb56"
+    ],
+    "profile": {
+      "eager": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 50,
+        "kernels_per_call": 2,
+        "kernel_ms_per_call": 0.027565839999999998,
+        "kernel_names": [
+          "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2>)",
+          "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)"
+        ]
+      },
+      "compiled": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 25,
+        "kernels_per_call": 1,
+        "kernel_ms_per_call": 0.01750784,
+        "kernel_names": [
+          "triton_"
+        ]
+      },
+      "triton": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 25,
+        "kernels_per_call": 1,
+        "kernel_ms_per_call": 0.01791204,
+        "kernel_names": [
+          "_swiglu_fp16_kernel"
+        ]
+      },
+      "tvm_off": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 50,
+        "kernels_per_call": 2,
+        "kernel_ms_per_call": 0.05075656,
+        "kernel_names": [
+          "fused_contract_silu_multiply_kernel",
+          "fused_contract_silu_multiply_kernel_1"
+        ]
+      },
+      "tvm_on": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 25,
+        "kernels_per_call": 1,
+        "kernel_ms_per_call": 0.027582719999999998,
+        "kernel_names": [
+          "custom_swiglu_float16_128x5632_kernel"
+        ]
+      }
+    }
+  },
+  {
+    "dtype": "float16",
+    "shape": [
+      1024,
+      5632
+    ],
+    "compile": {
+      "triton_first_call_seconds": 0.11970236152410507,
+      "compiled_first_call_seconds": 0.43275249004364014,
+      "tvm_off_build_first_call_seconds": 0.5702596232295036,
+      "tvm_on_build_first_call_seconds": 0.5455229580402374
+    },
+    "accuracy": {
+      "eager": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "triton": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "compiled": {
+        "bitwise_mismatches": 1534695,
+        "max_abs_error": 0.0078125,
+        "tolerance_passed": true
+      },
+      "tvm_off": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "tvm_on": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      }
+    },
+    "rtol": 0.003,
+    "atol": 0.003,
+    "samples": [],
+    "input_sha256": [
+      "f4ab575e96e8e77725b1fb4d9f020094d64daa1af1a384a445326aa45bacecb7",
+      "8308c51aea945fbf5df178aa3e722834f40a3b1cef462b2e2b16bd123e8aa7df"
+    ],
+    "profile": {
+      "eager": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 50,
+        "kernels_per_call": 2,
+        "kernel_ms_per_call": 0.203011,
+        "kernel_names": [
+          "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2>)",
+          "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)"
+        ]
+      },
+      "compiled": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 25,
+        "kernels_per_call": 1,
+        "kernel_ms_per_call": 0.11969416,
+        "kernel_names": [
+          "triton_"
+        ]
+      },
+      "triton": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 25,
+        "kernels_per_call": 1,
+        "kernel_ms_per_call": 0.12021775999999999,
+        "kernel_names": [
+          "_swiglu_fp16_kernel"
+        ]
+      },
+      "tvm_off": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 50,
+        "kernels_per_call": 2,
+        "kernel_ms_per_call": 0.28405455999999996,
+        "kernel_names": [
+          "fused_contract_silu_multiply_kernel",
+          "fused_contract_silu_multiply_kernel_1"
+        ]
+      },
+      "tvm_on": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 25,
+        "kernels_per_call": 1,
+        "kernel_ms_per_call": 0.18429900000000002,
+        "kernel_names": [
+          "custom_swiglu_float16_1024x5632_kernel"
+        ]
+      }
+    }
+  },
+  {
+    "dtype": "float16",
+    "shape": [
+      1025
+    ],
+    "compile": {
+      "triton_first_call_seconds": 0.12997853755950928,
+      "compiled_first_call_seconds": 0.40292076766490936,
+      "tvm_off_build_first_call_seconds": 0.5557619780302048,
+      "tvm_on_build_first_call_seconds": 0.5504562705755234
+    },
+    "accuracy": {
+      "eager": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "triton": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "compiled": {
+        "bitwise_mismatches": 266,
+        "max_abs_error": 0.001953125,
+        "tolerance_passed": true
+      },
+      "tvm_off": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      },
+      "tvm_on": {
+        "bitwise_mismatches": 0,
+        "max_abs_error": 0.0,
+        "tolerance_passed": true
+      }
+    },
+    "rtol": 0.003,
+    "atol": 0.003,
+    "samples": [],
+    "input_sha256": [
+      "eea9fd854817450b6f5eb1cb644875a9f17ad71593e7d6796394b37b2a294e36",
+      "3566d88ce6ac2b174f2b9601f0835305f29a67a1db5917727cf01fed33e0243c"
+    ],
+    "profile": {
+      "eager": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 50,
+        "kernels_per_call": 2,
+        "kernel_ms_per_call": 0.0049868000000000004,
+        "kernel_names": [
+          "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2>)",
+          "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)"
+        ]
+      },
+      "compiled": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 25,
+        "kernels_per_call": 1,
+        "kernel_ms_per_call": 0.00227984,
+        "kernel_names": [
+          "triton_"
+        ]
+      },
+      "triton": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 25,
+        "kernels_per_call": 1,
+        "kernel_ms_per_call": 0.00508028,
+        "kernel_names": [
+          "_swiglu_fp16_kernel"
+        ]
+      },
+      "tvm_off": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 50,
+        "kernels_per_call": 2,
+        "kernel_ms_per_call": 0.00501332,
+        "kernel_names": [
+          "fused_contract_silu_multiply_kernel",
+          "fused_contract_silu_multiply_kernel_1"
+        ]
+      },
+      "tvm_on": {
+        "status": "passed",
+        "calls": 25,
+        "kernel_count": 25,
+        "kernels_per_call": 1,
+        "kernel_ms_per_call": 0.00277972,
+        "kernel_names": [
+          "custom_swiglu_float16_1025_kernel"
+        ]
+      }
+    }
+  }
+]

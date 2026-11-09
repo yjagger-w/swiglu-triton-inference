@@ -1,0 +1,1482 @@
+
+{
+  "schemaVersion": 1,
+  "deviceProperties": [
+    {
+      "id": 0, "name": "Tesla T4", "totalGlobalMem": 16709648384,
+      "computeMajor": 7, "computeMinor": 5,
+      "maxThreadsPerBlock": 1024, "maxThreadsPerMultiprocessor": 1024,
+      "regsPerBlock": 65536, "warpSize": 32,
+      "sharedMemPerBlock": 49152, "numSms": 40
+    , "regsPerMultiprocessor": 65536, "sharedMemPerBlockOptin": 65536, "sharedMemPerMultiprocessor": 65536
+    }
+  ],
+  "traceEvents": [
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2>)", "pid": 0, "tid": 7,
+    "ts": 3335922463656.104, "dur": 3.168,
+    "args": {
+      "External id": 52455,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52455,      "registers per thread": 23,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52455, "pid": 0, "tid": 7, "ts": 3335922463656.104,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922463050.292, "dur": 607.503,
+    "args": {
+      "External id": 52455,      "cbid": 211, "correlation": 52455
+    }
+  },
+  {
+    "ph": "s", "id": 52455, "pid": 2708, "tid": -1257781440, "ts": 3335922463050.292,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)", "pid": 0, "tid": 7,
+    "ts": 3335922463693.447, "dur": 2.656,
+    "args": {
+      "External id": 52465,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52465,      "registers per thread": 24,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52465, "pid": 0, "tid": 7, "ts": 3335922463693.447,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922463684.407, "dur": 8.603,
+    "args": {
+      "External id": 52465,      "cbid": 211, "correlation": 52465
+    }
+  },
+  {
+    "ph": "s", "id": 52465, "pid": 2708, "tid": -1257781440, "ts": 3335922463684.407,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2>)", "pid": 0, "tid": 7,
+    "ts": 3335922463724.838, "dur": 2.721,
+    "args": {
+      "External id": 52475,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52475,      "registers per thread": 23,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52475, "pid": 0, "tid": 7, "ts": 3335922463724.838,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922463717.811, "dur": 5.521,
+    "args": {
+      "External id": 52475,      "cbid": 211, "correlation": 52475
+    }
+  },
+  {
+    "ph": "s", "id": 52475, "pid": 2708, "tid": -1257781440, "ts": 3335922463717.811,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)", "pid": 0, "tid": 7,
+    "ts": 3335922463737.254, "dur": 2.272,
+    "args": {
+      "External id": 52485,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52485,      "registers per thread": 24,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52485, "pid": 0, "tid": 7, "ts": 3335922463737.254,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922463730.847, "dur": 4.655,
+    "args": {
+      "External id": 52485,      "cbid": 211, "correlation": 52485
+    }
+  },
+  {
+    "ph": "s", "id": 52485, "pid": 2708, "tid": -1257781440, "ts": 3335922463730.847,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2>)", "pid": 0, "tid": 7,
+    "ts": 3335922463754.214, "dur": 2.656,
+    "args": {
+      "External id": 52495,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52495,      "registers per thread": 23,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52495, "pid": 0, "tid": 7, "ts": 3335922463754.214,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922463747.714, "dur": 4.726,
+    "args": {
+      "External id": 52495,      "cbid": 211, "correlation": 52495
+    }
+  },
+  {
+    "ph": "s", "id": 52495, "pid": 2708, "tid": -1257781440, "ts": 3335922463747.714,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)", "pid": 0, "tid": 7,
+    "ts": 3335922463766.246, "dur": 2.239,
+    "args": {
+      "External id": 52505,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52505,      "registers per thread": 24,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52505, "pid": 0, "tid": 7, "ts": 3335922463766.246,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922463759.110, "dur": 5.316,
+    "args": {
+      "External id": 52505,      "cbid": 211, "correlation": 52505
+    }
+  },
+  {
+    "ph": "s", "id": 52505, "pid": 2708, "tid": -1257781440, "ts": 3335922463759.110,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2>)", "pid": 0, "tid": 7,
+    "ts": 3335922463782.021, "dur": 2.688,
+    "args": {
+      "External id": 52515,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52515,      "registers per thread": 23,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52515, "pid": 0, "tid": 7, "ts": 3335922463782.021,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922463775.681, "dur": 4.731,
+    "args": {
+      "External id": 52515,      "cbid": 211, "correlation": 52515
+    }
+  },
+  {
+    "ph": "s", "id": 52515, "pid": 2708, "tid": -1257781440, "ts": 3335922463775.681,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)", "pid": 0, "tid": 7,
+    "ts": 3335922463792.901, "dur": 2.272,
+    "args": {
+      "External id": 52525,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52525,      "registers per thread": 24,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52525, "pid": 0, "tid": 7, "ts": 3335922463792.901,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922463787.114, "dur": 3.990,
+    "args": {
+      "External id": 52525,      "cbid": 211, "correlation": 52525
+    }
+  },
+  {
+    "ph": "s", "id": 52525, "pid": 2708, "tid": -1257781440, "ts": 3335922463787.114,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2>)", "pid": 0, "tid": 7,
+    "ts": 3335922463808.037, "dur": 2.720,
+    "args": {
+      "External id": 52535,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52535,      "registers per thread": 23,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52535, "pid": 0, "tid": 7, "ts": 3335922463808.037,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922463801.681, "dur": 4.597,
+    "args": {
+      "External id": 52535,      "cbid": 211, "correlation": 52535
+    }
+  },
+  {
+    "ph": "s", "id": 52535, "pid": 2708, "tid": -1257781440, "ts": 3335922463801.681,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)", "pid": 0, "tid": 7,
+    "ts": 3335922463818.852, "dur": 2.272,
+    "args": {
+      "External id": 52545,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52545,      "registers per thread": 24,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52545, "pid": 0, "tid": 7, "ts": 3335922463818.852,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922463812.770, "dur": 4.313,
+    "args": {
+      "External id": 52545,      "cbid": 211, "correlation": 52545
+    }
+  },
+  {
+    "ph": "s", "id": 52545, "pid": 2708, "tid": -1257781440, "ts": 3335922463812.770,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2>)", "pid": 0, "tid": 7,
+    "ts": 3335922463834.212, "dur": 2.688,
+    "args": {
+      "External id": 52555,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52555,      "registers per thread": 23,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52555, "pid": 0, "tid": 7, "ts": 3335922463834.212,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922463827.743, "dur": 4.593,
+    "args": {
+      "External id": 52555,      "cbid": 211, "correlation": 52555
+    }
+  },
+  {
+    "ph": "s", "id": 52555, "pid": 2708, "tid": -1257781440, "ts": 3335922463827.743,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)", "pid": 0, "tid": 7,
+    "ts": 3335922463844.964, "dur": 2.272,
+    "args": {
+      "External id": 52565,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52565,      "registers per thread": 24,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52565, "pid": 0, "tid": 7, "ts": 3335922463844.964,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922463838.965, "dur": 4.186,
+    "args": {
+      "External id": 52565,      "cbid": 211, "correlation": 52565
+    }
+  },
+  {
+    "ph": "s", "id": 52565, "pid": 2708, "tid": -1257781440, "ts": 3335922463838.965,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2>)", "pid": 0, "tid": 7,
+    "ts": 3335922463859.620, "dur": 2.688,
+    "args": {
+      "External id": 52575,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52575,      "registers per thread": 23,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52575, "pid": 0, "tid": 7, "ts": 3335922463859.620,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922463853.626, "dur": 4.279,
+    "args": {
+      "External id": 52575,      "cbid": 211, "correlation": 52575
+    }
+  },
+  {
+    "ph": "s", "id": 52575, "pid": 2708, "tid": -1257781440, "ts": 3335922463853.626,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)", "pid": 0, "tid": 7,
+    "ts": 3335922463870.883, "dur": 2.272,
+    "args": {
+      "External id": 52585,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52585,      "registers per thread": 24,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52585, "pid": 0, "tid": 7, "ts": 3335922463870.883,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922463864.353, "dur": 4.768,
+    "args": {
+      "External id": 52585,      "cbid": 211, "correlation": 52585
+    }
+  },
+  {
+    "ph": "s", "id": 52585, "pid": 2708, "tid": -1257781440, "ts": 3335922463864.353,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2>)", "pid": 0, "tid": 7,
+    "ts": 3335922463886.115, "dur": 2.656,
+    "args": {
+      "External id": 52595,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52595,      "registers per thread": 23,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52595, "pid": 0, "tid": 7, "ts": 3335922463886.115,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922463879.677, "dur": 4.677,
+    "args": {
+      "External id": 52595,      "cbid": 211, "correlation": 52595
+    }
+  },
+  {
+    "ph": "s", "id": 52595, "pid": 2708, "tid": -1257781440, "ts": 3335922463879.677,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)", "pid": 0, "tid": 7,
+    "ts": 3335922463896.739, "dur": 2.272,
+    "args": {
+      "External id": 52605,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52605,      "registers per thread": 24,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52605, "pid": 0, "tid": 7, "ts": 3335922463896.739,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922463890.997, "dur": 3.918,
+    "args": {
+      "External id": 52605,      "cbid": 211, "correlation": 52605
+    }
+  },
+  {
+    "ph": "s", "id": 52605, "pid": 2708, "tid": -1257781440, "ts": 3335922463890.997,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2>)", "pid": 0, "tid": 7,
+    "ts": 3335922463911.618, "dur": 2.688,
+    "args": {
+      "External id": 52615,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52615,      "registers per thread": 23,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52615, "pid": 0, "tid": 7, "ts": 3335922463911.618,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922463905.407, "dur": 4.507,
+    "args": {
+      "External id": 52615,      "cbid": 211, "correlation": 52615
+    }
+  },
+  {
+    "ph": "s", "id": 52615, "pid": 2708, "tid": -1257781440, "ts": 3335922463905.407,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)", "pid": 0, "tid": 7,
+    "ts": 3335922463922.338, "dur": 2.240,
+    "args": {
+      "External id": 52625,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52625,      "registers per thread": 24,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52625, "pid": 0, "tid": 7, "ts": 3335922463922.338,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922463916.397, "dur": 4.129,
+    "args": {
+      "External id": 52625,      "cbid": 211, "correlation": 52625
+    }
+  },
+  {
+    "ph": "s", "id": 52625, "pid": 2708, "tid": -1257781440, "ts": 3335922463916.397,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2>)", "pid": 0, "tid": 7,
+    "ts": 3335922463937.378, "dur": 2.656,
+    "args": {
+      "External id": 52635,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52635,      "registers per thread": 23,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52635, "pid": 0, "tid": 7, "ts": 3335922463937.378,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922463931.010, "dur": 4.389,
+    "args": {
+      "External id": 52635,      "cbid": 211, "correlation": 52635
+    }
+  },
+  {
+    "ph": "s", "id": 52635, "pid": 2708, "tid": -1257781440, "ts": 3335922463931.010,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)", "pid": 0, "tid": 7,
+    "ts": 3335922463948.034, "dur": 2.271,
+    "args": {
+      "External id": 52645,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52645,      "registers per thread": 24,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52645, "pid": 0, "tid": 7, "ts": 3335922463948.034,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922463942.054, "dur": 4.194,
+    "args": {
+      "External id": 52645,      "cbid": 211, "correlation": 52645
+    }
+  },
+  {
+    "ph": "s", "id": 52645, "pid": 2708, "tid": -1257781440, "ts": 3335922463942.054,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2>)", "pid": 0, "tid": 7,
+    "ts": 3335922463962.433, "dur": 2.688,
+    "args": {
+      "External id": 52655,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52655,      "registers per thread": 23,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52655, "pid": 0, "tid": 7, "ts": 3335922463962.433,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922463956.675, "dur": 4.003,
+    "args": {
+      "External id": 52655,      "cbid": 211, "correlation": 52655
+    }
+  },
+  {
+    "ph": "s", "id": 52655, "pid": 2708, "tid": -1257781440, "ts": 3335922463956.675,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)", "pid": 0, "tid": 7,
+    "ts": 3335922463973.505, "dur": 2.240,
+    "args": {
+      "External id": 52665,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52665,      "registers per thread": 24,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52665, "pid": 0, "tid": 7, "ts": 3335922463973.505,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922463967.145, "dur": 4.500,
+    "args": {
+      "External id": 52665,      "cbid": 211, "correlation": 52665
+    }
+  },
+  {
+    "ph": "s", "id": 52665, "pid": 2708, "tid": -1257781440, "ts": 3335922463967.145,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2>)", "pid": 0, "tid": 7,
+    "ts": 3335922463988.449, "dur": 2.688,
+    "args": {
+      "External id": 52675,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52675,      "registers per thread": 23,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52675, "pid": 0, "tid": 7, "ts": 3335922463988.449,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922463982.005, "dur": 4.748,
+    "args": {
+      "External id": 52675,      "cbid": 211, "correlation": 52675
+    }
+  },
+  {
+    "ph": "s", "id": 52675, "pid": 2708, "tid": -1257781440, "ts": 3335922463982.005,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)", "pid": 0, "tid": 7,
+    "ts": 3335922463999.072, "dur": 2.272,
+    "args": {
+      "External id": 52685,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52685,      "registers per thread": 24,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52685, "pid": 0, "tid": 7, "ts": 3335922463999.072,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922463993.311, "dur": 3.896,
+    "args": {
+      "External id": 52685,      "cbid": 211, "correlation": 52685
+    }
+  },
+  {
+    "ph": "s", "id": 52685, "pid": 2708, "tid": -1257781440, "ts": 3335922463993.311,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2>)", "pid": 0, "tid": 7,
+    "ts": 3335922464014.112, "dur": 2.720,
+    "args": {
+      "External id": 52695,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52695,      "registers per thread": 23,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52695, "pid": 0, "tid": 7, "ts": 3335922464014.112,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922464007.655, "dur": 4.737,
+    "args": {
+      "External id": 52695,      "cbid": 211, "correlation": 52695
+    }
+  },
+  {
+    "ph": "s", "id": 52695, "pid": 2708, "tid": -1257781440, "ts": 3335922464007.655,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)", "pid": 0, "tid": 7,
+    "ts": 3335922464024.736, "dur": 2.240,
+    "args": {
+      "External id": 52705,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52705,      "registers per thread": 24,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52705, "pid": 0, "tid": 7, "ts": 3335922464024.736,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922464018.884, "dur": 3.992,
+    "args": {
+      "External id": 52705,      "cbid": 211, "correlation": 52705
+    }
+  },
+  {
+    "ph": "s", "id": 52705, "pid": 2708, "tid": -1257781440, "ts": 3335922464018.884,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2>)", "pid": 0, "tid": 7,
+    "ts": 3335922464040.032, "dur": 2.720,
+    "args": {
+      "External id": 52715,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52715,      "registers per thread": 23,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52715, "pid": 0, "tid": 7, "ts": 3335922464040.032,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922464033.246, "dur": 4.938,
+    "args": {
+      "External id": 52715,      "cbid": 211, "correlation": 52715
+    }
+  },
+  {
+    "ph": "s", "id": 52715, "pid": 2708, "tid": -1257781440, "ts": 3335922464033.246,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)", "pid": 0, "tid": 7,
+    "ts": 3335922464050.847, "dur": 2.272,
+    "args": {
+      "External id": 52725,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52725,      "registers per thread": 24,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52725, "pid": 0, "tid": 7, "ts": 3335922464050.847,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922464044.769, "dur": 4.178,
+    "args": {
+      "External id": 52725,      "cbid": 211, "correlation": 52725
+    }
+  },
+  {
+    "ph": "s", "id": 52725, "pid": 2708, "tid": -1257781440, "ts": 3335922464044.769,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2>)", "pid": 0, "tid": 7,
+    "ts": 3335922464064.991, "dur": 2.688,
+    "args": {
+      "External id": 52735,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52735,      "registers per thread": 23,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52735, "pid": 0, "tid": 7, "ts": 3335922464064.991,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922464059.275, "dur": 4.001,
+    "args": {
+      "External id": 52735,      "cbid": 211, "correlation": 52735
+    }
+  },
+  {
+    "ph": "s", "id": 52735, "pid": 2708, "tid": -1257781440, "ts": 3335922464059.275,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)", "pid": 0, "tid": 7,
+    "ts": 3335922464076.383, "dur": 2.272,
+    "args": {
+      "External id": 52745,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52745,      "registers per thread": 24,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52745, "pid": 0, "tid": 7, "ts": 3335922464076.383,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922464069.690, "dur": 4.879,
+    "args": {
+      "External id": 52745,      "cbid": 211, "correlation": 52745
+    }
+  },
+  {
+    "ph": "s", "id": 52745, "pid": 2708, "tid": -1257781440, "ts": 3335922464069.690,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2>)", "pid": 0, "tid": 7,
+    "ts": 3335922464117.726, "dur": 2.720,
+    "args": {
+      "External id": 52755,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52755,      "registers per thread": 23,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52755, "pid": 0, "tid": 7, "ts": 3335922464117.726,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922464110.270, "dur": 5.880,
+    "args": {
+      "External id": 52755,      "cbid": 211, "correlation": 52755
+    }
+  },
+  {
+    "ph": "s", "id": 52755, "pid": 2708, "tid": -1257781440, "ts": 3335922464110.270,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)", "pid": 0, "tid": 7,
+    "ts": 3335922464129.310, "dur": 2.240,
+    "args": {
+      "External id": 52765,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52765,      "registers per thread": 24,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52765, "pid": 0, "tid": 7, "ts": 3335922464129.310,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922464123.300, "dur": 4.313,
+    "args": {
+      "External id": 52765,      "cbid": 211, "correlation": 52765
+    }
+  },
+  {
+    "ph": "s", "id": 52765, "pid": 2708, "tid": -1257781440, "ts": 3335922464123.300,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2>)", "pid": 0, "tid": 7,
+    "ts": 3335922464145.053, "dur": 2.688,
+    "args": {
+      "External id": 52775,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52775,      "registers per thread": 23,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52775, "pid": 0, "tid": 7, "ts": 3335922464145.053,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922464138.583, "dur": 4.772,
+    "args": {
+      "External id": 52775,      "cbid": 211, "correlation": 52775
+    }
+  },
+  {
+    "ph": "s", "id": 52775, "pid": 2708, "tid": -1257781440, "ts": 3335922464138.583,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)", "pid": 0, "tid": 7,
+    "ts": 3335922464155.997, "dur": 2.272,
+    "args": {
+      "External id": 52785,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52785,      "registers per thread": 24,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52785, "pid": 0, "tid": 7, "ts": 3335922464155.997,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922464149.835, "dur": 4.415,
+    "args": {
+      "External id": 52785,      "cbid": 211, "correlation": 52785
+    }
+  },
+  {
+    "ph": "s", "id": 52785, "pid": 2708, "tid": -1257781440, "ts": 3335922464149.835,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2>)", "pid": 0, "tid": 7,
+    "ts": 3335922464171.612, "dur": 2.656,
+    "args": {
+      "External id": 52795,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52795,      "registers per thread": 23,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52795, "pid": 0, "tid": 7, "ts": 3335922464171.612,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922464164.782, "dur": 4.881,
+    "args": {
+      "External id": 52795,      "cbid": 211, "correlation": 52795
+    }
+  },
+  {
+    "ph": "s", "id": 52795, "pid": 2708, "tid": -1257781440, "ts": 3335922464164.782,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)", "pid": 0, "tid": 7,
+    "ts": 3335922464182.556, "dur": 2.272,
+    "args": {
+      "External id": 52805,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52805,      "registers per thread": 24,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52805, "pid": 0, "tid": 7, "ts": 3335922464182.556,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922464176.255, "dur": 4.510,
+    "args": {
+      "External id": 52805,      "cbid": 211, "correlation": 52805
+    }
+  },
+  {
+    "ph": "s", "id": 52805, "pid": 2708, "tid": -1257781440, "ts": 3335922464176.255,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2>)", "pid": 0, "tid": 7,
+    "ts": 3335922464197.308, "dur": 2.688,
+    "args": {
+      "External id": 52815,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52815,      "registers per thread": 23,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52815, "pid": 0, "tid": 7, "ts": 3335922464197.308,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922464191.127, "dur": 4.389,
+    "args": {
+      "External id": 52815,      "cbid": 211, "correlation": 52815
+    }
+  },
+  {
+    "ph": "s", "id": 52815, "pid": 2708, "tid": -1257781440, "ts": 3335922464191.127,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)", "pid": 0, "tid": 7,
+    "ts": 3335922464208.444, "dur": 2.240,
+    "args": {
+      "External id": 52825,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52825,      "registers per thread": 24,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52825, "pid": 0, "tid": 7, "ts": 3335922464208.444,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922464201.864, "dur": 4.721,
+    "args": {
+      "External id": 52825,      "cbid": 211, "correlation": 52825
+    }
+  },
+  {
+    "ph": "s", "id": 52825, "pid": 2708, "tid": -1257781440, "ts": 3335922464201.864,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2>)", "pid": 0, "tid": 7,
+    "ts": 3335922464223.131, "dur": 2.688,
+    "args": {
+      "External id": 52835,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52835,      "registers per thread": 23,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52835, "pid": 0, "tid": 7, "ts": 3335922464223.131,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922464217.010, "dur": 4.442,
+    "args": {
+      "External id": 52835,      "cbid": 211, "correlation": 52835
+    }
+  },
+  {
+    "ph": "s", "id": 52835, "pid": 2708, "tid": -1257781440, "ts": 3335922464217.010,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)", "pid": 0, "tid": 7,
+    "ts": 3335922464233.915, "dur": 2.240,
+    "args": {
+      "External id": 52845,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52845,      "registers per thread": 24,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52845, "pid": 0, "tid": 7, "ts": 3335922464233.915,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922464227.907, "dur": 4.213,
+    "args": {
+      "External id": 52845,      "cbid": 211, "correlation": 52845
+    }
+  },
+  {
+    "ph": "s", "id": 52845, "pid": 2708, "tid": -1257781440, "ts": 3335922464227.907,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2>)", "pid": 0, "tid": 7,
+    "ts": 3335922464248.667, "dur": 2.688,
+    "args": {
+      "External id": 52855,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52855,      "registers per thread": 23,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52855, "pid": 0, "tid": 7, "ts": 3335922464248.667,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922464242.491, "dur": 4.465,
+    "args": {
+      "External id": 52855,      "cbid": 211, "correlation": 52855
+    }
+  },
+  {
+    "ph": "s", "id": 52855, "pid": 2708, "tid": -1257781440, "ts": 3335922464242.491,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)", "pid": 0, "tid": 7,
+    "ts": 3335922464259.131, "dur": 2.272,
+    "args": {
+      "External id": 52865,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52865,      "registers per thread": 24,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52865, "pid": 0, "tid": 7, "ts": 3335922464259.131,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922464253.337, "dur": 3.958,
+    "args": {
+      "External id": 52865,      "cbid": 211, "correlation": 52865
+    }
+  },
+  {
+    "ph": "s", "id": 52865, "pid": 2708, "tid": -1257781440, "ts": 3335922464253.337,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2>)", "pid": 0, "tid": 7,
+    "ts": 3335922464273.946, "dur": 2.720,
+    "args": {
+      "External id": 52875,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52875,      "registers per thread": 23,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52875, "pid": 0, "tid": 7, "ts": 3335922464273.946,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922464267.703, "dur": 4.431,
+    "args": {
+      "External id": 52875,      "cbid": 211, "correlation": 52875
+    }
+  },
+  {
+    "ph": "s", "id": 52875, "pid": 2708, "tid": -1257781440, "ts": 3335922464267.703,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)", "pid": 0, "tid": 7,
+    "ts": 3335922464284.634, "dur": 2.304,
+    "args": {
+      "External id": 52885,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52885,      "registers per thread": 24,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52885, "pid": 0, "tid": 7, "ts": 3335922464284.634,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922464278.656, "dur": 4.168,
+    "args": {
+      "External id": 52885,      "cbid": 211, "correlation": 52885
+    }
+  },
+  {
+    "ph": "s", "id": 52885, "pid": 2708, "tid": -1257781440, "ts": 3335922464278.656,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2>)", "pid": 0, "tid": 7,
+    "ts": 3335922464299.034, "dur": 2.688,
+    "args": {
+      "External id": 52895,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52895,      "registers per thread": 23,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52895, "pid": 0, "tid": 7, "ts": 3335922464299.034,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922464293.268, "dur": 4.057,
+    "args": {
+      "External id": 52895,      "cbid": 211, "correlation": 52895
+    }
+  },
+  {
+    "ph": "s", "id": 52895, "pid": 2708, "tid": -1257781440, "ts": 3335922464293.268,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)", "pid": 0, "tid": 7,
+    "ts": 3335922464310.425, "dur": 2.272,
+    "args": {
+      "External id": 52905,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52905,      "registers per thread": 24,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52905, "pid": 0, "tid": 7, "ts": 3335922464310.425,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922464303.736, "dur": 4.926,
+    "args": {
+      "External id": 52905,      "cbid": 211, "correlation": 52905
+    }
+  },
+  {
+    "ph": "s", "id": 52905, "pid": 2708, "tid": -1257781440, "ts": 3335922464303.736,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2>)", "pid": 0, "tid": 7,
+    "ts": 3335922464325.369, "dur": 2.688,
+    "args": {
+      "External id": 52915,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52915,      "registers per thread": 23,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52915, "pid": 0, "tid": 7, "ts": 3335922464325.369,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922464319.156, "dur": 4.527,
+    "args": {
+      "External id": 52915,      "cbid": 211, "correlation": 52915
+    }
+  },
+  {
+    "ph": "s", "id": 52915, "pid": 2708, "tid": -1257781440, "ts": 3335922464319.156,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)", "pid": 0, "tid": 7,
+    "ts": 3335922464335.769, "dur": 2.240,
+    "args": {
+      "External id": 52925,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52925,      "registers per thread": 24,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52925, "pid": 0, "tid": 7, "ts": 3335922464335.769,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922464330.217, "dur": 3.697,
+    "args": {
+      "External id": 52925,      "cbid": 211, "correlation": 52925
+    }
+  },
+  {
+    "ph": "s", "id": 52925, "pid": 2708, "tid": -1257781440, "ts": 3335922464330.217,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2> >(int, at::native::(anonymous namespace)::silu_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#5}::operator()() const::{lambda(c10::Half)#1}, at::detail::Array<char*, 2>)", "pid": 0, "tid": 7,
+    "ts": 3335922464350.809, "dur": 2.655,
+    "args": {
+      "External id": 52935,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52935,      "registers per thread": 23,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52935, "pid": 0, "tid": 7, "ts": 3335922464350.809,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922464344.284, "dur": 4.798,
+    "args": {
+      "External id": 52935,      "cbid": 211, "correlation": 52935
+    }
+  },
+  {
+    "ph": "s", "id": 52935, "pid": 2708, "tid": -1257781440, "ts": 3335922464344.284,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3> >(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, at::detail::Array<char*, 3>)", "pid": 0, "tid": 7,
+    "ts": 3335922464361.560, "dur": 2.272,
+    "args": {
+      "External id": 52945,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 52945,      "registers per thread": 24,      "shared memory": 0,      "blocks per SM": 0.075000,      "warps per SM": 0.300000,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 1
+    }
+  },
+  {
+    "ph": "f", "id": 52945, "pid": 0, "tid": 7, "ts": 3335922464361.560,
+    "cat": "ac2g", "name": "ac2g", "bp": "e"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922464355.491, "dur": 4.264,
+    "args": {
+      "External id": 52945,      "cbid": 211, "correlation": 52945
+    }
+  },
+  {
+    "ph": "s", "id": 52945, "pid": 2708, "tid": -1257781440, "ts": 3335922464355.491,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaDeviceSynchronize", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922464383.967, "dur": 5.137,
+    "args": {
+      "External id": 52951,      "cbid": 165, "correlation": 52951
+    }
+  },
+  {
+    "ph": "s", "id": 52951, "pid": 2708, "tid": -1257781440, "ts": 3335922464383.967,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "ph": "X", "cat": "cuda_runtime", "name": "cudaDeviceSynchronize", "pid": 2708, "tid": -1257781440,
+    "ts": 3335922464415.901, "dur": 1.596,
+    "args": {
+      "External id": 52955,      "cbid": 165, "correlation": 52955
+    }
+  },
+  {
+    "ph": "s", "id": 52955, "pid": 2708, "tid": -1257781440, "ts": 3335922464415.901,
+    "cat": "ac2g", "name": "ac2g"
+  },
+  {
+    "name": "process_name", "ph": "M", "ts": 3335922462141.028, "pid": 2708, "tid": 0,
+    "args": {
+      "name": "python"
+    }
+  },
+  {
+    "name": "process_labels", "ph": "M", "ts": 3335922462141.028, "pid": 2708, "tid": 0,
+    "args": {
+      "labels": "CPU"
+    }
+  },
+  {
+    "name": "process_sort_index", "ph": "M", "ts": 3335922462141.028, "pid": 2708, "tid": 0,
+    "args": {
+      "sort_index": 2708
+    }
+  },
+  {
+    "name": "process_name", "ph": "M", "ts": 3335922462141.028, "pid": 0, "tid": 0,
+    "args": {
+      "name": "python"
+    }
+  },
+  {
+    "name": "process_labels", "ph": "M", "ts": 3335922462141.028, "pid": 0, "tid": 0,
+    "args": {
+      "labels": "GPU 0"
+    }
+  },
+  {
+    "name": "process_sort_index", "ph": "M", "ts": 3335922462141.028, "pid": 0, "tid": 0,
+    "args": {
+      "sort_index": 5000000
+    }
+  },
+  {
+    "name": "process_name", "ph": "M", "ts": 3335922462141.028, "pid": 1, "tid": 0,
+    "args": {
+      "name": "python"
+    }
+  },
+  {
+    "name": "process_labels", "ph": "M", "ts": 3335922462141.028, "pid": 1, "tid": 0,
+    "args": {
+      "labels": "GPU 1"
+    }
+  },
+  {
+    "name": "process_sort_index", "ph": "M", "ts": 3335922462141.028, "pid": 1, "tid": 0,
+    "args": {
+      "sort_index": 5000001
+    }
+  },
+  {
+    "name": "process_name", "ph": "M", "ts": 3335922462141.028, "pid": 2, "tid": 0,
+    "args": {
+      "name": "python"
+    }
+  },
+  {
+    "name": "process_labels", "ph": "M", "ts": 3335922462141.028, "pid": 2, "tid": 0,
+    "args": {
+      "labels": "GPU 2"
+    }
+  },
+  {
+    "name": "process_sort_index", "ph": "M", "ts": 3335922462141.028, "pid": 2, "tid": 0,
+    "args": {
+      "sort_index": 5000002
+    }
+  },
+  {
+    "name": "process_name", "ph": "M", "ts": 3335922462141.028, "pid": 3, "tid": 0,
+    "args": {
+      "name": "python"
+    }
+  },
+  {
+    "name": "process_labels", "ph": "M", "ts": 3335922462141.028, "pid": 3, "tid": 0,
+    "args": {
+      "labels": "GPU 3"
+    }
+  },
+  {
+    "name": "process_sort_index", "ph": "M", "ts": 3335922462141.028, "pid": 3, "tid": 0,
+    "args": {
+      "sort_index": 5000003
+    }
+  },
+  {
+    "name": "process_name", "ph": "M", "ts": 3335922462141.028, "pid": 4, "tid": 0,
+    "args": {
+      "name": "python"
+    }
+  },
+  {
+    "name": "process_labels", "ph": "M", "ts": 3335922462141.028, "pid": 4, "tid": 0,
+    "args": {
+      "labels": "GPU 4"
+    }
+  },
+  {
+    "name": "process_sort_index", "ph": "M", "ts": 3335922462141.028, "pid": 4, "tid": 0,
+    "args": {
+      "sort_index": 5000004
+    }
+  },
+  {
+    "name": "process_name", "ph": "M", "ts": 3335922462141.028, "pid": 5, "tid": 0,
+    "args": {
+      "name": "python"
+    }
+  },
+  {
+    "name": "process_labels", "ph": "M", "ts": 3335922462141.028, "pid": 5, "tid": 0,
+    "args": {
+      "labels": "GPU 5"
+    }
+  },
+  {
+    "name": "process_sort_index", "ph": "M", "ts": 3335922462141.028, "pid": 5, "tid": 0,
+    "args": {
+      "sort_index": 5000005
+    }
+  },
+  {
+    "name": "process_name", "ph": "M", "ts": 3335922462141.028, "pid": 6, "tid": 0,
+    "args": {
+      "name": "python"
+    }
+  },
+  {
+    "name": "process_labels", "ph": "M", "ts": 3335922462141.028, "pid": 6, "tid": 0,
+    "args": {
+      "labels": "GPU 6"
+    }
+  },
+  {
+    "name": "process_sort_index", "ph": "M", "ts": 3335922462141.028, "pid": 6, "tid": 0,
+    "args": {
+      "sort_index": 5000006
+    }
+  },
+  {
+    "name": "process_name", "ph": "M", "ts": 3335922462141.028, "pid": 7, "tid": 0,
+    "args": {
+      "name": "python"
+    }
+  },
+  {
+    "name": "process_labels", "ph": "M", "ts": 3335922462141.028, "pid": 7, "tid": 0,
+    "args": {
+      "labels": "GPU 7"
+    }
+  },
+  {
+    "name": "process_sort_index", "ph": "M", "ts": 3335922462141.028, "pid": 7, "tid": 0,
+    "args": {
+      "sort_index": 5000007
+    }
+  },
+  {
+    "name": "process_name", "ph": "M", "ts": 3335922462141.028, "pid": 8, "tid": 0,
+    "args": {
+      "name": "python"
+    }
+  },
+  {
+    "name": "process_labels", "ph": "M", "ts": 3335922462141.028, "pid": 8, "tid": 0,
+    "args": {
+      "labels": "GPU 8"
+    }
+  },
+  {
+    "name": "process_sort_index", "ph": "M", "ts": 3335922462141.028, "pid": 8, "tid": 0,
+    "args": {
+      "sort_index": 5000008
+    }
+  },
+  {
+    "name": "process_name", "ph": "M", "ts": 3335922462141.028, "pid": 9, "tid": 0,
+    "args": {
+      "name": "python"
+    }
+  },
+  {
+    "name": "process_labels", "ph": "M", "ts": 3335922462141.028, "pid": 9, "tid": 0,
+    "args": {
+      "labels": "GPU 9"
+    }
+  },
+  {
+    "name": "process_sort_index", "ph": "M", "ts": 3335922462141.028, "pid": 9, "tid": 0,
+    "args": {
+      "sort_index": 5000009
+    }
+  },
+  {
+    "name": "process_name", "ph": "M", "ts": 3335922462141.028, "pid": 10, "tid": 0,
+    "args": {
+      "name": "python"
+    }
+  },
+  {
+    "name": "process_labels", "ph": "M", "ts": 3335922462141.028, "pid": 10, "tid": 0,
+    "args": {
+      "labels": "GPU 10"
+    }
+  },
+  {
+    "name": "process_sort_index", "ph": "M", "ts": 3335922462141.028, "pid": 10, "tid": 0,
+    "args": {
+      "sort_index": 5000010
+    }
+  },
+  {
+    "name": "process_name", "ph": "M", "ts": 3335922462141.028, "pid": 11, "tid": 0,
+    "args": {
+      "name": "python"
+    }
+  },
+  {
+    "name": "process_labels", "ph": "M", "ts": 3335922462141.028, "pid": 11, "tid": 0,
+    "args": {
+      "labels": "GPU 11"
+    }
+  },
+  {
+    "name": "process_sort_index", "ph": "M", "ts": 3335922462141.028, "pid": 11, "tid": 0,
+    "args": {
+      "sort_index": 5000011
+    }
+  },
+  {
+    "name": "process_name", "ph": "M", "ts": 3335922462141.028, "pid": 12, "tid": 0,
+    "args": {
+      "name": "python"
+    }
+  },
+  {
+    "name": "process_labels", "ph": "M", "ts": 3335922462141.028, "pid": 12, "tid": 0,
+    "args": {
+      "labels": "GPU 12"
+    }
+  },
+  {
+    "name": "process_sort_index", "ph": "M", "ts": 3335922462141.028, "pid": 12, "tid": 0,
+    "args": {
+      "sort_index": 5000012
+    }
+  },
+  {
+    "name": "process_name", "ph": "M", "ts": 3335922462141.028, "pid": 13, "tid": 0,
+    "args": {
+      "name": "python"
+    }
+  },
+  {
+    "name": "process_labels", "ph": "M", "ts": 3335922462141.028, "pid": 13, "tid": 0,
+    "args": {
+      "labels": "GPU 13"
+    }
+  },
+  {
+    "name": "process_sort_index", "ph": "M", "ts": 3335922462141.028, "pid": 13, "tid": 0,
+    "args": {
+      "sort_index": 5000013
+    }
+  },
+  {
+    "name": "process_name", "ph": "M", "ts": 3335922462141.028, "pid": 14, "tid": 0,
+    "args": {
+      "name": "python"
+    }
+  },
+  {
+    "name": "process_labels", "ph": "M", "ts": 3335922462141.028, "pid": 14, "tid": 0,
+    "args": {
+      "labels": "GPU 14"
+    }
+  },
+  {
+    "name": "process_sort_index", "ph": "M", "ts": 3335922462141.028, "pid": 14, "tid": 0,
+    "args": {
+      "sort_index": 5000014
+    }
+  },
+  {
+    "name": "process_name", "ph": "M", "ts": 3335922462141.028, "pid": 15, "tid": 0,
+    "args": {
+      "name": "python"
+    }
+  },
+  {
+    "name": "process_labels", "ph": "M", "ts": 3335922462141.028, "pid": 15, "tid": 0,
+    "args": {
+      "labels": "GPU 15"
+    }
+  },
+  {
+    "name": "process_sort_index", "ph": "M", "ts": 3335922462141.028, "pid": 15, "tid": 0,
+    "args": {
+      "sort_index": 5000015
+    }
+  },
+  {
+    "name": "thread_name", "ph": "M", "ts": 3335922462141.028, "pid": 0, "tid": 7,
+    "args": {
+      "name": "stream 7 "
+    }
+  },
+  {
+    "name": "thread_sort_index", "ph": "M", "ts": 3335922462141.028, "pid": 0, "tid": 7,
+    "args": {
+      "sort_index": 7
+    }
+  },
+  {
+    "ph": "X", "cat": "Trace", "ts": 3335922458096.380, "dur": 6338.515,
+    "pid": "Spans", "tid": "PyTorch Profiler",
+    "name": "PyTorch Profiler (0)",
+    "args": {
+      "Op count": 0
+    }
+  },
+  {
+    "name": "process_sort_index", "ph": "M", "ts": 3335922458096.380,
+    "pid": "Spans", "tid": 0,
+    "args": {
+      "sort_index": 536870912
+    }
+  },
+  {
+    "name": "Iteration Start: PyTorch Profiler", "ph": "i", "s": "g",
+    "pid": "Traces", "tid": "Trace PyTorch Profiler", "ts": 3335922458096.380
+  },
+  {
+    "name": "Record Window End", "ph": "i", "s": "g",
+    "pid": "", "tid": "", "ts": 3335922468517.257
+  }
+  ],
+  "traceName": "<T4_WORKDIR>/evidence_final/trace/float16_1025/profile_eager.json",
+  "displayTimeUnit": "ms",
+  "baseTimeNanoseconds": 1790857026000000000
+}

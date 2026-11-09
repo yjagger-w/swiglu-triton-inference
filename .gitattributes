@@ -11,3 +11,12 @@ results/**/*.txt -text -whitespace
 
 # Keep selected compiler/log evidence byte-for-byte, including emitted spacing.
 docs/evidence/compiler_trace_20261102/** -text -whitespace
+docs/evidence/tvm_swiglu_20261105/float*/** -text -whitespace
+docs/evidence/tvm_swiglu_20261105/*.log -text -whitespace
+docs/evidence/tvm_swiglu_t4_20261109/evidence*/** -text -whitespace
+
+# Keep the CUDA 12.4 rebuild script runnable on Linux.
+benchmarks/build_tvm_cuda12_sidecar.sh text eol=lf
+requirements-tvm.txt text eol=lf
+docs/evidence/tvm_swiglu_t4_20261109/execution-sha256.txt text eol=lf
+docs/evidence/tvm_swiglu_t4_20261109/public-evidence-sha256.txt text eol=lf

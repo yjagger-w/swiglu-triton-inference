@@ -1,0 +1,2 @@
+4582150f510b2fbcfd64a2d91feb8db478bb54755fdb388b0e3efd06e536df66  upstream-tvm-v0.25.0.post1.tar.gz
+11f8d787b12bfbbbed05fb1ab58902806ca8fb8aff222864fb0a58b8c6e4f8d1  <T4_WORKDIR>/evidence_cuda12/libtvm_runtime_cuda.so

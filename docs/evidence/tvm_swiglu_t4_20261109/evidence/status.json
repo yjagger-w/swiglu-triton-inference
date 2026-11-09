@@ -1,0 +1,6 @@
+{
+  "status": "failed",
+  "phase": "t4",
+  "traceback": "Traceback (most recent call last):\n  File \"<T4_WORKDIR>/repo/benchmarks/tvm_swiglu.py\", line 238, in main\n    subprocess.run([sys.executable, \"-m\", \"pytest\", \"-q\"], cwd=ROOT,\n  File \"<CONDA_BASE>/lib/python3.12/subprocess.py\", line 571, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['<VENV>/bin/python', '-m', 'pytest', '-q']' returned non-zero exit status 1.\n",
+  "performance_claim": false
+}

@@ -1,0 +1,25 @@
+{
+  "python": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:37:03) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "tvm": "0.25.0.post1",
+  "ffi": "0.1.12",
+  "tvm_build": {
+    "USE_CUDA": "ON",
+    "USE_LLVM": "ON",
+    "USE_NCCL": "ON",
+    "USE_NVTX": "ON",
+    "USE_NVSHMEM": "OFF",
+    "USE_HEXAGON": "OFF",
+    "USE_CUDNN": "OFF",
+    "USE_CUTLASS": "OFF",
+    "USE_VULKAN": "OFF",
+    "USE_OPENCL": "OFF",
+    "USE_METAL": "OFF",
+    "USE_ROCM": "OFF",
+    "USE_CLML": "OFF",
+    "USE_NNAPI_RUNTIME": "OFF",
+    "USE_NNAPI_CODEGEN": "OFF"
+  },
+  "git_head": "5a829c92b32301d908a6ca0577963aa4ee563e86",
+  "git_status": " M .gitignore\n M README.md\n?? benchmarks/tvm_swiglu.py\n?? docs/compiler_trace_local_acceptance_20261102_CN.md\n?? docs/evidence/tvm_swiglu_20261105/\n?? docs/tvm_swiglu_CN.md\n?? requirements-tvm.txt\n?? src/swiglu_tvm/\n?? tests/test_tvm_swiglu.py\n"
+}

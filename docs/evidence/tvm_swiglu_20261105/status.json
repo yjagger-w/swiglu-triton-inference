@@ -1,0 +1,6 @@
+{
+  "cpu_ir": "passed",
+  "cuda_execution": "not_run",
+  "t4_performance": "not_run",
+  "reason": "CPU evidence phase; separate T4 command required"
+}

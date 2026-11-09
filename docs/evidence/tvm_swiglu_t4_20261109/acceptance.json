@@ -1,0 +1,54 @@
+{
+  "date": "2026-11-09",
+  "status": "passed",
+  "branch": "feature/tvm-swiglu-fusion",
+  "base_commit": "5a829c92b32301d908a6ca0577963aa4ee563e86",
+  "device": "Tesla T4",
+  "driver": "550.90.07",
+  "nvcc": "12.4.131",
+  "tvm": "0.25.0.post1",
+  "tvm_ffi": "0.1.12",
+  "torch": "2.5.1+cu124",
+  "triton": "3.1.0",
+  "cuda_sidecar": "rebuilt_from_v0.25.0.post1_for_cuda12.4",
+  "launcher_exit_code": 0,
+  "pytest": {
+    "passed": 84,
+    "skipped": 5,
+    "failed": 0
+  },
+  "benchmark": {
+    "cases": 8,
+    "providers": [
+      "eager",
+      "compiled",
+      "triton",
+      "tvm_off",
+      "tvm_on"
+    ],
+    "rounds_per_case": 10,
+    "calls_per_round_per_provider": 100,
+    "all_tolerance_checks_passed": true,
+    "tvm_fp16_bitwise_matches_eager_in_all_seeded_cases": true,
+    "tvm_pass_wall_speedup_min": 1.3450843553753173,
+    "tvm_pass_wall_speedup_max": 1.8409184038645965
+  },
+  "ptx": {
+    "modules_saved": 16,
+    "off_entries_per_case": 2,
+    "on_entries_per_case": 1
+  },
+  "cupti": {
+    "profiles_passed": 40,
+    "off_launches_per_call": 2,
+    "on_launches_per_call": 1
+  },
+  "remote_source_archive_sha256": "6d5967e5a8968493c8f39abdf06ebeaead1aed4988488fb501781202a3228e7a",
+  "remote_fixes_archive_sha256": "600491a1f2c68d40abf3ee89fcbff6f57bff85c507469b0eb4e8303d4f5a4f29",
+  "public_evidence": {
+    "redacted": true,
+    "manifest": "public-evidence-sha256.txt",
+    "manifest_sha256": "63e44092ff0ac7449cda9bfc8a6471f3acd0bec95c6afcb3e7d1a580b579b926",
+    "files": 213
+  }
+}

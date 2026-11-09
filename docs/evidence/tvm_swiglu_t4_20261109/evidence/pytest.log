@@ -1,0 +1,741 @@
+..............................sssss............................FFFFFFFFF [ 80%]
+FFFF......FFFFFFF                                                        [100%]
+=================================== FAILURES ===================================
+_______________ test_cuda_against_existing_eager[float32-shape0] _______________
+
+shape = (1,), dtype = 'float32'
+
+    @pytest.mark.parametrize("shape", [(1,), (127,), (1025,), (1, 5632), (128, 5632), (1024, 5632)])
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    def test_cuda_against_existing_eager(shape, dtype):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        td = getattr(torch, dtype)
+        generator = torch.Generator(device="cuda").manual_seed(42)
+        g = torch.randn(shape, device="cuda", dtype=td, generator=generator) * 5
+        u = torch.randn(shape, device="cuda", dtype=td, generator=generator)
+        expected = torch.nn.functional.silu(g) * u
+        lib, _ = build_operator(shape, dtype, {"kind": "cuda", "arch": "sm_75"})
+        ga, ua = (tvm.runtime.from_dlpack(x) for x in (g, u))
+>       out = tvm.runtime.empty(shape, dtype, tvm.cuda())
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:107: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+<VENV>/lib/python3.12/site-packages/tvm/runtime/_tensor.py:326: in empty
+    arr = _ffi_api.TVMTensorAllocWithScope(shape, dtype, device, mem_scope)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in tvm::runtime::Tensor::Empty(tvm::ffi::Shape, DLDataType, DLDevice, tvm::ffi::Optional<tvm::ffi::String, void>)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   tvm.error.InternalError: Check failed: (allow_missing) is false: Device API cuda is not enabled.
+
+/project/src/runtime/device_api.cc:88: InternalError
+_______________ test_cuda_against_existing_eager[float32-shape1] _______________
+
+shape = (127,), dtype = 'float32'
+
+    @pytest.mark.parametrize("shape", [(1,), (127,), (1025,), (1, 5632), (128, 5632), (1024, 5632)])
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    def test_cuda_against_existing_eager(shape, dtype):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        td = getattr(torch, dtype)
+        generator = torch.Generator(device="cuda").manual_seed(42)
+        g = torch.randn(shape, device="cuda", dtype=td, generator=generator) * 5
+        u = torch.randn(shape, device="cuda", dtype=td, generator=generator)
+        expected = torch.nn.functional.silu(g) * u
+        lib, _ = build_operator(shape, dtype, {"kind": "cuda", "arch": "sm_75"})
+        ga, ua = (tvm.runtime.from_dlpack(x) for x in (g, u))
+>       out = tvm.runtime.empty(shape, dtype, tvm.cuda())
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:107: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+<VENV>/lib/python3.12/site-packages/tvm/runtime/_tensor.py:326: in empty
+    arr = _ffi_api.TVMTensorAllocWithScope(shape, dtype, device, mem_scope)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in tvm::runtime::Tensor::Empty(tvm::ffi::Shape, DLDataType, DLDevice, tvm::ffi::Optional<tvm::ffi::String, void>)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   tvm.error.InternalError: Check failed: (allow_missing) is false: Device API cuda is not enabled.
+
+/project/src/runtime/device_api.cc:88: InternalError
+_______________ test_cuda_against_existing_eager[float32-shape2] _______________
+
+shape = (1025,), dtype = 'float32'
+
+    @pytest.mark.parametrize("shape", [(1,), (127,), (1025,), (1, 5632), (128, 5632), (1024, 5632)])
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    def test_cuda_against_existing_eager(shape, dtype):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        td = getattr(torch, dtype)
+        generator = torch.Generator(device="cuda").manual_seed(42)
+        g = torch.randn(shape, device="cuda", dtype=td, generator=generator) * 5
+        u = torch.randn(shape, device="cuda", dtype=td, generator=generator)
+        expected = torch.nn.functional.silu(g) * u
+        lib, _ = build_operator(shape, dtype, {"kind": "cuda", "arch": "sm_75"})
+        ga, ua = (tvm.runtime.from_dlpack(x) for x in (g, u))
+>       out = tvm.runtime.empty(shape, dtype, tvm.cuda())
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:107: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+<VENV>/lib/python3.12/site-packages/tvm/runtime/_tensor.py:326: in empty
+    arr = _ffi_api.TVMTensorAllocWithScope(shape, dtype, device, mem_scope)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in tvm::runtime::Tensor::Empty(tvm::ffi::Shape, DLDataType, DLDevice, tvm::ffi::Optional<tvm::ffi::String, void>)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   tvm.error.InternalError: Check failed: (allow_missing) is false: Device API cuda is not enabled.
+
+/project/src/runtime/device_api.cc:88: InternalError
+_______________ test_cuda_against_existing_eager[float32-shape3] _______________
+
+shape = (1, 5632), dtype = 'float32'
+
+    @pytest.mark.parametrize("shape", [(1,), (127,), (1025,), (1, 5632), (128, 5632), (1024, 5632)])
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    def test_cuda_against_existing_eager(shape, dtype):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        td = getattr(torch, dtype)
+        generator = torch.Generator(device="cuda").manual_seed(42)
+        g = torch.randn(shape, device="cuda", dtype=td, generator=generator) * 5
+        u = torch.randn(shape, device="cuda", dtype=td, generator=generator)
+        expected = torch.nn.functional.silu(g) * u
+        lib, _ = build_operator(shape, dtype, {"kind": "cuda", "arch": "sm_75"})
+        ga, ua = (tvm.runtime.from_dlpack(x) for x in (g, u))
+>       out = tvm.runtime.empty(shape, dtype, tvm.cuda())
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:107: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+<VENV>/lib/python3.12/site-packages/tvm/runtime/_tensor.py:326: in empty
+    arr = _ffi_api.TVMTensorAllocWithScope(shape, dtype, device, mem_scope)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in tvm::runtime::Tensor::Empty(tvm::ffi::Shape, DLDataType, DLDevice, tvm::ffi::Optional<tvm::ffi::String, void>)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   tvm.error.InternalError: Check failed: (allow_missing) is false: Device API cuda is not enabled.
+
+/project/src/runtime/device_api.cc:88: InternalError
+_______________ test_cuda_against_existing_eager[float32-shape4] _______________
+
+shape = (128, 5632), dtype = 'float32'
+
+    @pytest.mark.parametrize("shape", [(1,), (127,), (1025,), (1, 5632), (128, 5632), (1024, 5632)])
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    def test_cuda_against_existing_eager(shape, dtype):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        td = getattr(torch, dtype)
+        generator = torch.Generator(device="cuda").manual_seed(42)
+        g = torch.randn(shape, device="cuda", dtype=td, generator=generator) * 5
+        u = torch.randn(shape, device="cuda", dtype=td, generator=generator)
+        expected = torch.nn.functional.silu(g) * u
+        lib, _ = build_operator(shape, dtype, {"kind": "cuda", "arch": "sm_75"})
+        ga, ua = (tvm.runtime.from_dlpack(x) for x in (g, u))
+>       out = tvm.runtime.empty(shape, dtype, tvm.cuda())
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:107: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+<VENV>/lib/python3.12/site-packages/tvm/runtime/_tensor.py:326: in empty
+    arr = _ffi_api.TVMTensorAllocWithScope(shape, dtype, device, mem_scope)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in tvm::runtime::Tensor::Empty(tvm::ffi::Shape, DLDataType, DLDevice, tvm::ffi::Optional<tvm::ffi::String, void>)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   tvm.error.InternalError: Check failed: (allow_missing) is false: Device API cuda is not enabled.
+
+/project/src/runtime/device_api.cc:88: InternalError
+_______________ test_cuda_against_existing_eager[float32-shape5] _______________
+
+shape = (1024, 5632), dtype = 'float32'
+
+    @pytest.mark.parametrize("shape", [(1,), (127,), (1025,), (1, 5632), (128, 5632), (1024, 5632)])
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    def test_cuda_against_existing_eager(shape, dtype):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        td = getattr(torch, dtype)
+        generator = torch.Generator(device="cuda").manual_seed(42)
+        g = torch.randn(shape, device="cuda", dtype=td, generator=generator) * 5
+        u = torch.randn(shape, device="cuda", dtype=td, generator=generator)
+        expected = torch.nn.functional.silu(g) * u
+        lib, _ = build_operator(shape, dtype, {"kind": "cuda", "arch": "sm_75"})
+        ga, ua = (tvm.runtime.from_dlpack(x) for x in (g, u))
+>       out = tvm.runtime.empty(shape, dtype, tvm.cuda())
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:107: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+<VENV>/lib/python3.12/site-packages/tvm/runtime/_tensor.py:326: in empty
+    arr = _ffi_api.TVMTensorAllocWithScope(shape, dtype, device, mem_scope)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in tvm::runtime::Tensor::Empty(tvm::ffi::Shape, DLDataType, DLDevice, tvm::ffi::Optional<tvm::ffi::String, void>)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   tvm.error.InternalError: Check failed: (allow_missing) is false: Device API cuda is not enabled.
+
+/project/src/runtime/device_api.cc:88: InternalError
+_______________ test_cuda_against_existing_eager[float16-shape0] _______________
+
+shape = (1,), dtype = 'float16'
+
+    @pytest.mark.parametrize("shape", [(1,), (127,), (1025,), (1, 5632), (128, 5632), (1024, 5632)])
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    def test_cuda_against_existing_eager(shape, dtype):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        td = getattr(torch, dtype)
+        generator = torch.Generator(device="cuda").manual_seed(42)
+        g = torch.randn(shape, device="cuda", dtype=td, generator=generator) * 5
+        u = torch.randn(shape, device="cuda", dtype=td, generator=generator)
+        expected = torch.nn.functional.silu(g) * u
+        lib, _ = build_operator(shape, dtype, {"kind": "cuda", "arch": "sm_75"})
+        ga, ua = (tvm.runtime.from_dlpack(x) for x in (g, u))
+>       out = tvm.runtime.empty(shape, dtype, tvm.cuda())
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:107: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+<VENV>/lib/python3.12/site-packages/tvm/runtime/_tensor.py:326: in empty
+    arr = _ffi_api.TVMTensorAllocWithScope(shape, dtype, device, mem_scope)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in tvm::runtime::Tensor::Empty(tvm::ffi::Shape, DLDataType, DLDevice, tvm::ffi::Optional<tvm::ffi::String, void>)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   tvm.error.InternalError: Check failed: (allow_missing) is false: Device API cuda is not enabled.
+
+/project/src/runtime/device_api.cc:88: InternalError
+_______________ test_cuda_against_existing_eager[float16-shape1] _______________
+
+shape = (127,), dtype = 'float16'
+
+    @pytest.mark.parametrize("shape", [(1,), (127,), (1025,), (1, 5632), (128, 5632), (1024, 5632)])
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    def test_cuda_against_existing_eager(shape, dtype):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        td = getattr(torch, dtype)
+        generator = torch.Generator(device="cuda").manual_seed(42)
+        g = torch.randn(shape, device="cuda", dtype=td, generator=generator) * 5
+        u = torch.randn(shape, device="cuda", dtype=td, generator=generator)
+        expected = torch.nn.functional.silu(g) * u
+        lib, _ = build_operator(shape, dtype, {"kind": "cuda", "arch": "sm_75"})
+        ga, ua = (tvm.runtime.from_dlpack(x) for x in (g, u))
+>       out = tvm.runtime.empty(shape, dtype, tvm.cuda())
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:107: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+<VENV>/lib/python3.12/site-packages/tvm/runtime/_tensor.py:326: in empty
+    arr = _ffi_api.TVMTensorAllocWithScope(shape, dtype, device, mem_scope)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in tvm::runtime::Tensor::Empty(tvm::ffi::Shape, DLDataType, DLDevice, tvm::ffi::Optional<tvm::ffi::String, void>)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   tvm.error.InternalError: Check failed: (allow_missing) is false: Device API cuda is not enabled.
+
+/project/src/runtime/device_api.cc:88: InternalError
+_______________ test_cuda_against_existing_eager[float16-shape2] _______________
+
+shape = (1025,), dtype = 'float16'
+
+    @pytest.mark.parametrize("shape", [(1,), (127,), (1025,), (1, 5632), (128, 5632), (1024, 5632)])
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    def test_cuda_against_existing_eager(shape, dtype):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        td = getattr(torch, dtype)
+        generator = torch.Generator(device="cuda").manual_seed(42)
+        g = torch.randn(shape, device="cuda", dtype=td, generator=generator) * 5
+        u = torch.randn(shape, device="cuda", dtype=td, generator=generator)
+        expected = torch.nn.functional.silu(g) * u
+        lib, _ = build_operator(shape, dtype, {"kind": "cuda", "arch": "sm_75"})
+        ga, ua = (tvm.runtime.from_dlpack(x) for x in (g, u))
+>       out = tvm.runtime.empty(shape, dtype, tvm.cuda())
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:107: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+<VENV>/lib/python3.12/site-packages/tvm/runtime/_tensor.py:326: in empty
+    arr = _ffi_api.TVMTensorAllocWithScope(shape, dtype, device, mem_scope)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in tvm::runtime::Tensor::Empty(tvm::ffi::Shape, DLDataType, DLDevice, tvm::ffi::Optional<tvm::ffi::String, void>)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   tvm.error.InternalError: Check failed: (allow_missing) is false: Device API cuda is not enabled.
+
+/project/src/runtime/device_api.cc:88: InternalError
+_______________ test_cuda_against_existing_eager[float16-shape3] _______________
+
+shape = (1, 5632), dtype = 'float16'
+
+    @pytest.mark.parametrize("shape", [(1,), (127,), (1025,), (1, 5632), (128, 5632), (1024, 5632)])
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    def test_cuda_against_existing_eager(shape, dtype):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        td = getattr(torch, dtype)
+        generator = torch.Generator(device="cuda").manual_seed(42)
+        g = torch.randn(shape, device="cuda", dtype=td, generator=generator) * 5
+        u = torch.randn(shape, device="cuda", dtype=td, generator=generator)
+        expected = torch.nn.functional.silu(g) * u
+        lib, _ = build_operator(shape, dtype, {"kind": "cuda", "arch": "sm_75"})
+        ga, ua = (tvm.runtime.from_dlpack(x) for x in (g, u))
+>       out = tvm.runtime.empty(shape, dtype, tvm.cuda())
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:107: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+<VENV>/lib/python3.12/site-packages/tvm/runtime/_tensor.py:326: in empty
+    arr = _ffi_api.TVMTensorAllocWithScope(shape, dtype, device, mem_scope)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in tvm::runtime::Tensor::Empty(tvm::ffi::Shape, DLDataType, DLDevice, tvm::ffi::Optional<tvm::ffi::String, void>)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   tvm.error.InternalError: Check failed: (allow_missing) is false: Device API cuda is not enabled.
+
+/project/src/runtime/device_api.cc:88: InternalError
+_______________ test_cuda_against_existing_eager[float16-shape4] _______________
+
+shape = (128, 5632), dtype = 'float16'
+
+    @pytest.mark.parametrize("shape", [(1,), (127,), (1025,), (1, 5632), (128, 5632), (1024, 5632)])
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    def test_cuda_against_existing_eager(shape, dtype):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        td = getattr(torch, dtype)
+        generator = torch.Generator(device="cuda").manual_seed(42)
+        g = torch.randn(shape, device="cuda", dtype=td, generator=generator) * 5
+        u = torch.randn(shape, device="cuda", dtype=td, generator=generator)
+        expected = torch.nn.functional.silu(g) * u
+        lib, _ = build_operator(shape, dtype, {"kind": "cuda", "arch": "sm_75"})
+        ga, ua = (tvm.runtime.from_dlpack(x) for x in (g, u))
+>       out = tvm.runtime.empty(shape, dtype, tvm.cuda())
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:107: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+<VENV>/lib/python3.12/site-packages/tvm/runtime/_tensor.py:326: in empty
+    arr = _ffi_api.TVMTensorAllocWithScope(shape, dtype, device, mem_scope)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in tvm::runtime::Tensor::Empty(tvm::ffi::Shape, DLDataType, DLDevice, tvm::ffi::Optional<tvm::ffi::String, void>)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   tvm.error.InternalError: Check failed: (allow_missing) is false: Device API cuda is not enabled.
+
+/project/src/runtime/device_api.cc:88: InternalError
+_______________ test_cuda_against_existing_eager[float16-shape5] _______________
+
+shape = (1024, 5632), dtype = 'float16'
+
+    @pytest.mark.parametrize("shape", [(1,), (127,), (1025,), (1, 5632), (128, 5632), (1024, 5632)])
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    def test_cuda_against_existing_eager(shape, dtype):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        td = getattr(torch, dtype)
+        generator = torch.Generator(device="cuda").manual_seed(42)
+        g = torch.randn(shape, device="cuda", dtype=td, generator=generator) * 5
+        u = torch.randn(shape, device="cuda", dtype=td, generator=generator)
+        expected = torch.nn.functional.silu(g) * u
+        lib, _ = build_operator(shape, dtype, {"kind": "cuda", "arch": "sm_75"})
+        ga, ua = (tvm.runtime.from_dlpack(x) for x in (g, u))
+>       out = tvm.runtime.empty(shape, dtype, tvm.cuda())
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:107: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+<VENV>/lib/python3.12/site-packages/tvm/runtime/_tensor.py:326: in empty
+    arr = _ffi_api.TVMTensorAllocWithScope(shape, dtype, device, mem_scope)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in tvm::runtime::Tensor::Empty(tvm::ffi::Shape, DLDataType, DLDevice, tvm::ffi::Optional<tvm::ffi::String, void>)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   tvm.error.InternalError: Check failed: (allow_missing) is false: Device API cuda is not enabled.
+
+/project/src/runtime/device_api.cc:88: InternalError
+_________________ test_cuda_fp16_all_finite_bits_and_boundary __________________
+
+    def test_cuda_fp16_all_finite_bits_and_boundary():
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        vals = torch.arange(65536, device="cuda", dtype=torch.int32).to(torch.int16).view(torch.float16)
+        gate = vals[torch.isfinite(vals)].contiguous()
+        gen = torch.Generator(device="cuda").manual_seed(42)
+        ups = [torch.ones_like(gate), gate[torch.randperm(gate.numel(), device="cuda", generator=gen)]]
+        lib, _ = build_operator(tuple(gate.shape), "float16", {"kind": "cuda", "arch": "sm_75"})
+        for up in ups:
+            expected = torch.nn.functional.silu(gate) * up
+>           out = tvm.runtime.empty(tuple(gate.shape), "float16", tvm.cuda())
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:127: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+<VENV>/lib/python3.12/site-packages/tvm/runtime/_tensor.py:326: in empty
+    arr = _ffi_api.TVMTensorAllocWithScope(shape, dtype, device, mem_scope)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in tvm::runtime::Tensor::Empty(tvm::ffi::Shape, DLDataType, DLDevice, tvm::ffi::Optional<tvm::ffi::String, void>)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   tvm.error.InternalError: Check failed: (allow_missing) is false: Device API cuda is not enabled.
+
+/project/src/runtime/device_api.cc:88: InternalError
+_____________ test_precise_callback_restored_and_real_cuda_source ______________
+
+    def test_precise_callback_restored_and_real_cuda_source():
+        import tempfile
+        from pathlib import Path
+        from swiglu_tvm.cuda import export_cuda_source, precise_cuda
+        old = tvm.get_global_func("tvm_callback_cuda_compile")
+        with pytest.raises(RuntimeError, match="sentinel"):
+            with precise_cuda():
+                raise RuntimeError("sentinel")
+        # Compare FFI function identity via same_as.
+        assert old.same_as(tvm.get_global_func("tvm_callback_cuda_compile"))
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "actual.cu"
+            export_cuda_source(schedule(primfunc((1025,), "float16", True), True), path)
+>           code = path.read_text()
+                   ^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+<CONDA_BASE>/lib/python3.12/pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tmp/tmphtyg1v8i/actual.cu'), mode = 'r', buffering = -1
+encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/tmphtyg1v8i/actual.cu'
+
+<CONDA_BASE>/lib/python3.12/pathlib.py:1013: FileNotFoundError
+___________ test_gpu_relax_codegen_on_off_without_execution[float32] ___________
+
+dtype = 'float32'
+
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    def test_gpu_relax_codegen_on_off_without_execution(dtype):
+        import tempfile
+        from pathlib import Path
+        import re
+        with tempfile.TemporaryDirectory() as tmp:
+            for enabled, count in [(False, 2), (True, 1)]:
+                path = Path(tmp) / f"{enabled}.cu"
+                exe, _, _ = build_relax(example((1025,), dtype),
+                                        {"kind": "cuda", "arch": "sm_75"}, enabled,
+                                        fp16=True, source_only=path)
+                assert exe is None  # source-only export must never masquerade as an executable
+>               names = re.findall(r'extern "C" __global__ [^\n;{]*? (\w+)\([^()\n]*\) \{', path.read_text())
+                                                                                            ^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:229: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+<CONDA_BASE>/lib/python3.12/pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tmp/tmpqn6qrd59/False.cu'), mode = 'r', buffering = -1
+encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/tmpqn6qrd59/False.cu'
+
+<CONDA_BASE>/lib/python3.12/pathlib.py:1013: FileNotFoundError
+___________ test_gpu_relax_codegen_on_off_without_execution[float16] ___________
+
+dtype = 'float16'
+
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    def test_gpu_relax_codegen_on_off_without_execution(dtype):
+        import tempfile
+        from pathlib import Path
+        import re
+        with tempfile.TemporaryDirectory() as tmp:
+            for enabled, count in [(False, 2), (True, 1)]:
+                path = Path(tmp) / f"{enabled}.cu"
+                exe, _, _ = build_relax(example((1025,), dtype),
+                                        {"kind": "cuda", "arch": "sm_75"}, enabled,
+                                        fp16=True, source_only=path)
+                assert exe is None  # source-only export must never masquerade as an executable
+>               names = re.findall(r'extern "C" __global__ [^\n;{]*? (\w+)\([^()\n]*\) \{', path.read_text())
+                                                                                            ^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:229: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+<CONDA_BASE>/lib/python3.12/pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tmp/tmpasrkc3ss/False.cu'), mode = 'r', buffering = -1
+encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/tmpasrkc3ss/False.cu'
+
+<CONDA_BASE>/lib/python3.12/pathlib.py:1013: FileNotFoundError
+_____________ test_cuda_relax_nonfinite_and_values[False-float32] ______________
+
+dtype = 'float32', enabled = False
+
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    @pytest.mark.parametrize("enabled", [False, True])
+    def test_cuda_relax_nonfinite_and_values(dtype, enabled):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        g = torch.tensor([0, -0.0, -1, 1, -90, 90, float("nan"), float("inf"), -float("inf")],
+                         dtype=getattr(torch, dtype), device="cuda")
+        u = torch.ones_like(g)
+        exe, _, _ = build_relax(example((9,), dtype), {"kind": "cuda", "arch": "sm_75"}, enabled, fp16=True)
+>       vm = relax.VirtualMachine(exe, tvm.cuda())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:243: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+<VENV>/lib/python3.12/site-packages/tvm/runtime/vm.py:88: in __init__
+    self._setup_device(device, memory_cfg)
+<VENV>/lib/python3.12/site-packages/tvm/runtime/vm.py:121: in _setup_device
+    self.module["vm_initialization"](*init_args)
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in tvm::ffi::ModuleObj::GetFunction(tvm::ffi::String const&, bool)
+    ???
+<unknown>:0: in tvm::ffi::ModuleObj::GetFunction(tvm::ffi::String const&, bool)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   RuntimeError: CUDA runtime is not linked into this build; cannot launch kernels. Re-link with USE_CUDA=ON or load this module in a CUDA-equipped environment via tvm.runtime.load_module.
+
+/project/src/backend/cuda/codegen/cuda_fallback_module.cc:59: RuntimeError
+_____________ test_cuda_relax_nonfinite_and_values[False-float16] ______________
+
+dtype = 'float16', enabled = False
+
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    @pytest.mark.parametrize("enabled", [False, True])
+    def test_cuda_relax_nonfinite_and_values(dtype, enabled):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        g = torch.tensor([0, -0.0, -1, 1, -90, 90, float("nan"), float("inf"), -float("inf")],
+                         dtype=getattr(torch, dtype), device="cuda")
+        u = torch.ones_like(g)
+        exe, _, _ = build_relax(example((9,), dtype), {"kind": "cuda", "arch": "sm_75"}, enabled, fp16=True)
+>       vm = relax.VirtualMachine(exe, tvm.cuda())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:243: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+<VENV>/lib/python3.12/site-packages/tvm/runtime/vm.py:88: in __init__
+    self._setup_device(device, memory_cfg)
+<VENV>/lib/python3.12/site-packages/tvm/runtime/vm.py:121: in _setup_device
+    self.module["vm_initialization"](*init_args)
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in tvm::ffi::ModuleObj::GetFunction(tvm::ffi::String const&, bool)
+    ???
+<unknown>:0: in tvm::ffi::ModuleObj::GetFunction(tvm::ffi::String const&, bool)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   RuntimeError: CUDA runtime is not linked into this build; cannot launch kernels. Re-link with USE_CUDA=ON or load this module in a CUDA-equipped environment via tvm.runtime.load_module.
+
+/project/src/backend/cuda/codegen/cuda_fallback_module.cc:59: RuntimeError
+______________ test_cuda_relax_nonfinite_and_values[True-float32] ______________
+
+dtype = 'float32', enabled = True
+
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    @pytest.mark.parametrize("enabled", [False, True])
+    def test_cuda_relax_nonfinite_and_values(dtype, enabled):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        g = torch.tensor([0, -0.0, -1, 1, -90, 90, float("nan"), float("inf"), -float("inf")],
+                         dtype=getattr(torch, dtype), device="cuda")
+        u = torch.ones_like(g)
+        exe, _, _ = build_relax(example((9,), dtype), {"kind": "cuda", "arch": "sm_75"}, enabled, fp16=True)
+>       vm = relax.VirtualMachine(exe, tvm.cuda())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:243: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+<VENV>/lib/python3.12/site-packages/tvm/runtime/vm.py:88: in __init__
+    self._setup_device(device, memory_cfg)
+<VENV>/lib/python3.12/site-packages/tvm/runtime/vm.py:121: in _setup_device
+    self.module["vm_initialization"](*init_args)
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in tvm::ffi::ModuleObj::GetFunction(tvm::ffi::String const&, bool)
+    ???
+<unknown>:0: in tvm::ffi::ModuleObj::GetFunction(tvm::ffi::String const&, bool)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   RuntimeError: CUDA runtime is not linked into this build; cannot launch kernels. Re-link with USE_CUDA=ON or load this module in a CUDA-equipped environment via tvm.runtime.load_module.
+
+/project/src/backend/cuda/codegen/cuda_fallback_module.cc:59: RuntimeError
+______________ test_cuda_relax_nonfinite_and_values[True-float16] ______________
+
+dtype = 'float16', enabled = True
+
+    @pytest.mark.parametrize("dtype", ["float32", "float16"])
+    @pytest.mark.parametrize("enabled", [False, True])
+    def test_cuda_relax_nonfinite_and_values(dtype, enabled):
+        torch = pytest.importorskip("torch")
+        if not torch.cuda.is_available():
+            pytest.skip("CUDA required")
+        g = torch.tensor([0, -0.0, -1, 1, -90, 90, float("nan"), float("inf"), -float("inf")],
+                         dtype=getattr(torch, dtype), device="cuda")
+        u = torch.ones_like(g)
+        exe, _, _ = build_relax(example((9,), dtype), {"kind": "cuda", "arch": "sm_75"}, enabled, fp16=True)
+>       vm = relax.VirtualMachine(exe, tvm.cuda())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_tvm_swiglu.py:243: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+<VENV>/lib/python3.12/site-packages/tvm/runtime/vm.py:88: in __init__
+    self._setup_device(device, memory_cfg)
+<VENV>/lib/python3.12/site-packages/tvm/runtime/vm.py:121: in _setup_device
+    self.module["vm_initialization"](*init_args)
+python/tvm_ffi/cython/function.pxi:968: in tvm_ffi.core.Function.__call__
+    ???
+<unknown>:0: in tvm::ffi::ModuleObj::GetFunction(tvm::ffi::String const&, bool)
+    ???
+<unknown>:0: in tvm::ffi::ModuleObj::GetFunction(tvm::ffi::String const&, bool)
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   RuntimeError: CUDA runtime is not linked into this build; cannot launch kernels. Re-link with USE_CUDA=ON or load this module in a CUDA-equipped environment via tvm.runtime.load_module.
+
+/project/src/backend/cuda/codegen/cuda_fallback_module.cc:59: RuntimeError
+=========================== short test summary info ============================
+FAILED tests/test_tvm_swiglu.py::test_cuda_against_existing_eager[float32-shape0]
+FAILED tests/test_tvm_swiglu.py::test_cuda_against_existing_eager[float32-shape1]
+FAILED tests/test_tvm_swiglu.py::test_cuda_against_existing_eager[float32-shape2]
+FAILED tests/test_tvm_swiglu.py::test_cuda_against_existing_eager[float32-shape3]
+FAILED tests/test_tvm_swiglu.py::test_cuda_against_existing_eager[float32-shape4]
+FAILED tests/test_tvm_swiglu.py::test_cuda_against_existing_eager[float32-shape5]
+FAILED tests/test_tvm_swiglu.py::test_cuda_against_existing_eager[float16-shape0]
+FAILED tests/test_tvm_swiglu.py::test_cuda_against_existing_eager[float16-shape1]
+FAILED tests/test_tvm_swiglu.py::test_cuda_against_existing_eager[float16-shape2]
+FAILED tests/test_tvm_swiglu.py::test_cuda_against_existing_eager[float16-shape3]
+FAILED tests/test_tvm_swiglu.py::test_cuda_against_existing_eager[float16-shape4]
+FAILED tests/test_tvm_swiglu.py::test_cuda_against_existing_eager[float16-shape5]
+FAILED tests/test_tvm_swiglu.py::test_cuda_fp16_all_finite_bits_and_boundary
+FAILED tests/test_tvm_swiglu.py::test_precise_callback_restored_and_real_cuda_source
+FAILED tests/test_tvm_swiglu.py::test_gpu_relax_codegen_on_off_without_execution[float32]
+FAILED tests/test_tvm_swiglu.py::test_gpu_relax_codegen_on_off_without_execution[float16]
+FAILED tests/test_tvm_swiglu.py::test_cuda_relax_nonfinite_and_values[False-float32]
+FAILED tests/test_tvm_swiglu.py::test_cuda_relax_nonfinite_and_values[False-float16]
+FAILED tests/test_tvm_swiglu.py::test_cuda_relax_nonfinite_and_values[True-float32]
+FAILED tests/test_tvm_swiglu.py::test_cuda_relax_nonfinite_and_values[True-float16]
+20 failed, 64 passed, 5 skipped in 38.17s

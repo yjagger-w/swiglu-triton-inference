@@ -1,0 +1,9 @@
+{
+  "kernel_definitions": [
+    "fused_contract_silu_multiply_kernel",
+    "fused_contract_silu_multiply_kernel_1"
+  ],
+  "count": 2,
+  "compiled": false,
+  "executed": false
+}
