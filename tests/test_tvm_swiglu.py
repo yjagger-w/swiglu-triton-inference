@@ -1,11 +1,15 @@
 """Optional TVM tests: CPU execution, rewrite safety, CUDA tails and FP16 bits."""
+import platform
+import re
+
 import pytest
 
 tvm = pytest.importorskip("tvm")
 np = pytest.importorskip("numpy")
 from tvm import relax
 from swiglu_tvm.operator import build_operator, primfunc, schedule
-from swiglu_tvm.fusion import FuseSwiGLU, example, build_relax
+from swiglu_tvm.cpu import LLVM_NO_AUTO_VECTOR, compile_cpu, strip_mine_fp32
+from swiglu_tvm.fusion import FuseSwiGLU, example, build_relax, legalize_swiglu
 
 
 def reference(g, u):
@@ -79,6 +83,40 @@ def test_cpu_relax_numeric(enabled, dtype):
     actual = vm["main"](tvm.runtime.tensor(g), tvm.runtime.tensor(u)).numpy()
     tol = 3e-5 if dtype == "float32" else 3e-3
     np.testing.assert_allclose(actual, reference(g, u), rtol=tol, atol=tol)
+
+
+@pytest.mark.parametrize("shape", [(7,), (8,), (9,), (3, 11)])
+@pytest.mark.parametrize("enabled", [False, True])
+def test_cpu_strip_mine_numeric_and_tail(shape, enabled):
+    mod = strip_mine_fp32(legalize_swiglu(fused(example(shape), enabled=enabled)))
+    rng = np.random.default_rng(42)
+    g, u = (rng.standard_normal(shape).astype("float32") for _ in range(2))
+    g.flat[:4] = [np.nan, np.inf, -np.inf, -90]
+    g.flat[-1] = -1.25
+    u.flat[-1] = 2.0
+    inputs = [tvm.runtime.tensor(x) for x in (g, u)]
+    for vectorize in (False, True):
+        exe = compile_cpu(mod, "llvm", vectorize=vectorize)
+        vm = relax.VirtualMachine(exe, tvm.cpu())
+        np.testing.assert_allclose(vm["main"](*inputs).numpy(), reference(g, u),
+                                   rtol=3e-5, atol=3e-5, equal_nan=True)
+
+
+@pytest.mark.skipif(platform.machine().lower() not in ("amd64", "x86_64"), reason="x86 assembly check")
+@pytest.mark.parametrize("enabled", [False, True])
+def test_cpu_x86_vector_switch_codegen(enabled):
+    mod = strip_mine_fp32(legalize_swiglu(fused(example((129,)), enabled=enabled)))
+    target = {"kind": "llvm", "mcpu": "x86-64", "mattr": ["+avx2"],
+              "cl-opt": list(LLVM_NO_AUTO_VECTOR), "opt-level": 3, "fast-math": False}
+    for vectorize in (False, True):
+        exe = compile_cpu(mod, target, vectorize=vectorize)
+        library, = (m for m in exe.mod.imports if m.kind == "llvm")
+        ll = library.inspect_source("ll")
+        asm = library.inspect_source("asm")
+        assert "@llvm.exp.f32(" in ll  # scalar tail in both
+        assert ("@llvm.exp.v8f32(" in ll) is vectorize
+        assert bool(re.search(r"\bvdivps\b[^\n]*%ymm", asm)) is vectorize
+        assert re.search(r"\bvdivss\b", asm)
 
 
 def test_nonfinite_policy_cpu():

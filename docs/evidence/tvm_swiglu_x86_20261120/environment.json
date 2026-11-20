@@ -1,0 +1,89 @@
+{
+  "python": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:37:03) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "tvm": "0.25.0.post1",
+  "ffi": "0.1.12",
+  "tvm_build": {
+    "USE_CUDA": "ON",
+    "USE_LLVM": "ON",
+    "USE_NCCL": "ON",
+    "USE_NVTX": "ON",
+    "USE_NVSHMEM": "OFF",
+    "USE_HEXAGON": "OFF",
+    "USE_CUDNN": "OFF",
+    "USE_CUTLASS": "OFF",
+    "USE_VULKAN": "OFF",
+    "USE_OPENCL": "OFF",
+    "USE_METAL": "OFF",
+    "USE_ROCM": "OFF",
+    "USE_CLML": "OFF",
+    "USE_NNAPI_RUNTIME": "OFF",
+    "USE_NNAPI_CODEGEN": "OFF"
+  },
+  "git_head": "3e4ce7cee869ef75b9025acfbd6ebf57a49664fb",
+  "cpu": "Intel(R) Core(TM) Ultra 7 255H",
+  "llvm_host_cpu": "arrowlake",
+  "os_enabled_isa": {
+    "sse2": true,
+    "sse4_1": true,
+    "sse4_2": true,
+    "avx": true,
+    "avx2": true,
+    "avx512f": false
+  },
+  "affinity": {
+    "logical_cpu": 0,
+    "before_mask": "0xffff",
+    "after_mask": "0x1"
+  },
+  "llvm_major": 22,
+  "targets": {
+    "default": {
+      "kind": "llvm",
+      "mtriple": "x86_64-pc-windows-msvc",
+      "mcpu": "x86-64",
+      "mattr": [
+        "+avx2"
+      ],
+      "fast-math": false,
+      "opt-level": 3
+    },
+    "controlled": {
+      "kind": "llvm",
+      "mtriple": "x86_64-pc-windows-msvc",
+      "mcpu": "x86-64",
+      "mattr": [
+        "+avx2"
+      ],
+      "fast-math": false,
+      "opt-level": 3,
+      "cl-opt": [
+        "-vectorize-loops:bool=false",
+        "-vectorize-slp:bool=false"
+      ]
+    }
+  },
+  "pass_context": {
+    "vectorization_switch": "tirx.disable_vectorize",
+    "tirx.enable_fast_math": false
+  },
+  "thread_environment": {
+    "TVM_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1"
+  },
+  "tvm_runtime_threads": 1,
+  "numpy": "2.5.4",
+  "pytest": "9.2.0",
+  "seed": 42,
+  "vector_width": 8,
+  "rounds": 12,
+  "explicit_warmup_calls": 8,
+  "smoke": false,
+  "source_sha256": {
+    "benchmarks/tvm_swiglu_x86.py": "9cf78a4440a0828827429b2848fd5afe6c4e9b56e2998d1ddda5df41fa7c0c07",
+    "src/swiglu_tvm/cpu.py": "8e17de18130e4e8f8013d9a0c879eb2a9fc66366992bb9869d56ee71ec6cfecf",
+    "src/swiglu_tvm/fusion.py": "4d2db0ef8fbfe86281f84d0fc7d4acf2b6fe09fcfc95d4f790814008a70990a2",
+    "src/swiglu_tvm/operator.py": "518a21cc2c456a2bf3e9e5bb470a2fc5073d186059998f8b1cf7dabc281aaf97"
+  }
+}

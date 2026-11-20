@@ -127,10 +127,8 @@ def example(shape=(127,), dtype="float32", kind="target"):
     return bb.get()
 
 
-def build_relax(mod, target="llvm", enabled=True, fp16=False, source_only=None):
-    target = tvm.target.Target(target)
-    cuda = target.kind.name == "cuda"
-    mod = FuseSwiGLU(enabled, fp16, cuda, dense_inputs=True)(mod)
+def legalize_swiglu(mod, cuda=False):
+    """Legalize both controls with the same SiLU arithmetic."""
     # Built-in legalization is separate; deliberately do not run FuseOps/FuseTIR.
     def legalize_silu(bb, call):
         # The pinned built-in legalizer uses x * sigmoid(x), including half
@@ -138,7 +136,14 @@ def build_relax(mod, target="llvm", enabled=True, fp16=False, source_only=None):
         def compute(x):
             return tvm.te.compute(x.shape, lambda *i: silu_expr(x[i], x.dtype, cuda), name="silu")
         return bb.call_te(compute, call.args[0], primfunc_name_hint="contract_silu")
-    lowered = relax.transform.LegalizeOps({"relax.nn.silu": legalize_silu})(mod)
+    return relax.transform.LegalizeOps({"relax.nn.silu": legalize_silu})(mod)
+
+
+def build_relax(mod, target="llvm", enabled=True, fp16=False, source_only=None):
+    target = tvm.target.Target(target)
+    cuda = target.kind.name == "cuda"
+    mod = FuseSwiGLU(enabled, fp16, cuda, dense_inputs=True)(mod)
+    lowered = legalize_swiglu(mod, cuda)
     if cuda:
         with tvm.target.Target(target):
             lowered = tvm.s_tir.transform.DefaultGPUSchedule()(lowered)

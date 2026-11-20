@@ -1,0 +1,6 @@
+{
+  "tensor_calls": [
+    "call  custom_swiglu_float32_1x5632 in: %0, %1, %3   dst: %void"
+  ],
+  "tensor_allocations": 1
+}

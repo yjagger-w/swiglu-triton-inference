@@ -1,0 +1,29 @@
+@main:
+  call  vm.builtin.check_tensor_info in: %0, i1, c[0], c[1] dst: %void
+  call  vm.builtin.check_tensor_info in: %1, i1, c[0], c[2] dst: %void
+  call  vm.builtin.match_shape in: %0, %void, i1, i0, i1024, c[1] dst: %void
+  call  vm.builtin.match_shape in: %1, %void, i1, i0, i1024, c[2] dst: %void
+  call  vm.builtin.alloc_storage in: %vm, c[3], i0, c[4], c[5] dst: %2
+  call  vm.builtin.alloc_tensor in: %2, i0, c[6], c[0] dst: %3
+  call  vm.builtin.null_value in:              dst: %2
+  call  contract_silu    in: %0, %3       dst: %void
+  call  vm.builtin.alloc_storage in: %vm, c[3], i0, c[4], c[5] dst: %4
+  call  vm.builtin.alloc_tensor in: %4, i0, c[6], c[0] dst: %5
+  call  vm.builtin.null_value in:              dst: %4
+  call  multiply         in: %3, %1, %5   dst: %void
+  call  vm.builtin.null_value in:              dst: %3
+  ret   %5
+
+@vm.builtin.check_tensor_info packed_func;
+
+@vm.builtin.match_shape packed_func;
+
+@vm.builtin.alloc_storage packed_func;
+
+@vm.builtin.alloc_tensor packed_func;
+
+@vm.builtin.null_value packed_func;
+
+@contract_silu packed_func;
+
+@multiply packed_func;

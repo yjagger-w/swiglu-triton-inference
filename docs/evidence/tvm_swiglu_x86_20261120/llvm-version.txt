@@ -1,0 +1,6 @@
+The pinned TVM wheel exposes LLVM major 22 through llvm_version_major().
+An isolated target validation probe used the deliberately invalid mcpu
+"swiglu-version-probe". Its diagnostic identified the bundled LLVM as 22.1.0.
+The timestamp and wheel build path are omitted below.
+
+Error: Using LLVM 22.1.0 with `-mcpu=swiglu-version-probe` is not valid in `-mtriple=x86_64-pc-windows-msvc`, using default `-mcpu=generic`

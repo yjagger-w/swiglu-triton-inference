@@ -1,0 +1,11 @@
+...............................................sssssssssssss.........sss [ 98%]
+s                                                                        [100%]
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_fp16_rounding.py:5: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_hf_llama.py:3: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_llama_mlp.py:3: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_ops.py:3: could not import 'torch': No module named 'torch'
+SKIPPED [12] tests\test_tvm_swiglu.py:135: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_tvm_swiglu.py:155: could not import 'torch': No module named 'torch'
+SKIPPED [4] tests\test_tvm_swiglu.py:274: could not import 'torch': No module named 'torch'
+56 passed, 21 skipped in 19.60s

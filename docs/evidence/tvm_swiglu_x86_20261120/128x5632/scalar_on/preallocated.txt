@@ -1,0 +1,5 @@
+@main:
+  call  custom_swiglu_float32_128x5632 in: %0, %1, %3   dst: %void
+  ret   %3
+
+@custom_swiglu_float32_128x5632 packed_func;
